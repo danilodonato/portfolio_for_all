@@ -1,0 +1,1798 @@
+// Mixins de responsividade
+
+// Container-devices
+$container-xl: 1140px;
+$container-l: 1024px;
+$container-s: 620px;
+$gutter: 8px;
+
+// Mixin de media-queries
+@mixin responsive($device) {
+  @if $device ==xl {
+    @media screen and (max-width: #{$container-xl}) {
+      @content;
+    }
+  }
+
+  @else if $device ==l {
+    @media screen and (max-width: #{$container-l}) {
+      @content;
+    }
+  }
+
+  @else if $device ==s {
+
+    // For resolutions less than 960px
+    @media screen and (max-width: $container-s) {
+      @content;
+    }
+  }
+}
+
+@function grid($col, $total: 12) {
+  @return calc($col / $total) * 100%;
+}
+
+@for $i from 1 through 12 {
+  .grid-#{$i} {
+    width: calc(#{grid($i)} - #{$gutter});
+    margin: calc($gutter / 2);
+
+    @include responsive(l) {
+      width: calc(100% - #{$gutter});
+    }
+  }
+}
+
+@for $i from 1 through 12 {
+  .grid-nobreak-#{$i} {
+    width: calc(#{grid($i)} - #{$gutter});
+    margin: calc($gutter / 2);
+  }
+}
+
+.container {
+  max-width: $container-xl;
+  margin: 0 auto;
+
+  padding: 96px 24px;
+
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @include responsive(l) {
+    flex-direction: column;
+
+    padding: 32px 16px;
+  }
+}
+
+.container-clean {
+  max-width: $container-xl;
+  margin: 0 auto;
+
+  padding: 96px 24px;
+
+  @include responsive(l) {
+    flex-direction: column;
+
+    padding: 32px 16px;
+  }
+}
+
+.row {
+
+  // clearfix
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.stretch {
+  align-self: stretch;
+}
+
+.line-height {
+  line-height: 160%;
+}
+
+.text-decoration-line {
+  text-decoration-line: underline;
+}
+
+canvas {
+  position: absolute;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+.relative {
+  position: relative;
+}
+
+.h-100 {
+  height: 100vh;
+}
+
+.h-100p {
+  height: 100%;
+}
+
+.desktop {
+  display: block;
+
+  @include responsive(s) {
+    display: none;
+  }
+}
+
+.overflow {
+  overflow: auto;
+}
+
+.mobile {
+  @include responsive(l) {
+    display: none;
+  }
+}
+
+.flex-start-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+
+.flex-start-column {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-center-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flex-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+  @include responsive(s) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.flex-space-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+  @include responsive(s) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.flex-space-no-responsive {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-start {
+  align-items: flex-start;
+}
+
+.align-items-end {
+  align-items: flex-end;
+}
+
+.relative {
+  position: relative;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-item-1 {
+  flex: 1 1 360px;
+}
+
+.flex-item-2 {
+  flex: 2 1 360px;
+}
+
+.flex-item-3 {
+  flex: 3 1 360px;
+}
+
+.flex-item-4 {
+  flex: 4 1 360px;
+}
+
+.flex-item-5 {
+  flex: 5 1 360px;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+// Width's
+.w-auto {
+  width: auto;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-120 {
+  width: 120px;
+}
+
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E HEADER
+   ========================================================================== */
+
+.header-container {
+  position: fixed;
+  top: 20px; // Afasta um pouco do topo da tela para flutuar
+  left: 50%;
+  transform: translateX(-50%); // Centraliza a barra perfeitamente
+  width: calc(100% - 32px); // Deixa uma margem de segurança nas laterais no mobile
+  max-width: $container-xl; // Limita o tamanho máximo com a sua variável
+  z-index: 1000;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.03);
+  -webkit-backdrop-filter: blur(60px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.19);
+  border-radius: 40px;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: monospace;
+  font-size: 24px;
+  font-weight: 700;
+  color: #a78bfa;
+}
+
+.logo span {
+  color: #ffffff;
+}
+
+/* Links de Navegação (Desktop) */
+.nav-menu {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-link {
+  color: #B7B7B7;
+  text-transform: uppercase;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Botão de Idioma */
+.btn-lang {
+  background-color: #A384FF;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Estado de Clique do Botão */
+.btn-lang.clicked {
+  background-color: #ffffff !important;
+  color: #030207 !important;
+  transform: scale(0.95);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.mobile-only-btn {
+  display: none;
+}
+
+/* Botão Menu Hambúrguer (Desktop Escondido) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.menu-toggle .bar {
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  transition: 0.3s;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-action {
+    display: none;
+  }
+
+  .mobile-only-btn {
+    display: block;
+    margin-top: 20px;
+  }
+
+ @media (max-width: 768px) {
+  /* ... seu código do .menu-toggle e .header-action continuam iguais ... */
+
+  @media (max-width: 768px) {
+  
+  // Garante que o container fixo do topo não limite o tamanho do menu
+  .header-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    top: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+
+  /* --- MENU MOBILE OCUPANDO 100% DA TELA REAL --- */
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    // Força o posicionamento fixo absoluto sobre qualquer elemento do site
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;  // Ocupa toda a largura do display
+    height: 100vh !important; // Ocupa toda a altura do display
+    
+    // Cor escura sólida e profunda padrão para tampar COMPLETAMENTE o carrossel/conteúdos
+    background-color: #01040d !important; 
+    
+    padding: 40px 24px;
+    gap: 28px;
+    text-align: center;
+    box-sizing: border-box;
+    
+    // Fica acima de absolutamente tudo no site (Z-index alto)
+    z-index: 2000 !important; 
+
+    /* Estado inicial escondido */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  /* Classe ativada pelo clique do Javascript */
+  .nav-menu.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Garante que o botão de fechar (X) e a logo fiquem visíveis por cima do fundo do menu */
+  .menu-toggle, .logo {
+    z-index: 2100 !important; // Maior que o z-index do menu para flutuar por cima
+    position: relative;
+  }
+
+  .nav-link {
+    font-size: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #A1A1AA;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover, &.active {
+      color: #ffffff;
+    }
+  }
+
+  .mobile-only-btn {
+    display: block;
+    margin-top: 20px;
+  }
+}
+
+  /* CLASSE DE ATIVAÇÃO DISPARADA PELO JAVASCRIPT */
+  .nav-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Estilização dos Links dentro do Menu Mobile */
+  .nav-link {
+    font-size: 22px;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.15em;
+    color: #A1A1AA;
+    transition: color 0.2s ease;
+
+    &:hover, &.active {
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  /* Ajuste no botão de idioma mobile para não ficar colado */
+  .mobile-only-btn {
+    display: block;
+    margin-top: 16px;
+  }
+}
+
+  /* CLASSE DE ATIVAÇÃO - O JavaScript precisa que isso exista exatamente assim */
+  .nav-menu.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    font-size: 20px;
+  }
+
+  /* Transformação das barrinhas no "X" */
+  .menu-toggle.open .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.open .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+
+/* ==========================================================================
+   SEÇÃO HERO CENTRAL E ANIMAÇÕES (CONSOLIDADO)
+   ========================================================================== */
+
+.hero-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #01040d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 120px 20px 140px 20px; // Padding inferior maior para criar espaço com o planeta
+
+  .hero-content {
+    position: relative;
+    z-index: 2; // Acima das estrelas e do planeta
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  // Elemento do Planeta/Arco
+  .hero-planet-bg {
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    min-width: 1200px;
+    height: auto;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Elemento Container das Estrelas
+  .stars-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55vh; // Controla até onde as estrelas sobem (perto do nome)
+    pointer-events: none;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: moveUp linear infinite;
+  }
+}
+
+/* --- Elementos internos do Hero --- */
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 32px 0;
+}
+
+.hero-description {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #A1A1AA;
+  max-width: 676px;
+  margin: 0 0 40px 0;
+}
+
+.hero-badge {
+  background-color: rgba(#A384FF, 0.25);
+  color: #ffffff;
+  text-shadow: 0 0 15px #A384FF;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 12px 32px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 25px;
+  box-shadow: 0 0 0 1.5px rgba(#A384FF, 0.5);
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.scroll-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: #B3B3B3;
+}
+
+/* --- MEDIA QUERIES DO HERO (MOBILE) --- */
+@media (max-width: 768px) {
+  .hero-container {
+    padding: 100px 16px 80px 16px; // Ajusta paddings no celular
+
+    .hero-title {
+      font-size: 40px;
+      margin-bottom: 24px;
+    }
+
+    .hero-description {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    .hero-badge {
+      font-size: 12px;
+      padding: 10px 24px;
+    }
+
+    .hero-planet-bg {
+      bottom: -60px;
+      min-width: 1400px;
+    }
+
+    .stars-container {
+      height: 65vh; // Sobe um pouquinho mais no mobile para envolver o texto menor
+    }
+
+    .star {
+      animation-duration: 11s !important; // Deixa o fluxo mais calmo na telinha menor
+    }
+  }
+}
+
+/* --- Animações do Ciclo de Vida --- */
+@keyframes bounceArrows {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(55vh) scale(0.4);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(0) scale(1.1);
+    opacity: 0;
+  }
+}
+
+// Por padrão no desktop ela funciona normalmente
+.desktop-break {
+  display: inline;
+}
+
+// Quando chegar no celular, nós "escondemos" o <br>, removendo a quebra de linha
+@media (max-width: 768px) {
+  .desktop-break {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   INTRO
+   ========================================================================== */
+.keywords-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #01040d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .keywords-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 100px; // Altura aproximada do texto para conter o absolute
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reveal-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+    position: absolute; // Joga todas as palavras exatamente no mesmo miolo
+    width: 100%;
+
+    // Deixa invisível e levemente abaixo por padrão para o GSAP fazer o "fade-in" subindo
+    opacity: 0;
+    transform: translateY(40px);
+
+    @media (max-width: 768px) {
+      font-size: 32px;
+    }
+  }
+}
+
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+.overview-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #01040d;
+  box-sizing: border-box;
+
+  .overview-container {
+    display: flex;
+    gap: 64px; // Espaço generoso entre a foto e o texto
+    align-items: center;
+    width: 100%;
+
+    @media (max-width: 1024px) {
+      flex-direction: column; // No tablet/mobile vira uma coluna só
+      gap: 40px;
+      text-align: center;
+    }
+  }
+
+  /* --- COLUNA DA ESQUERDA: IMAGEM COM BORDA GLOW --- */
+  /* --- COLUNA DA ESQUERDA: TAMANHO CORRIGIDO PELO FIGMA --- */
+  /* --- COLUNA DA ESQUERDA: CARROSSEL SWIPER --- */
+  .overview-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 363px;
+    height: 535px;
+    border-radius: 32px;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+    cursor: grab; // Mostra a mãozinha de arrastar para o usuário saber que dá pra mover
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    .swiper-wrapper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .overview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: inherit;
+    }
+
+    // Moldura branca interna em cima das fotos
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+      z-index: 10; // Fica acima dos slides
+    }
+
+    // Estilização das bolinhas do Swiper (As bolinhas vermelhas da foto!)
+    .carousel-dots.swiper-pagination {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto !important; // Impede o swiper de esticar a barra de bolinhas
+      display: flex;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+      z-index: 20;
+
+      // Estilo das bolinhas padrão do Swiper
+      .swiper-pagination-bullet {
+        width: 6px;
+        height: 6px;
+        background-color: rgba(255, 255, 255, 0.4);
+        opacity: 1; // Reseta a opacidade nativa do swiper
+        margin: 0 !important; // Reseta margens automáticas
+        transition: all 0.3s ease;
+        border-radius: 50%;
+
+        // Estilo da bolinha ativa (da imagem atual)
+        &-active {
+          background-color: #ffffff;
+          transform: scale(1.2);
+          width: 6px; // Se quiser estilo pílula mude para 12px
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .overview-image-wrapper {
+      height: auto;
+      aspect-ratio: 363 / 535;
+    }
+  }
+
+  /* --- COLUNA DA DIREITA: TEXTOS E ELEMENTOS --- */
+  .overview-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media (max-width: 1024px) {
+      align-items: center; // Centraliza os textos no mobile
+    }
+  }
+
+  .overview-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: 24%;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+
+  }
+
+  .overview-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    color: #A1A1AA;
+    letter-spacing: 0.05em;
+
+    .badge-purple {
+      color: #A384FF;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .separator {
+      color: #3f3f46;
+    }
+
+    @media (max-width: 620px) {
+      flex-direction: column;
+      gap: 6px;
+
+      .separator {
+        display: none;
+      }
+    }
+  }
+
+  .overview-divider {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #27272a;
+    margin: 24px 0;
+  }
+
+  .overview-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: #A1A1AA;
+    text-transform: uppercase;
+    margin: 0 0 16px 0;
+  }
+
+  .overview-description {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #E4E4E7;
+    margin: 0 0 32px 0;
+    max-width: 600px;
+  }
+
+  /* --- REDES SOCIAIS --- */
+  .overview-socials {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+
+    @media (max-width: 620px) {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .socials-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      color: #ffffff;
+    }
+
+    .socials-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: rgba(#A384FF, 0.25);
+      box-shadow: 0 0 0 1.5px rgba(163, 132, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+
+      // ADICIONE ISSO: Um pequeno respiro interno impede o SVG de encostar na borda da bolinha
+      padding: 10px;
+      box-sizing: border-box;
+
+      img {
+        // Mudamos aqui: em vez de tamanho fixo em px, usamos 100%
+        // Assim o SVG ocupa o espaço útil máximo liberado pelo padding
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+        display: block;
+      }
+
+      &:hover {
+        background-color: #A384FF;
+        box-shadow: 0 0 15px rgba(#A384FF, 0.4);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  /* --- BOTÃO BAIXAR CURRÍCULO --- */
+  .btn-download {
+    display: inline-flex;
+    align-items: center; // Centraliza o texto e o ícone verticalmente
+    justify-content: center; // Centraliza o conteúdo horizontalmente
+    gap: 12px; // Espaço perfeito entre o texto e o ícone
+
+    background-color: #A384FF;
+    color: #ffffff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+
+    // Ajuste os paddings se quiser o botão mais largo ou fino
+    padding: 14px 28px;
+    border-radius: 14px; // Mantém o arredondamento do seu design
+
+    // IMPEDE O TEXTO DE QUEBRAR: Força o texto a ficar em uma linha só
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+
+    // AJUSTE DO ÍCONE (SVG): Força os 18px exatos que você precisa
+    svg,
+    img {
+      width: 24px !important;
+      height: 24px !important;
+      min-width: 18px; // Garante que o flexbox não esmague o ícone
+      min-height: 18px;
+      display: block;
+      flex-shrink: 0; // Impede o ícone de deformar
+    }
+
+    &:hover {
+      background-color: #bca5ff;
+      box-shadow: 0 0 20px rgba(#A384FF, 0.5);
+
+      svg,
+      img {
+        transform: translateY(2px); // Mantém o leve efeito do pulinho
+      }
+    }
+  }
+}
+
+.experience-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #01040d;
+  padding: 80px 0;
+  box-sizing: border-box;
+
+  // Ajusta o padding da seção inteira em telas menores para o conteúdo não colar na borda do aparelho
+  @media (max-width: 768px) {
+    padding: 60px 20px;
+  }
+
+  .experience-wrapper {
+    display: flex;
+    gap: 64px;
+    width: 100%;
+    align-items: flex-start; // Essencial para o GSAP ter curso de descida
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+
+  /* --- COLUNA DA ESQUERDA: PREPARADA PARA O GSAP --- */
+  .experience-sidebar {
+    flex: 1;
+    max-width: 320px;
+    position: relative;
+    height: auto;
+
+    @media (max-width: 1024px) {
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .section-title-glow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 0 0 16px 0;
+    }
+
+    .sidebar-subtext {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #A1A1AA;
+    }
+  }
+
+  /* --- COLUNA DA DIREITA: TIMELINE E CARDS --- */
+  .experience-timeline {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 56px; // Espaçamento grande entre cada bloco de trabalho
+
+    @media (max-width: 768px) {
+      gap: 40px; // Aproxima sutilmente os cards no mobile
+    }
+  }
+
+  .experience-card {
+    display: flex;
+    gap: 32px;
+
+    @media (max-width: 768px) {
+      flex-direction: column; // Data fica acima do texto no mobile
+      gap: 12px;
+      text-align: left; // Garante que o texto do card continue alinhado à esquerda no mobile
+    }
+
+    .card-date {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #71717A; // Cinza elegante para as datas
+      min-width: 130px; // Evita que a data quebre linha no desktop
+      padding-top: 4px; // Alinha sutilmente com o topo do h3
+
+      @media (max-width: 768px) {
+        min-width: 100%; // Ocupa a largura toda para a descrição vir logo abaixo
+        padding-top: 0;
+      }
+    }
+
+    .card-content {
+      flex: 1;
+    }
+
+    .job-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: #ffffff;
+      margin: 0 0 14px 0;
+      line-height: 1.4;
+
+      // Melhora a leitura do título no celular
+      @media (max-width: 480px) {
+        font-size: 16px;
+      }
+
+      .company-name {
+        color: #A384FF; // O roxo do seu design para destacar a empresa
+        font-weight: 600;
+
+        // Garante que a bolinha e o nome mudem de linha juntos de forma bonita no mobile se faltar espaço
+        display: inline-block;
+      }
+    }
+
+    .job-description {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #A1A1AA;
+      margin: 0 0 20px 0;
+
+      @media (max-width: 480px) {
+        font-size: 14px; // Diminui um tiquinho o texto longo no celular
+      }
+    }
+  }
+
+  /* --- AS PILL BADGES DE TECNOLOGIAS --- */
+  .tech-badges {
+    display: flex;
+    flex-wrap: wrap; // Faz as pílulas pularem de linha automaticamente se faltar espaço
+    gap: 8px 12px;
+
+    @media (max-width: 768px) {
+      gap: 8px 8px; // Deixa as badges ligeiramente mais próximas no mobile
+    }
+
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #ffffff; // Texto lilás claro para leitura
+      background-color: rgba(#A384FF, 0.25);
+      box-shadow: 0 0 0 1.5px rgba(163, 132, 255, 0.5);
+      padding: 6px 14px;
+      border-radius: 20px; // Forma de pílula perfeita do Figma
+      transition: all 0.2s ease;
+      cursor: default;
+      text-shadow: 0 0 15px #A384FF;
+
+      @media (max-width: 480px) {
+        font-size: 11px; // Ajuste fino para telas muito pequenas
+        padding: 5px 12px;
+      }
+
+      &:hover {
+        background-color: rgba(#A384FF, 0.35);
+        border-color: rgba(#A384FF, 0.6);
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+.projects-section {
+  min-height: 100vh;
+  padding: 100px 20px;
+  background-color: #01040d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 60px 20px;
+  }
+
+  /* --- CABEÇALHO DA SEÇÃO --- */
+  .projects-header {
+    text-align: center;
+    margin-bottom: 60px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 40px;
+    }
+
+    .section-title-glow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 0 0 12px 0;
+
+      @media (max-width: 480px) {
+        font-size: 26px;
+      }
+    }
+
+    .projects-subtitle {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      color: #A1A1AA;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+  }
+
+  /* --- GRID DE CARDS --- */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // Cria duas colunas idênticas no desktop
+    gap: 40px;
+    width: 100%;
+    max-width: 1140px; // Alinhado com a sua variável de container-xl se preferir ($container-xl)
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr; // Vira uma coluna única no tablet/celular
+      gap: 32px;
+    }
+  }
+
+  /* --- CARD INDIVIDUAL (GLASSMORPHISM STYLE) --- */
+  .project-card {
+    background-color: rgba(255, 255, 255, 0.02); // Efeito translúcido de fundo
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      border-color: rgba(#A384FF, 0.3); // Leve destaque roxo na borda ao passar o mouse
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(#A384FF, 0.1);
+
+      .project-hover-overlay {
+        opacity: 1;
+      }
+
+      .project-img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  /* --- CAPA DO PROJETO --- */
+  .project-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; // Formato widescreen perfeito para mockups/prints
+    overflow: hidden;
+    background-color: #0a0e1a;
+
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    // Camada escura que surge suave no hover
+    .project-hover-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(1, 4, 13, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+
+      .view-project-text {
+        font-family: 'Space Grotesk', sans-serif;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 8px 18px;
+        border-radius: 30px;
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(4px);
+      }
+    }
+  }
+
+  /* --- CONTEÚDO DO CARD --- */
+  /* --- CONTEÚDO DO CARD --- */
+  .project-content {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    @media (max-width: 480px) {
+      padding: 20px;
+    }
+
+    .project-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0 0 12px 0;
+    }
+
+    .project-description {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #A1A1AA;
+      margin: 0 0 24px 0;
+      flex: 1;
+    }
+
+    /* --- HERDANDO E ADAPTANDO AS PÍLULAS IGUAIS À IMAGE_B2DE85.PNG --- */
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-bottom: 24px; // Cria o espaçamento perfeito antes dos botões de Código/Demo
+
+      .badge {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        color: #ffffff; // Texto branquinho igual à print
+        background-color: rgba(#A384FF, 0.25); // Roxo translúcido de fundo
+        box-shadow: 0 0 0 1.5px rgba(163, 132, 255, 0.5); // A bordinha roxa sutil
+        padding: 6px 14px;
+        border-radius: 20px; // Formato pílula idêntico
+        transition: all 0.2s ease;
+        cursor: default;
+        text-shadow: 0 0 15px #A384FF; // O efeito glow neon nas letras
+
+        &:hover {
+          background-color: rgba(#A384FF, 0.35);
+          transform: translateY(-1px);
+        }
+      }
+    }
+  }
+
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 12px 0;
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+    }
+  }
+
+  .project-description {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #A1A1AA;
+    margin: 0 0 24px 0;
+    flex: 1; // Empurra os elementos abaixo para a base, mantendo os botões alinhados
+  }
+
+  /* --- TAGS DE TECNOLOGIAS --- */
+  .project-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+
+    .tech-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: #A384FF;
+      background-color: rgba(#A384FF, 0.08);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+  }
+
+  /* --- LINKS/BOTÕES --- */
+  .project-links {
+    display: flex;
+    gap: 12px;
+
+    .project-link-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 10px 16px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+
+      // Mantém a regra de ouro que usamos nas redes sociais: proteção ao tamanho do SVG
+      img,
+      svg {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+        display: block;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      // Estilo diferenciado para o botão de Demo Online (Glow Roxo)
+      &.live {
+        background-color: #A384FF;
+        color: #ffffff;
+
+        &:hover {
+          background-color: #bca5ff;
+          box-shadow: 0 0 15px rgba(#A384FF, 0.4);
+        }
+      }
+    }
+  }
+}
+
+.contact-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #01040d;
+  padding: 100px 24px;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 60px 16px;
+  }
+
+  .contact-wrapper {
+    display: flex;
+    gap: 80px;
+    width: 100%;
+    align-items: center;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      gap: 48px;
+      text-align: center;
+    }
+  }
+
+  /* --- COLUNA DA ESQUERDA: TEXTOS --- */
+  .contact-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media (max-width: 1024px) {
+      align-items: center;
+    }
+
+    .contact-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px;
+      font-weight: 500;
+      color: #ffffff;
+      margin: 0 0 24px 0;
+      letter-spacing: -0.02em;
+
+      @media (max-width: 768px) {
+        font-size: 36px;
+      }
+    }
+
+    .contact-description {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #A1A1AA;
+      margin: 0 0 40px 0;
+      max-width: 480px;
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+        margin-bottom: 32px;
+      }
+    }
+
+    /* Redes sociais reutilizando a identidade visual */
+    .contact-socials {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+
+      .social-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: rgba(#A384FF, 0.25);
+        box-shadow: 0 0 0 1.5px rgba(163, 132, 255, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        padding: 10px;
+        box-sizing: border-box;
+
+        img {
+          width: 18px;
+          height: 18px;
+          object-fit: contain;
+          display: block;
+        }
+
+        &:hover {
+          background-color: #A384FF;
+          box-shadow: 0 0 15px rgba(#A384FF, 0.4);
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+
+    /* Botão Começar um Projeto com Ícone */
+    .btn-start-project {
+      display: inline-flex;
+      align-items: center; // Alinha o ícone e o texto verticalmente no centro
+      justify-content: center;
+      gap: 10px; // Espaçamento perfeito entre o ícone e o texto
+
+      background-color: rgba(#A384FF, 0.25);
+      color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 14px;
+      background-color: #A384FF;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+
+      // Configuração e proteção do ícone
+      svg,
+      img {
+        width: 18px !important;
+        height: 18px !important;
+        display: block;
+        flex-shrink: 0; // Impede que o flexbox esmague o ícone
+        transition: transform 0.2s ease;
+      }
+
+      &:hover {
+        background-color: #bca5ff;
+      box-shadow: 0 0 20px rgba(#A384FF, 0.5);
+        transform: translateY(-2px);
+
+        // Efeito sutil: o ícone dá uma leve inclinada/empurrada no hover
+        svg,
+        img {
+          transform: translate(2px, -1px);
+        }
+      }
+    }
+  }
+
+  /* --- COLUNA DA DIREITA: MOCKUP DE VÍDEO --- */
+  .contact-ui-mockup {
+    flex: 1;
+    width: 100%;
+    max-width: 440px; // Deixa os cards no tamanho proporcional do Figma
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @media (max-width: 1024px) {
+      margin: 0 auto;
+    }
+
+    .video-card {
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      aspect-ratio: 16 / 10; // Proporção exata das janelas de chamada da imagem
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Círculo com a sua foto */
+    .avatar-circle-wrapper {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+
+      .avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    /* Círculo do Usuário Mudo */
+    .avatar-muted-circle {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background-color: #0b0f19;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Barra de ferramentas na base */
+    .video-controls-bar {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 8px;
+
+      .control-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        svg {
+          display: block;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.2);
+          transform: scale(1.05);
+        }
+
+        /* Botão Vermelho de desligar */
+        &.btn-hangup {
+          background-color: rgba(#ef4444, 0.2);
+          border-color: rgba(#ef4444, 0.4);
+          color: #ef4444;
+
+          &:hover {
+            background-color: #ef4444;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(#ef4444, 0.4);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   FOOTER MINIMALISTA
+   ========================================================================== */
+
+.main-footer {
+  width: 100%;
+  background-color: #01040d;
+  border-top: 1px solid rgba(255, 255, 255, 0.05); // Linha sutil divisória
+  padding: 24px 0;
+  box-sizing: border-box;
+
+  .footer-container {
+    max-width: 1140px; // Alinhado com a sua variável $container-xl
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: center; // Centraliza o bloco horizontalmente no flexbox
+    align-items: center;
+
+    @media (max-width: 768px) {
+      padding: 0 16px;
+    }
+  }
+
+  .footer-credits {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: #52525B; // Cinza escuro elegante e discreto
+    text-align: center; // Garante a centralização do texto interno
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+}

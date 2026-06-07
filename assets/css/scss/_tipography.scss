@@ -1,0 +1,140 @@
+@use "./colors" as *;
+@use "./layout" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@mixin typeface-1($size, $device: desktop) {
+  font-family: "Space Grotesk", sans-serif;
+
+  @if $size ==h1 and $device ==desktop {
+    font-size: 44px;
+    line-height: normal;
+    font-weight: 500;
+  } @else if $size ==h1 and $device ==mobile {
+    font-size: 32px;
+    line-height: normal;
+    font-weight: 500;
+  }
+}
+
+@mixin typeface-2($size: p2, $device: desktop) {
+  font-family: 'Outfit', sans-serif;
+
+  @if $size == p1 and $device == desktop {
+    font-size: 18px;
+    line-height: 150%;
+    font-weight: 300;
+  } @else if $size == p1 and $device == mobile {
+    font-size: 18px;
+    line-height: 150%;
+    font-weight: 300;
+  } @else if $size == p1 and $device == smallmobile {
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 300;
+  } 
+  
+  @else if $size == p2 and $device == desktop {
+    font-size: 18px;
+    line-height: 150%;
+    font-weight: 200;
+  } @else if $size == p2 and $device == mobile {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 200;
+  } 
+  
+  @else if $size == p3 and $device == desktop {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 200;
+  } @else if $size == p3 and $device == mobile {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 200;
+  } @else if $size == p3 and $device == smallmobile {
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 200;
+  }
+
+  @else if $size == p4 and $device == desktop {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 200;
+  } @else if $size == p4 and $device == mobile {
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 200;
+  }
+
+  @else if $size == p5 and $device == desktop {
+    font-size: 13px;
+    line-height: 150%;
+    font-weight: 200;
+  } @else if $size == p5 and $device == mobile {
+    font-size: 13px;
+    line-height: 150%;
+    font-weight: 200;
+  }
+}
+
+h1 {
+  color: $title;
+  @include typeface-1(h1, desktop);
+
+  @include responsive(s) {
+    @include typeface-1(h1, mobile);
+  }
+
+  @include responsive(xs) {
+    @include typeface-1(h1, smallmobile);
+  }
+}
+
+
+.number {
+  color: #98FF98;
+  font-family: "Space Grotesk";
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.date {
+  color: #84848c;
+  font-family: "Space Grotesk";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  white-space: nowrap;
+  
+  flex-shrink: 0; /* Garante que a largura não será encolhida */
+  width: 120px; /* Define uma largura fixa suficiente para as maiores datas */
+  text-align: left; /* Alinha o texto das datas à direita */
+  margin-right: 20px; /* Espaçamento entre a data e o texto */
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.line-height-130 {
+  line-height: 130%;
+}
+

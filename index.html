@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="sites, web, desenvolvimento, frontend, programador, designer, ui, freelancer, website, portfolio, dados, data engineer" />
+    <meta name="copyright" content="[Seu Nome] 2026" />
+    <meta name="author" content="[Seu Nome]" />
+    <meta name="title" content="[Seu Nome] | Portfolio" />
+    <meta name="description" content="Portfolio profissional de [Seu Nome]." />
+
+    <title>Portfolio // [Seu Nome]</title>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" href="./assets/svg/logo.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta property="og:title" content="[Seu Nome] | Portfolio" />
+    <meta property="og:description" content="Conheça meus projetos e experiências profissionais." />
+    <meta property="og:image" content="svg/metatag.png" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="" />
+    <meta property="twitter:title" content="[Seu Nome] | Portfolio" />
+    <meta property="twitter:description" content="Conheça meus projetos e experiências profissionais." />
+    <meta property="twitter:image" content="svg/metatag.png" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="assets/js/svg-inject.min.js"></script>
+</head>
+
+<body>
+    <header class="header-container">
+        <div class="header-content">
+
+            <div class="logo">
+                { <span id="brand-name">Henry Hawk</span> }
+            </div>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#inicio" class="nav-link active" data-pt="Início" data-en="Home">Início</a>
+                <a href="#sobre" class="nav-link" data-pt="Sobre" data-en="About">Sobre</a>
+                <a href="#experiencias" class="nav-link" data-pt="Experiências" data-en="Experience">Experiências</a>
+                <a href="#projetos" class="nav-link" data-pt="Projetos" data-en="Projects">Projetos</a>
+                <a href="#contato" class="nav-link" data-pt="Contato" data-en="Contact">Contato</a>
+
+                <button class="btn-lang mobile-only-btn">BR</button>
+            </nav>
+
+            <div class="header-action">
+                <button class="btn-lang" id="btn-lang-desktop">BR</button>
+            </div>
+
+        </div>
+    </header>
+
+    <section class="relative hero-container" id="inicio">
+        <div class="stars-container"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span data-pt="Olá! Eu sou" data-en="Hi! I am">Olá! Eu sou</span> <br class="desktop-break">
+                <span id="hero-name">Alex Silva</span>
+            </h1>
+
+            <p class="hero-description" id="hero-bio"
+                data-pt="Desenvolvedor Full Stack focado em criar aplicações web modernas, rápidas e com foco total na experiência do usuário. Transformando linhas de código em soluções reais."
+                data-en="Full Stack Developer focused on creating modern, fast web applications with a total focus on user experience. Transforming lines of code into real solutions.">
+                Desenvolvedor Full Stack focado em criar aplicações web modernas, rápidas e com foco total na
+                experiência do usuário. Transformando linhas de código em soluções reais.
+            </p>
+
+            <div class="hero-badge" id="hero-badge-text" data-pt="FULL STACK DEV" data-en="FULL STACK DEV">
+                FULL STACK DEV
+            </div>
+
+            <div class="scroll-indicator">
+                <span class="scroll-text" data-pt="SCROLL" data-en="SCROLL">SCROLL</span>
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="material-symbols:keyboard-double-arrow-down-rounded">
+                        <path id="arrow2"
+                            d="M17.0001 14.3983L22.5251 8.90876C22.7848 8.64904 23.1097 8.51304 23.4998 8.50076C23.8898 8.48848 24.226 8.62448 24.5084 8.90876C24.7682 9.16848 24.898 9.49904 24.898 9.90043C24.898 10.3018 24.7682 10.6324 24.5084 10.8921L17.9918 17.4088C17.8501 17.5504 17.6966 17.651 17.5314 17.7105C17.3661 17.77 17.189 17.7993 17.0001 17.7983C16.8112 17.7983 16.6341 17.7691 16.4689 17.7105C16.3036 17.652 16.1501 17.5514 16.0084 17.4088L9.49177 10.8921C9.23205 10.6324 9.09605 10.308 9.08377 9.91884C9.07149 9.52973 9.20749 9.19304 9.49177 8.90876C9.75149 8.64904 10.082 8.51918 10.4834 8.51918C10.8848 8.51918 11.2154 8.64904 11.4751 8.90876L17.0001 14.3983Z"
+                            fill="white" />
+                        <path id="arrow1"
+                            d="M17.0001 20.8821L22.5251 15.3925C22.7848 15.1328 23.1097 14.9968 23.4998 14.9845C23.8898 14.9722 24.226 15.1082 24.5084 15.3925C24.7682 15.6522 24.898 15.9828 24.898 16.3842C24.898 16.7856 24.7682 17.1161 24.5084 17.3759L17.9918 23.8925C17.8501 24.0342 17.6966 24.1348 17.5314 24.1943C17.3661 24.2538 17.189 24.2831 17.0001 24.2821C16.8112 24.2821 16.6341 24.2528 16.4689 24.1943C16.3036 24.1357 16.1501 24.0351 16.0084 23.8925L9.49177 17.3759C9.23205 17.1161 9.09605 16.7917 9.08377 16.4026C9.07149 16.0135 9.20749 15.6768 9.49177 15.3925C9.75149 15.1328 10.082 15.0029 10.4834 15.0029C10.8848 15.0029 11.2154 15.1328 11.4751 15.3925L17.0001 20.8821Z"
+                            fill="white" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <svg class="hero-planet-bg" viewBox="0 0 1920 703" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_f_308_4)">
+                <path
+                    d="M1910.98 351.5C1910.98 435.171 1481.17 503 950.98 503C420.786 503 -9.02014 435.171 -9.02014 351.5C-9.02014 267.829 420.786 200 950.98 200C1481.17 200 1910.98 267.829 1910.98 351.5Z"
+                    fill="url(#paint0_radial_308_4)" />
+            </g>
+            <path
+                d="M960 310.993C1225 310.993 1464.87 332.813 1638.42 368.068C1725.22 385.698 1795.33 406.668 1843.69 429.894C1867.88 441.509 1886.52 453.638 1899.09 466.114C1911.65 478.584 1918 491.247 1918 503.993C1918 516.74 1911.65 529.403 1899.09 541.873C1886.52 554.349 1867.88 566.478 1843.69 578.093C1795.33 601.319 1725.22 622.289 1638.42 639.919C1464.87 675.174 1225 696.993 960 696.993C694.995 696.993 455.135 675.174 281.575 639.919C194.779 622.289 124.67 601.319 76.3076 578.093C52.1219 566.478 33.4808 554.349 20.9131 541.873C8.35006 529.403 2 516.74 2 503.993C2 491.247 8.35006 478.584 20.9131 466.114C33.4808 453.638 52.1219 441.509 76.3076 429.894C124.67 406.668 194.779 385.698 281.575 368.068C455.135 332.813 694.995 310.993 960 310.993Z"
+                fill="#01040D" stroke="url(#paint1_radial_308_4)" stroke-width="4" />
+            <defs>
+                <filter id="filter0_f_308_4" x="-209.02" y="0" width="2320" height="703" filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                    <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_308_4" />
+                </filter>
+                <radialGradient id="paint0_radial_308_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                    gradientTransform="translate(960 351.881) rotate(90) scale(143.751 910.895)">
+                    <stop stop-color="#A384FF" />
+                    <stop offset="1" stop-color="#24274B" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient id="paint1_radial_308_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                    gradientTransform="translate(960 308.993) rotate(90) scale(186.5 918.154)">
+                    <stop stop-color="#A384FF" />
+                    <stop offset="1" stop-opacity="0" />
+                </radialGradient>
+            </defs>
+        </svg>
+    </section>
+
+    <section class="keywords-section">
+        <div class="keywords-wrapper">
+            <h2 class="reveal-text" data-pt="Inovador" data-en="Innovative">Inovador</h2>
+            <h2 class="reveal-text" data-pt="Focado em Performance" data-en="Performance Focused">Focado em Performance
+            </h2>
+            <h2 class="reveal-text" data-pt="Criador de Soluções" data-en="Solution Creator">Criador de Soluções</h2>
+            <h2 class="reveal-text" data-pt="Conheça seu próximo dev" data-en="Meet your next dev">Conheça seu próximo
+                dev</h2>
+        </div>
+    </section>
+
+    <section class="container overview-section" id="sobre">
+        <div class="overview-container">
+
+            <div class="overview-image-wrapper swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="assets/img/user.jpg" alt="Alex Silva" class="overview-img">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/img/user3.avif" alt="Alex Silva" class="overview-img">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/img/user4.avif" alt="Alex Silva" class="overview-img">
+                    </div>
+                </div>
+                <div class="swiper-pagination carousel-dots"></div>
+            </div>
+
+            <div class="overview-info">
+                <h2 class="overview-name">Alex Silva</h2>
+
+                <div class="overview-subtitle">
+                    <span class="badge-purple" data-pt="Full Stack Dev" data-en="Full Stack Dev">Full Stack Dev</span>
+                    <span class="separator">•</span>
+                    <span class="location-text" data-pt="Residente em Belo Horizonte, Brasil"
+                        data-en="Based in Belo Horizonte, Brazil">Residente em Belo Horizonte, Brasil</span>
+                </div>
+
+                <hr class="overview-divider">
+
+                <h3 class="overview-title" data-pt="Overview" data-en="Overview">Overview</h3>
+
+                <p class="overview-description"
+                    data-pt="Sou um desenvolvedor apaixonado por tecnologia e design. Nos últimos anos, tenho me dedicado a construir ecossistemas web utilizando as melhores práticas de mercado. Adoro resolver problemas complexos e criar interfaces que sejam ao mesmo tempo elegantes e intuitivas."
+                    data-en="I am a developer passionate about technology and design. Over the last few years, I have dedicated myself to building web ecosystems using the best market practices. I love solving complex problems and creating interfaces that are both elegant and intuitive.">
+                    Sou um desenvolvedor apaixonado por tecnologia e design. Nos últimos anos, tenho me dedicado a
+                    construir ecossistemas web utilizando as melhores práticas de mercado. Adoro resolver problemas
+                    complexos e criar interfaces que sejam ao mesmo tempo elegantes e intuitivas.
+                </p>
+
+                <div class="overview-socials">
+                    <span class="socials-label" data-pt="Redes Sociais" data-en="Social Media">Redes Sociais</span>
+                    <div class="socials-icons">
+                        <a href="SEU_LINK_DO_GITHUB" class="social-btn" aria-label="GitHub">
+                            <img src="assets/svg/github.svg" alt="GitHub">
+                        </a>
+                        <a href="SEU_LINK_DO_LINKEDIN" class="social-btn" aria-label="LinkedIn">
+                            <img src="assets/svg/linkedin.svg" alt="LinkedIn">
+                        </a>
+                        <a href="SEU_LINK_DO_YOUTUBE" class="social-btn" aria-label="YouTube">
+                            <img src="assets/svg/youtube.svg" alt="YouTube">
+                        </a>
+                        <a href="SEU_LINK_DO_INSTAGRAM" class="social-btn" aria-label="Instagram">
+                            <img src="assets/svg/insta.svg" alt="Instagram">
+                        </a>
+                    </div>
+                </div>
+
+                <a href="assets/pdf/seu-curriculo.pdf" download class="btn-download" data-pt="Baixar Currículo"
+                    data-en="Download Resume">
+                    <img src="assets/svg/download.svg" alt="">
+                    Baixar Currículo
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="container experience-section" id="experiencias">
+        <div class="experience-wrapper">
+
+            <div class="experience-sidebar">
+                <h2 class="section-title-glow" data-pt="Experiências" data-en="Experience">Experiências</h2>
+                <p class="sidebar-subtext"
+                    data-pt="Construindo soluções robustas, escaláveis e focadas na experiência do usuário ao longo dos anos."
+                    data-en="Building robust, scalable solutions focused on user experience over the years.">
+                    Construindo soluções robustas, escaláveis e focadas na experiência do usuário ao longo dos anos.
+                </p>
+            </div>
+
+            <div class="experience-timeline">
+
+                <!-- CARD 1 -->
+                <div class="experience-card">
+                    <div class="card-date" data-pt="2024 - MOMENTO" data-en="2024 - PRESENT">2024 - MOMENTO</div>
+                    <div class="card-content">
+                        <h3 class="job-title" data-pt="DESENVOLVEDOR FULL STACK PLENO"
+                            data-en="MID-LEVEL FULL STACK DEVELOPER">DESENVOLVEDOR FULL STACK PLENO <span
+                                class="company-name">• TechNode Solutions</span></h3>
+                        <p class="job-description"
+                            data-pt="Responsável pelo desenvolvimento e manutenção de plataformas e-commerce de alto tráfego. Otimização de consultas em bancos de dados e criação de APIs RESTful integradas a serviços de pagamento."
+                            data-en="Responsible for the development and maintenance of high-traffic e-commerce platforms. Database query optimization and creation of RESTful APIs integrated with payment services.">
+                            Responsável pelo desenvolvimento e manutenção de plataformas e-commerce de alto tráfego.
+                            Otimização de consultas em bancos de dados e criação de APIs RESTful integradas a serviços
+                            de pagamento.
+                        </p>
+                        <div class="tech-badges">
+                            <span class="badge">React</span>
+                            <span class="badge">Node.js</span>
+                            <span class="badge">TypeScript</span>
+                            <span class="badge">PostgreSQL</span>
+                            <span class="badge">Docker</span>
+                            <span class="badge">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="experience-card">
+                    <div class="card-date" data-pt="2022 - 2024" data-en="2022 - 2024">2022 - 2024</div>
+                    <div class="card-content">
+                        <h3 class="job-title" data-pt="DESENVOLVEDOR FRONT-END" data-en="FRONT-END DEVELOPER">
+                            DESENVOLVEDOR FRONT-END <span class="company-name">• Apex Digital</span></h3>
+                        <p class="job-description"
+                            data-pt="Atuei na criação de landing pages de alta conversão e sistemas internos responsivos. Implementação de testes automatizados e foco total na melhora da pontuação do Core Web Vitals da empresa."
+                            data-en="Acted in the creation of high-conversion landing pages and responsive internal systems. Automated test implementation and total focus on improving the company's Core Web Vitals score.">
+                            Atuei na criação de landing pages de alta conversão e sistemas internos responsivos.
+                            Implementação de testes automatizados e foco total na melhora da pontuação do Core Web
+                            Vitals da empresa.
+                        </p>
+                        <div class="tech-badges">
+                            <span class="badge">JavaScript</span>
+                            <span class="badge">Vue.js</span>
+                            <span class="badge">Tailwind CSS</span>
+                            <span class="badge">Jest</span>
+                            <span class="badge">Git</span>
+                            <span class="badge">Vite</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="experience-card">
+                    <div class="card-date" data-pt="2021 - 2022" data-en="2021 - 2022">2021 - 2022</div>
+                    <div class="card-content">
+                        <h3 class="job-title" data-pt="ESTAGIÁRIO EM DESENVOLVIMENTO WEB"
+                            data-en="WEB DEVELOPMENT INTERN">ESTAGIÁRIO EM DESENVOLVIMENTO WEB <span
+                                class="company-name">• StartDev Studio</span></h3>
+                        <p class="job-description"
+                            data-pt="Suporte na codificação de layouts vindos do Figma para HTML/CSS, correção de bugs em sistemas legados e escrita de documentação técnica de projetos."
+                            data-en="Support in coding layouts from Figma to HTML/CSS, bug fixing in legacy systems, and technical documentation writing for projects.">
+                            Suporte na codificação de layouts vindos do Figma para HTML/CSS, correção de bugs em
+                            sistemas legados e escrita de documentação técnica de projetos.
+                        </p>
+                        <div class="tech-badges">
+                            <span class="badge">HTML5</span>
+                            <span class="badge">CSS3</span>
+                            <span class="badge">JavaScript</span>
+                            <span class="badge">Bootstrap</span>
+                            <span class="badge">Sass</span>
+                            <span class="badge">WordPress</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="experience-card">
+                    <div class="card-date" data-pt="2020 - 2021" data-en="2020 - 2021">2020 - 2021</div>
+                    <div class="card-content">
+                        <h3 class="job-title" data-pt="ESTAGIÁRIO EM SUPORTE E QA" data-en="SUPPORT AND QA INTERN">
+                            ESTAGIÁRIO EM SUPORTE E QA <span class="company-name">• UpTech Sistemas</span></h3>
+                        <p class="job-description"
+                            data-pt="Atuei na execução de testes manuais de software para garantia de qualidade (QA), abertura de chamados técnicos e auxílio na manutenção preventiva de bancos de dados locais e configurações de servidores internos."
+                            data-en="Acted in performing manual software tests for quality assurance (QA), technical ticket support, and assistance in preventive maintenance of local databases and internal server configurations.">
+                            Atuei na execução de testes manuais de software para garantia de qualidade (QA), abertura de
+                            chamados técnicos e auxílio na manutenção preventiva de bancos de dados locais e
+                            configurações de servidores internos.
+                        </p>
+                        <div class="tech-badges">
+                            <span class="badge">SQL</span>
+                            <span class="badge">HTML5</span>
+                            <span class="badge">CSS3</span>
+                            <span class="badge">Excel</span>
+                            <span class="badge">Jira</span>
+                            <span class="badge">Linux</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container projects-section" id="projetos">
+        <div class="projects-header">
+            <h2 class="section-title-glow" data-pt="Projetos" data-en="Projects">Projetos</h2>
+            <p class="projects-subtitle"
+                data-pt="Alguns dos principais trabalhos e aplicações que desenvolvi recentemente."
+                data-en="Some of the main works and applications I have recently developed.">Alguns dos principais
+                trabalhos e aplicações que desenvolvi recentemente.</p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- PROJETO 1 -->
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="assets/img/ecommerce.jpg" alt="Capa do Projeto 1" class="project-img">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title" data-pt="E-Commerce Platform" data-en="E-Commerce Platform">E-Commerce
+                        Platform</h3>
+                    <p class="project-description"
+                        data-pt="Uma plataforma completa de e-commerce com carrinho de compras em tempo real, integração de pagamentos com Stripe e painel administrativo para gerenciamento de produtos."
+                        data-en="A complete e-commerce platform with real-time shopping cart, Stripe payment integration, and administrative panel for product management.">
+                        Uma plataforma completa de e-commerce com carrinho de compras em tempo real, integração de
+                        pagamentos com Stripe e painel administrativo para gerenciamento de produtos.
+                    </p>
+
+                    <div class="tech-badges">
+                        <span class="badge">React</span>
+                        <span class="badge">Node.js</span>
+                        <span class="badge">MongoDB</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
+                            <img src="assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
+                                data-en="Code">Código</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"
+                                    fill="currentColor" />
+                            </svg> Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO 2 -->
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="assets/img/fintech.jpg" alt="Capa do Projeto 2" class="project-img">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title" data-pt="Fintech Dashboard" data-en="Fintech Dashboard">Fintech Dashboard
+                    </h3>
+                    <p class="project-description"
+                        data-pt="Dashboard financeiro interativo focado na experiência do usuário, apresentando gráficos analíticos de despesas, controle de saldo e histórico de transações automatizado."
+                        data-en="Interactive financial dashboard focused on user experience, featuring analytical expense charts, balance control, and automated transaction history.">
+                        Dashboard financeiro interativo focado na experiência do usuário, apresentando gráficos
+                        analíticos de despesas, controle de saldo e histórico de transações automatizado.
+                    </p>
+
+                    <div class="tech-badges">
+                        <span class="badge">TypeScript</span>
+                        <span class="badge">Vue.js</span>
+                        <span class="badge">Tailwind</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
+                            <img src="assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
+                                data-en="Code">Código</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"
+                                    fill="currentColor" />
+                            </svg> Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO 3 -->
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="assets/img/data_analytics.jpg" alt="Capa do Projeto 3" class="project-img">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title" data-pt="AI Data Analytics SaaS" data-en="AI Data Analytics SaaS">AI Data
+                        Analytics SaaS</h3>
+                    <p class="project-description"
+                        data-pt="Plataforma SaaS que automatiza a ingestão de dados e gera relatórios preditivos inteligentes. Conta com dashboards interativos, modelagem de dados automatizada e relatórios exportáveis com insights em tempo real."
+                        data-en="SaaS platform that automates data ingestion and generates smart predictive reports. It features interactive dashboards, automated data modeling, and exportable reports with real-time insights.">
+                        Plataforma SaaS que automatiza a ingestão de dados e gera relatórios preditivos inteligentes.
+                        Conta com dashboards interativos, modelagem de dados automatizada e relatórios exportáveis com
+                        insights em tempo real.
+                    </p>
+
+                    <div class="tech-badges">
+                        <span class="badge">Python</span>
+                        <span class="badge">React</span>
+                        <span class="badge">FastAPI</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
+                            <img src="assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
+                                data-en="Code">Código</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"
+                                    fill="currentColor" />
+                            </svg> Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJETO 4 -->
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="assets/img/message_api.jpg" alt="Capa do Projeto 4" class="project-img">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title" data-pt="Real-Time Messaging API" data-en="Real-Time Messaging API">
+                        Real-Time Messaging API</h3>
+                    <p class="project-description"
+                        data-pt="Uma API de microsserviços ultrarrápida desenvolvida para suportar milhares de conexões simultâneas via WebSockets. Inclui barramento de eventos, monitoramento de métricas integrado e persistência em cache."
+                        data-en="An ultra-fast microservices API developed to support thousands of simultaneous connections via WebSockets. Includes event bus, integrated metrics monitoring, and cache persistence.">
+                        Uma API de microsserviços ultrarrápida desenvolvida para suportar milhares de conexões
+                        simultâneas via WebSockets. Inclui barramento de eventos, monitoramento de métricas integrado e
+                        persistência em cache.
+                    </p>
+
+                    <div class="tech-badges">
+                        <span class="badge">Node.js</span>
+                        <span class="badge">Redis</span>
+                        <span class="badge">Docker</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
+                            <img src="assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
+                                data-en="Code">Código</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"
+                                    fill="currentColor" />
+                            </svg> Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container contact-section" id="contato">
+        <div class="contact-wrapper">
+
+            <div class="contact-info">
+                <h2 class="contact-title" data-pt="Entrar em Contato" data-en="Get in Touch">Entrar em Contato</h2>
+                <p class="contact-description"
+                    data-pt="Estou disponível para novos projetos, contratos freelancers ou oportunidades em tempo integral. Vamos construir algo incrível juntos!"
+                    data-en="I am available for new projects, freelance contracts, or full-time opportunities. Let's build something amazing together!">
+                    Estou disponível para novos projetos, contratos freelancers ou oportunidades em tempo integral.
+                    Vamos construir algo incrível juntos!
+                </p>
+
+                <div class="contact-socials">
+                    <a href="#" class="social-btn" aria-label="GitHub">
+                        <img src="assets/svg/github.svg" alt="GitHub">
+                    </a>
+                    <a href="#" class="social-btn" aria-label="LinkedIn">
+                        <img src="assets/svg/linkedin.svg" alt="LinkedIn">
+                    </a>
+                    <a href="#" class="social-btn" aria-label="YouTube">
+                        <img src="assets/svg/youtube.svg" alt="YouTube">
+                    </a>
+                    <a href="#" class="social-btn" aria-label="Instagram">
+                        <img src="assets/svg/insta.svg" alt="Instagram">
+                    </a>
+                </div>
+
+                <a href="mailto:seu-email@hotmail.com" class="btn-start-project" data-pt="Começar um Projeto"
+                    data-en="Start a Project">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor" />
+                    </svg>
+                    Começar um Projeto
+                </a>
+            </div>
+
+            <div class="contact-ui-mockup">
+                <div class="video-card card-active">
+                    <div class="avatar-circle-wrapper">
+                        <img src="assets/img/user.jpg" alt="Sua Foto" class="avatar-img">
+                    </div>
+                </div>
+
+                <div class="video-card card-muted">
+                    <div class="avatar-muted-circle">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.33 4 18V20H20V18C20 15.33 14.67 14 12 14Z"
+                                fill="#A384FF" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="video-controls-bar">
+                    <button class="control-btn" aria-label="Mutar Microfone">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                            <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                            <line x1="12" x2="12" y1="19" y2="22" />
+                        </svg>
+                    </button>
+                    <button class="control-btn" aria-label="Desligar Vídeo">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m22 8-6 4 6 4V8Z" />
+                            <rect width="14" height="12" x="2" y="6" rx="2" ry="2" />
+                        </svg>
+                    </button>
+                    <button class="control-btn btn-hangup" aria-label="Desligar Chamada">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p class="footer-credits" data-pt="&copy; 2026 Danilo Donato. Todos os direitos reservados."
+                data-en="&copy; 2026 Danilo Donato. All rights reserved.">
+                &copy; 2026 Danilo Donato. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

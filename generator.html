@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Builder // Início</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+    <aside class="generator-panel">
+        <div class="panel-header">
+            <h2>Portfolio Builder</h2>
+            <p>Seção: Início / Header</p>
+        </div>
+
+        <div class="panel-inputs">
+            <div class="input-group">
+                <label for="input-brand">Nome da Marca (Logo)</label>
+                <input type="text" id="input-brand" value="Henry Hawk">
+            </div>
+
+            <hr class="panel-divider">
+
+            <div class="input-group">
+                <label for="input-name">Seu Nome</label>
+                <input type="text" id="input-name" value="Alex Silva">
+            </div>
+
+            <div class="input-group">
+                <label for="input-bio">Sua Bio / Descrição</label>
+                <textarea id="input-bio" rows="4">Desenvolvedor Full Stack focado em criar aplicações web modernas, rápidas e com foco total na experiência do usuário. Transformando linhas de código em soluções reais.</textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="input-badge">Texto da Badge</label>
+                <input type="text" id="input-badge" value="FULL STACK DEV">
+            </div>
+
+            </div>
+
+        <div class="panel-footer">
+            <button class="btn-export" id="btn-export">Exportar Projeto</button>
+        </div>
+    </aside>
+
+    <main class="live-preview" id="preview-root">
+        
+        <header class="header-container">
+            <div class="header-content">
+                <div class="logo">
+                    { <span id="brand-name">Henry Hawk</span> }
+                </div>
+                <nav class="nav-menu" id="nav-menu">
+                    <a href="#inicio" class="nav-link active">Início</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#experiencias">Experiências</a>
+                    <a href="#projetos">Projetos</a>
+                    <a href="#contato">Contato</a>
+                    <button class="btn-lang mobile-only-btn">BR</button>
+                </nav>
+                <div class="header-action">
+                    <button class="btn-lang" id="btn-lang-desktop">BR</button>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero-container" id="inicio">
+            <div class="stars-container"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Olá! Eu sou <br class="desktop-break">
+                    <span id="hero-name">Alex Silva</span>
+                </h1>
+
+                <p class="hero-description" id="hero-bio">
+                    Desenvolvedor Full Stack focado em criar aplicações web modernas, rápidas e com foco total na experiência do usuário. Transformando linhas de código em soluções reais.
+                </p>
+
+                <div class="hero-badge" id="hero-badge-text">
+                    FULL STACK DEV
+                </div>
+
+                <div class="scroll-indicator">
+                    <span class="scroll-text">SCROLL</span>
+                    </div>
+            </div>
+        </section>
+
+        </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Seleção dos elementos do Painel (Esquerda)
+            const inputBrand = document.getElementById('input-brand');
+            const inputName = document.getElementById('input-name');
+            const inputBio = document.getElementById('input-bio');
+            const inputBadge = document.getElementById('input-badge');
+
+            // Ouvintes de evento de digitação (Injeta o texto na direita na mesma hora)
+            if (inputBrand) {
+                inputBrand.addEventListener('input', (e) => {
+                    document.getElementById('brand-name').textContent = e.target.value;
+                });
+            }
+
+            if (inputName) {
+                inputName.addEventListener('input', (e) => {
+                    document.getElementById('hero-name').textContent = e.target.value;
+                });
+            }
+
+            if (inputBio) {
+                inputBio.addEventListener('input', (e) => {
+                    document.getElementById('hero-bio').textContent = e.target.value;
+                });
+            }
+
+            if (inputBadge) {
+                inputBadge.addEventListener('input', (e) => {
+                    document.getElementById('hero-badge-text').textContent = e.target.value;
+                });
+            }
+
+            // Função preliminar de Exportação (Será expandida no final)
+            const btnExport = document.getElementById('btn-export');
+            if (btnExport) {
+                btnExport.addEventListener('click', () => {
+                    const previewContent = document.getElementById('preview-root').innerHTML;
+                    
+                    const finalHTML = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio Exportado</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    ${previewContent}
+</body>
+</html>`;
+
+                    const blob = new Blob([finalHTML], { type: 'text/html' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'index.html';
+                    link.click();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
