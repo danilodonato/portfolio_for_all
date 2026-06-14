@@ -212,3 +212,21 @@ const overviewSwiper = new Swiper('.overview-image-wrapper', {
     },
 });
 
+
+function applyColorsToIframe() {
+                const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+                
+                // 1. Aplica as variáveis CSS diretamente na tag <html> (documentElement) de dentro do iframe
+                if (innerDoc && innerDoc.documentElement) {
+                    innerDoc.documentElement.style.setProperty('--primary-color', activeColor);
+                    innerDoc.documentElement.style.setProperty('--primary-glow', activeGlow);
+                    innerDoc.documentElement.style.setProperty('--primary-gradient', activeGradient);
+                }
+
+                // 2. Garante que se houver alguma tag <body> lá dentro, ela também receba as novas cores
+                if (innerDoc && innerDoc.body) {
+                    innerDoc.body.style.setProperty('--primary-color', activeColor);
+                    innerDoc.body.style.setProperty('--primary-glow', activeGlow);
+                    innerDoc.body.style.setProperty('--primary-gradient', activeGradient);
+                }
+            }
