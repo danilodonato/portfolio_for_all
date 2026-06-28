@@ -26,7 +26,7 @@
         body.generator-body {
             background-color: #000;
             color: var(--text-main);
-            font-family: 'Outfit', sans-serif; /* Padrão Outfit para o restante */
+            font-family: 'Outfit', sans-serif;
             margin: 0;
             display: flex;
             height: 100vh;
@@ -82,7 +82,7 @@
         }
 
         .panel-header h2 {
-            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk para Títulos */
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 22px;
             margin: 0;
             letter-spacing: -0.5px;
@@ -105,7 +105,7 @@
 
         /* Cabeçalhos das Seções Internas */
         h3 {
-            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk para Títulos */
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -124,7 +124,7 @@
         }
 
         h4 {
-            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk para Títulos */
+            font-family: 'Space Grotesk', sans-serif;
             margin-top: 5px;
             margin-bottom: 12px;
         }
@@ -153,7 +153,7 @@
             border-radius: 8px;
             padding: 10px 12px;
             color: var(--text-main);
-            font-family: 'Outfit', sans-serif; /* Outfit para campos */
+            font-family: 'Outfit', sans-serif;
             font-size: 14px;
             box-sizing: border-box;
             transition: border-color 0.2s, box-shadow 0.2s;
@@ -163,6 +163,40 @@
             outline: none;
             border-color: var(--accent-color);
             box-shadow: 0 0 0 2px rgba(163, 132, 255, 0.1);
+        }
+
+        /* Estilização dos Botões de Upload Customizados */
+        .file-upload-wrapper {
+            margin-top: 4px;
+            width: 100%;
+        }
+
+        .file-upload-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 11px 14px;
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            box-sizing: border-box;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s, border-color 0.2s, transform 0.1s ease;
+        }
+
+        .file-upload-btn:hover {
+            background-color: #202024;
+            border-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .file-upload-btn:active {
+            transform: scale(0.99);
         }
 
         .color-selector {
@@ -307,32 +341,11 @@
                 </div>
             </div>
 
-            <h3>Gerenciar Fotos (Carrossel)</h3>
-            <label for="select-qty-photos">Quantidade de fotos exibidas:</label>
-            <select id="select-qty-photos" class="photo-select">
-                <option value="1">Apenas 1 Foto</option>
-                <option value="2">Exibir 2 Fotos</option>
-                <option value="3" selected>Exibir as 3 Fotos</option>
-            </select>
+            <h3>Foto de Perfil (Sobre)</h3>
             <div class="input-group id-photo-1">
-                <label>Importar Foto 1 do PC</label>
                 <div class="file-upload-wrapper">
-                    <div class="file-upload-btn" id="lbl-img-1">📷 Escolher Imagem 1</div>
+                    <div class="file-upload-btn" id="lbl-img-1">📷 Escolher Foto de Perfil</div>
                     <input type="file" id="input-img-1" accept="image/*" class="photo-file-input" data-index="0" style="display: none;">
-                </div>
-            </div>
-            <div class="input-group id-photo-2">
-                <label>Importar Foto 2 do PC</label>
-                <div class="file-upload-wrapper">
-                    <div class="file-upload-btn" id="lbl-img-2">📷 Escolher Imagem 2</div>
-                    <input type="file" id="input-img-2" accept="image/*" class="photo-file-input" data-index="1" style="display: none;">
-                </div>
-            </div>
-            <div class="input-group id-photo-3">
-                <label>Importar Foto 3 do PC</label>
-                <div class="file-upload-wrapper">
-                    <div class="file-upload-btn" id="lbl-img-3">📷 Escolher Imagem 3</div>
-                    <input type="file" id="input-img-3" accept="image/*" class="photo-file-input" data-index="2" style="display: none;">
                 </div>
             </div>
 
@@ -377,7 +390,7 @@
                 <div class="input-group"><label for="input-exp-date-3">Período / Data</label><input type="text" id="input-exp-date-3" value="2021 - 2022"></div>
                 <div class="input-group"><label for="input-exp-title-3">Título do Cargo</label><input type="text" id="input-exp-title-3" value="ESTAGIÁRIO EM DESENVOLVIMENTO WEB"></div>
                 <div class="input-group"><label for="input-exp-company-3">Nome da Empresa</label><input type="text" id="input-exp-company-3" value="StartDev Studio"></div>
-                <div class="input-group"><label protection for="input-exp-desc-3">Descrição das Atividades</label><textarea id="input-exp-desc-3" rows="3">Suporte na codificação de layouts vindos do Figma para HTML/CSS, correção de bugs em sistemas legados e escrita de documentação técnica de projetos.</textarea></div>
+                <div class="input-group"><label for="input-exp-desc-3">Descrição das Atividades</label><textarea id="input-exp-desc-3" rows="3">Suporte na codificação de layouts vindos do Figma para HTML/CSS, correção de bugs em sistemas legados e escrita de documentação técnica de projetos.</textarea></div>
                 <div class="input-group"><label for="input-exp-techs-3">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-exp-techs-3" value="HTML5, CSS3, JavaScript, Bootstrap, Sass, WordPress"></div>
             </div>
 
@@ -394,7 +407,7 @@
                 <div class="input-group"><label for="input-proj-title-1">Título do Projeto</label><input type="text" id="input-proj-title-1" value="E-Commerce Platform"></div>
                 <div class="input-group"><label for="input-proj-desc-1">Descrição do Projeto</label><textarea id="input-proj-desc-1" rows="3">Uma plataforma completa de e-commerce com carrinho de compras em tempo real, integração de pagamentos com Stripe e painel administrativo para gerenciamento de produtos.</textarea></div>
                 <div class="input-group"><label for="input-proj-techs-1">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-proj-techs-1" value="React, Node.js, MongoDB"></div>
-                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 1</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-1">🖼 Escolher Imagem 1</div><input type="file" accept="image/*" class="proj-file-input" data-pindex="0" style="display: none;"></div></div>
+                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 1</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-1">🖼 Escolher Imagem 1</div><input type="file" id="input-proj-img-1" accept="image/*" class="proj-file-input" data-pindex="0" style="display: none;"></div></div>
                 <div class="input-group"><label for="input-proj-code-1">Link do Código (GitHub)</label><input type="text" id="input-proj-code-1" value="https://github.com/"></div>
                 <div class="input-group"><label for="input-proj-live-1">Link da Demo Online</label><input type="text" id="input-proj-live-1" value="https://google.com/"></div>
                 <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-1" checked data-proj="1"> Habilitar Botão Demo</label>
@@ -404,7 +417,7 @@
                 <div class="input-group"><label for="input-proj-title-2">Título do Projeto</label><input type="text" id="input-proj-title-2" value="Fintech Dashboard"></div>
                 <div class="input-group"><label for="input-proj-desc-2">Descrição do Projeto</label><textarea id="input-proj-desc-2" rows="3">Dashboard financeiro interativo focado na experiência do usuário, apresentando gráficos analíticos de despesas, controle de saldo e histórico de transações automatizado.</textarea></div>
                 <div class="input-group"><label for="input-proj-techs-2">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-proj-techs-2" value="TypeScript, Vue.js, Tailwind"></div>
-                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 2</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-2">🖼 Escolher Imagem 2</div><input type="file" accept="image/*" class="proj-file-input" data-pindex="1" style="display: none;"></div></div>
+                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 2</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-2">🖼 Escolher Imagem 2</div><input type="file" id="input-proj-img-2" accept="image/*" class="proj-file-input" data-pindex="1" style="display: none;"></div></div>
                 <div class="input-group"><label for="input-proj-code-2">Link do Código (GitHub)</label><input type="text" id="input-proj-code-2" value="https://github.com/"></div>
                 <div class="input-group"><label for="input-proj-live-2">Link da Demo Online</label><input type="text" id="input-proj-live-2" value="https://google.com/"></div>
                 <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-2" checked data-proj="2"> Habilitar Botão Demo</label>
@@ -414,7 +427,7 @@
                 <div class="input-group"><label for="input-proj-title-3">Título do Projeto</label><input type="text" id="input-proj-title-3" value="Task Management App"></div>
                 <div class="input-group"><label for="input-proj-desc-3">Descrição do Projeto</label><textarea id="input-proj-desc-3" rows="3">Aplicativo de gerenciamento de tarefas em equipes, utilizando metodologias ágeis como Kanban com atualizações em real-time.</textarea></div>
                 <div class="input-group"><label for="input-proj-techs-3">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-proj-techs-3" value="TypeScript, Next.js, Tailwind"></div>
-                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 3</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-3">🖼 Escolher Imagem 3</div><input type="file" accept="image/*" class="proj-file-input" data-pindex="2" style="display: none;"></div></div>
+                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 3</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-3">🖼 Escolher Imagem 3</div><input type="file" id="input-proj-img-3" accept="image/*" class="proj-file-input" data-pindex="2" style="display: none;"></div></div>
                 <div class="input-group"><label for="input-proj-code-3">Link do Código (GitHub)</label><input type="text" id="input-proj-code-3" value="https://github.com/"></div>
                 <div class="input-group"><label for="input-proj-live-3">Link da Demo Online</label><input type="text" id="input-proj-live-3" value="https://google.com/"></div>
                 <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-3" checked data-proj="3"> Habilitar Botão Demo</label>
@@ -424,7 +437,7 @@
                 <div class="input-group"><label for="input-proj-title-4">Título do Projeto</label><input type="text" id="input-proj-title-4" value="Fitness Tracker Mobile"></div>
                 <div class="input-group"><label for="input-proj-desc-4">Descrição do Projeto</label><textarea id="input-proj-desc-4" rows="3">Mobile app focado no monitoramento de performance física, ingestão calórica e integração direta com sensores de smartwatches.</textarea></div>
                 <div class="input-group"><label for="input-proj-techs-4">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-proj-techs-4" value="React Native, Expo, Redux"></div>
-                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 4</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-4">🖼 Escolher Imagem 4</div><input type="file" accept="image/*" class="proj-file-input" data-pindex="3" style="display: none;"></div></div>
+                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 4</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-4">🖼 Escolher Imagem 4</div><input type="file" id="input-proj-img-4" accept="image/*" class="proj-file-input" data-pindex="3" style="display: none;"></div></div>
                 <div class="input-group"><label for="input-proj-code-4">Link do Código (GitHub)</label><input type="text" id="input-proj-code-4" value="https://github.com/"></div>
                 <div class="input-group"><label for="input-proj-live-4">Link da Demo Online</label><input type="text" id="input-proj-live-4" value="https://google.com/"></div>
                 <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-4" checked data-proj="4"> Habilitar Botão Demo</label>
@@ -451,7 +464,6 @@
     </main>
 
     <script>
-        // MANTIDO TODO O CORE DO MOTOR QUE CONSTRUÍMOS ANTERIORMENTE
         document.addEventListener('DOMContentLoaded', () => {
             const iframe = document.getElementById('portfolio-iframe');
             const wrapper = document.getElementById('iframe-wrapper');
@@ -464,6 +476,7 @@
             let uploadedProjImagesUrls = ["", "", "", ""];
 
             let customCSSRules = "";
+            let photoCSSRules = ""; 
 
             // Alternador de Responsividade
             const viewButtons = document.querySelectorAll('.view-btn');
@@ -552,6 +565,7 @@
                     innerDoc .projects-grid-single-active .project-image-wrapper { width: 100% !important; max-width: 100% !important; height: auto !important; aspect-ratio: 21 / 9 !important; }
 
                     ${customCSSRules}
+                    ${photoCSSRules}
                 `;
             }
 
@@ -560,97 +574,155 @@
                 const innerWindow = iframe.contentWindow;
                 if (!innerDoc || !innerWindow) return;
 
-                // Sistema de Mutação do DOM e Visibilidade das Redes / Carrossel
-                function syncPhotosAndVisibilityRules() {
-                    const qty = parseInt(document.getElementById('select-qty-photos').value);
-                    
-                    const slides = innerDoc.querySelectorAll('.swiper-slide, .carousel-slide');
-                    slides.forEach((slide, idx) => {
-                        if (idx < qty) {
-                            slide.style.setProperty('display', 'block', 'important');
-                            slide.style.setProperty('opacity', '1', 'important');
-                            slide.style.setProperty('visibility', 'visible', 'important');
-                        } else {
-                            slide.style.setProperty('display', 'none', 'important');
-                            slide.style.setProperty('opacity', '0', 'important');
-                            slide.style.setProperty('visibility', 'hidden', 'important');
+                // MOTOR DE CAPTURA ROBUSTO: Localiza o parágrafo da descrição do Sobre pelo texto original nativo
+                try {
+                    const allParagraphs = innerDoc.querySelectorAll('p');
+                    allParagraphs.forEach(p => {
+                        if (p.textContent.includes("Sou um desenvolvedor apaixonado") || p.textContent.includes("I am a developer passionate")) {
+                            p.setAttribute('id', 'about-text-target');
                         }
                     });
+                } catch(err) { console.log("Aguardando textos do Sobre..."); }
 
-                    const bullets = innerDoc.querySelectorAll('.swiper-pagination-bullet, .carousel-dots span');
-                    bullets.forEach((bullet, idx) => {
-                        bullet.style.setProperty('display', idx < qty ? 'inline-block' : 'none', 'important');
-                    });
+                function syncPhotosAndVisibilityRules() {
+                    try {
+                        let rules = `
+                            .swiper-slide:not([data-swiper-slide-index="0"]):not(:first-child) { display: none !important; }
+                            .swiper-slide-duplicate { display: none !important; }
+                            .swiper-button-next, .swiper-button-prev, .carousel-arrow, .swiper-pagination { display: none !important; }
+                            .swiper-slide-active, .swiper-slide { pointer-events: none !important; touch-action: none !important; user-select: none !important; }
+                            .swiper-wrapper { transform: translate3d(0px, 0px, 0px) !important; transition-duration: 0ms !important; pointer-events: none !important; }
+                            .overview-swiper, .about-image-card { pointer-events: none !important; touch-action: none !important; }
+                        `;
 
-                    const checkboxes = document.querySelectorAll('.social-checkbox input');
-                    checkboxes.forEach(chk => {
-                        const net = chk.getAttribute('data-social');
-                        const targets = innerDoc.querySelectorAll(`
-                            .social-btn[href*="${net}"], 
-                            .social-btn.${net}, 
-                            a[href*="${net}"], 
-                            .social-links a,
-                            a i[class*="${net}"],
-                            a svg[class*="${net}"]
-                        `);
-
-                        targets.forEach(el => {
-                            const isTargetNode = el.matches(`[href*="${net}"], .${net}, [class*="${net}"]`) || el.querySelector(`[class*="${net}"]`);
-                            if (isTargetNode) {
-                                const anchor = el.tagName === 'A' ? el : el.closest('a');
-                                if (anchor) {
-                                    if (chk.checked) {
-                                        anchor.style.setProperty('display', 'inline-flex', 'important');
-                                        anchor.style.setProperty('visibility', 'visible', 'important');
-                                    } else {
-                                        anchor.style.setProperty('display', 'none', 'important');
-                                        anchor.style.setProperty('visibility', 'hidden', 'important');
-                                    }
+                        if (!uploadedPhotosUrls[0]) {
+                            rules += `
+                                .swiper-slide:first-child .about-image-card img { opacity: 0 !important; }
+                                .swiper-slide:first-child .about-image-card { 
+                                    background: #111115 !important; 
+                                    border: 2px dashed #27272A !important; 
+                                    display: flex !important; 
+                                    align-items: center !important; 
+                                    justify-content: center !important;
+                                    text-align: center !important;
+                                    padding: 20px !important;
+                                    min-height: 380px !important;
                                 }
-                            }
-                        });
-                    });
+                                .swiper-slide:first-child .about-image-card::after {
+                                    content: "Insira sua foto de perfil no painel lateral 📷" !important;
+                                    color: #71717A !important;
+                                    font-family: 'Outfit', sans-serif !important;
+                                    font-size: 14px !important;
+                                    font-weight: 400 !important;
+                                }
+                            `;
+                        }
 
-                    let rules = "";
-                    if (qty === 1) { rules += ` .swiper-button-next, .swiper-button-prev, .carousel-arrow { display: none !important; } `; }
-                    customCSSRules = rules;
-                    applyStylesAndVisibility();
-                }
+                        customCSSRules = rules;
+                        applyStylesAndVisibility();
 
-                const portfolioObserver = new MutationObserver(() => {
-                    portfolioObserver.disconnect();
-                    syncPhotosAndVisibilityRules();
-                    portfolioObserver.observe(innerDoc.body, { childList: true, subtree: true, attributes: true });
-                });
-
-                if (innerDoc.body) { portfolioObserver.observe(innerDoc.body, { childList: true, subtree: true, attributes: true }); }
-
-                document.getElementById('select-qty-photos').addEventListener('change', syncPhotosAndVisibilityRules);
-                document.querySelectorAll('.social-checkbox input').forEach(c => c.addEventListener('change', syncPhotosAndVisibilityRules));
-                syncPhotosAndVisibilityRules();
-
-                const nameInput = document.getElementById('input-name');
-
-                // Bindings Multilíngues Completos
-                function bindMultiLanguageText(inputId, selector) {
-                    const inputEl = document.getElementById(inputId);
-                    const targetEl = innerDoc.querySelector(selector);
-                    if (inputEl && targetEl) {
-                        const updateTextNode = () => {
-                            targetEl.textContent = inputEl.value;
-                            targetEl.setAttribute('data-pt', inputEl.value);
-                            targetEl.setAttribute('data-en', inputEl.value);
-                        };
-                        updateTextNode();
-                        inputEl.addEventListener('input', updateTextNode);
+                        if (innerWindow.overviewSwiper && typeof innerWindow.overviewSwiper.update === 'function') {
+                            innerWindow.overviewSwiper.update();
+                        }
+                    } catch (err) {
+                        console.log("Sincronizando visibilidade...", err);
                     }
                 }
 
-                bindMultiLanguageText('input-brand', '#brand-name');
-                bindMultiLanguageText('input-name', 'h1');
-                bindMultiLanguageText('input-bio', '.hero-bio');
+                const checkboxes = document.querySelectorAll('.social-checkbox input');
+                checkboxes.forEach(chk => {
+                    chk.addEventListener('change', () => {
+                        const net = chk.getAttribute('data-social');
+                        const altNet = net === 'instagram' ? 'insta' : net;
+                        const targets = innerDoc.querySelectorAll(`.social-btn[aria-label*="${net}" i], .social-btn[aria-label*="${altNet}" i], a[href*="${net}" i], a[href*="${altNet}" i]`);
+                        targets.forEach(el => {
+                            const anchor = el.tagName === 'A' ? el : el.closest('a');
+                            if (anchor) anchor.style.setProperty('display', chk.checked ? 'inline-flex' : 'none', 'important');
+                        });
+                    });
+                });
 
-                // Rodapé Dinâmico
+                syncPhotosAndVisibilityRules();
+
+                // FIX DOS EVENTOS DE ESCUTA COMPLETA PARA OS INPUTS DO HEADER/HERO (Garante sincronização instantânea)
+                const brandInput = document.getElementById('input-brand');
+                const brandTarget = innerDoc.querySelector('#brand-name');
+                if (brandInput && brandTarget) {
+                    brandInput.addEventListener('input', (e) => {
+                        brandTarget.textContent = e.target.value;
+                        brandTarget.setAttribute('data-pt', e.target.value);
+                        brandTarget.setAttribute('data-en', e.target.value);
+                    });
+                }
+
+                // FIX TOTAL E DEFINITIVO: Altera o nome na Hero e na seção SOBRE simultaneamente ao digitar!
+                const nameInput = document.getElementById('input-name');
+                if (nameInput) {
+                    nameInput.addEventListener('input', (e) => {
+                        const value = e.target.value;
+                        
+                        // 1. Atualiza o topo (Hero)
+                        const heroNameEl = innerDoc.querySelector('#hero-name') || innerDoc.querySelector('.hero-content h1');
+                        if (heroNameEl) {
+                            heroNameEl.textContent = value;
+                            heroNameEl.setAttribute('data-pt', value);
+                            heroNameEl.setAttribute('data-en', value);
+                        }
+                        
+                        // 2. Procura seletores mapeados na seção Sobre
+                        const aboutTitleSelectors = ['#about h2', '.about h2', '.profile-info h2', '.about-text h2', '#about-name', '.about-title'];
+                        let foundAboutTitle = false;
+                        aboutTitleSelectors.forEach(selector => {
+                            const el = innerDoc.querySelector(selector);
+                            if (el) {
+                                el.textContent = value;
+                                el.setAttribute('data-pt', value);
+                                el.setAttribute('data-en', value);
+                                foundAboutTitle = true;
+                            }
+                        });
+
+                        // 3. Alternativa baseada em texto bruto para garantir compatibilidade
+                        if (!foundAboutTitle) {
+                            const aboutSection = innerDoc.getElementById('about') || innerDoc.querySelector('.about') || innerDoc.querySelector('section');
+                            if (aboutSection) {
+                                const titles = aboutSection.querySelectorAll('h1, h2, h3, p');
+                                titles.forEach(t => {
+                                    if (t.textContent.trim().toUpperCase() === "ALEX SILVA" || t.getAttribute('data-pt') === "Alex Silva") {
+                                        t.textContent = value;
+                                        t.setAttribute('data-pt', value);
+                                        t.setAttribute('data-en', value);
+                                    }
+                                });
+                            }
+                        }
+                        updateFooterText();
+                    });
+                }
+
+                // Bio do Hero
+                const bioInput = document.getElementById('input-bio');
+                const bioTarget = innerDoc.querySelector('.hero-content p') || innerDoc.querySelector('#hero p') || innerDoc.querySelector('.hero-bio');
+                if (bioInput && bioTarget) {
+                    bioInput.addEventListener('input', (e) => {
+                        bioTarget.textContent = e.target.value;
+                        bioTarget.setAttribute('data-pt', e.target.value);
+                        bioTarget.setAttribute('data-en', e.target.value);
+                    });
+                }
+
+                // FIX DEFINITIVO DO SOBRE: Vincula de forma estável usando o ID customizado injetado
+                const aboutDescInput = document.getElementById('input-about-desc');
+                const aboutDescTarget = innerDoc.querySelector('#about-text-target');
+                if (aboutDescInput && aboutDescTarget) {
+                    aboutDescInput.addEventListener('input', (e) => {
+                        aboutDescTarget.textContent = e.target.value;
+                        aboutDescTarget.setAttribute('data-pt', e.target.value);
+                        aboutDescTarget.setAttribute('data-en', e.target.value);
+                    });
+                }
+
+                // Rodapé
                 function updateFooterText() {
                     const footerElement = innerDoc.querySelector('footer p, .footer p, footer span, .footer-text');
                     if (footerElement && nameInput) {
@@ -661,10 +733,9 @@
                         footerElement.setAttribute('data-en', `© ${currentYear} ${nameInput.value}. All rights reserved.`);
                     }
                 }
-                nameInput.addEventListener('input', updateFooterText);
                 updateFooterText();
 
-                // Contato e e-mail
+                // Contato
                 const contactBioInput = document.getElementById('input-contact-bio');
                 const contactEmailInput = document.getElementById('input-contact-email');
                 const contactHeader = Array.from(innerDoc.querySelectorAll('h2, h3, .section-title-glow')).find(el => el.textContent.includes('Contato'));
@@ -672,13 +743,11 @@
                 const startProjectBtn = innerDoc.querySelector('.btn-start-project, a[href^="mailto:"]');
 
                 if (contactBioInput && contactBioTarget) {
-                    const updateContactBio = () => {
-                        contactBioTarget.textContent = contactBioInput.value;
-                        contactBioTarget.setAttribute('data-pt', contactBioInput.value);
-                        contactBioTarget.setAttribute('data-en', contactBioInput.value);
-                    };
-                    updateContactBio();
-                    contactBioInput.addEventListener('input', updateContactBio);
+                    contactBioInput.addEventListener('input', (e) => {
+                        contactBioTarget.textContent = e.target.value;
+                        contactBioTarget.setAttribute('data-pt', e.target.value);
+                        contactBioTarget.setAttribute('data-en', e.target.value);
+                    });
                 }
 
                 if (contactEmailInput) {
@@ -687,21 +756,7 @@
                     contactEmailInput.addEventListener('input', updateMailto);
                 }
 
-                // Sobre
-                const descInput = document.getElementById('input-about-desc');
-                const descTarget = innerDoc.querySelector('.about-description') || innerDoc.querySelector('.profile-info p') || innerDoc.querySelector('#about p') || innerDoc.querySelector('.about-text p');
-
-                if (descInput && descTarget) {
-                    const updateAboutDesc = () => {
-                        descTarget.textContent = descInput.value;
-                        descTarget.setAttribute('data-pt', descInput.value);
-                        descTarget.setAttribute('data-en', descInput.value);
-                    };
-                    updateAboutDesc();
-                    descInput.addEventListener('input', updateAboutDesc);
-                }
-
-                // Localização
+                // Fix da Localização sem bolinhas extras
                 const locInput = document.getElementById('input-about-location');
                 const badgeInput = document.getElementById('input-badge');
                 const updateLocationNodeText = () => {
@@ -710,17 +765,17 @@
                     elements.forEach(el => {
                         Array.from(el.childNodes).forEach(node => {
                             if (node.nodeType === Node.TEXT_NODE && (node.nodeValue.includes('Residente em') || node.nodeValue.includes('Based in'))) {
-                                const ptStr = ` • Residente em ${locInput.value}`;
+                                const ptStr = ` Residente em ${locInput.value}`;
                                 node.nodeValue = ptStr;
                                 el.setAttribute('data-pt', ptStr);
-                                el.setAttribute('data-en', ` • Based in ${locInput.value}`);
+                                el.setAttribute('data-en', ` Based in ${locInput.value}`);
                             }
                         });
                     });
                 };
                 if (locInput) locInput.addEventListener('input', updateLocationNodeText);
                 
-                // Cargo global
+                // Cargo
                 const heroBadge = innerDoc.getElementById('hero-badge-text') || innerDoc.querySelector('.hero-badge');
                 const aboutJob = innerDoc.getElementById('about-job-text') || innerDoc.querySelector('.about-subtitle') || innerDoc.querySelector('.badge-purple');
                 const updateBadgeGlobal = (val) => {
@@ -734,7 +789,6 @@
                     });
                 };
                 if (badgeInput) {
-                    updateBadgeGlobal(badgeInput.value);
                     badgeInput.addEventListener('input', (e) => updateBadgeGlobal(e.target.value));
                 }
                 updateLocationNodeText();
@@ -742,159 +796,195 @@
                 // Timeline Experiências
                 const selectQtyExp = document.getElementById('select-qty-exp');
                 function syncAllExperiences() {
-                    const qty = parseInt(selectQtyExp.value);
-                    document.querySelector('.id-exp-1').style.display = 'block';
-                    document.querySelector('.id-exp-2').style.display = qty >= 2 ? 'block' : 'none';
-                    document.querySelector('.id-exp-3').style.display = qty === 3 ? 'block' : 'none';
+                    try {
+                        const qty = parseInt(selectQtyExp.value);
+                        if(document.querySelector('.id-exp-1')) document.querySelector('.id-exp-1').style.display = 'block';
+                        if(document.querySelector('.id-exp-2')) document.querySelector('.id-exp-2').style.display = qty >= 2 ? 'block' : 'none';
+                        if(document.querySelector('.id-exp-3')) document.querySelector('.id-exp-3').style.display = qty === 3 ? 'block' : 'none';
 
-                    const expWrapper = innerDoc.querySelector('.experience-wrapper, .experience-container, .experience-content');
-                    if (expWrapper) {
-                        if (qty === 1) expWrapper.classList.add('exp-wrapper-single-active');
-                        else expWrapper.classList.remove('exp-wrapper-single-active');
-                    }
+                        const expWrapper = innerDoc.querySelector('.experience-wrapper, .experience-container, .experience-content');
+                        if (expWrapper) {
+                            if (qty === 1) expWrapper.classList.add('exp-wrapper-single-active');
+                            else expWrapper.classList.remove('exp-wrapper-single-active');
+                        }
 
-                    const expCards = innerDoc.querySelectorAll('.experience-card, .timeline-item, .exp-card');
-                    expCards.forEach((card, index) => {
-                        const num = index + 1;
-                        if (index < qty) {
-                            card.style.display = 'flex'; 
-                            const dateInput = document.getElementById(`input-exp-date-${num}`);
-                            const titleInput = document.getElementById(`input-exp-title-${num}`);
-                            const companyInput = document.getElementById(`input-exp-company-${num}`);
-                            const descInput = document.getElementById(`input-exp-desc-${num}`);
-                            const techsInput = document.getElementById(`input-exp-techs-${num}`);
+                        const expCards = innerDoc.querySelectorAll('.experience-card, .timeline-item, .exp-card');
+                        expCards.forEach((card, index) => {
+                            const num = index + 1;
+                            if (index < qty) {
+                                card.style.display = 'flex'; 
+                                const dateInput = document.getElementById(`input-exp-date-${num}`);
+                                const titleInput = document.getElementById(`input-exp-title-${num}`);
+                                const companyInput = document.getElementById(`input-exp-company-${num}`);
+                                const expDescInput = document.getElementById(`input-exp-desc-${num}`);
+                                const techsInput = document.getElementById(`input-exp-techs-${num}`);
 
-                            const dateTarget = card.querySelector('.card-date');
-                            const titleTarget = card.querySelector('.job-title');
-                            const descTarget = card.querySelector('.job-description');
-                            const techsContainer = card.querySelector('.tech-badges');
+                                const dateTarget = card.querySelector('.card-date');
+                                const titleTarget = card.querySelector('.job-title');
+                                const expDescTarget = card.querySelector('.job-description');
+                                const techsContainer = card.querySelector('.tech-badges');
 
-                            if (dateInput && dateTarget) { 
-                                dateTarget.textContent = dateInput.value; dateTarget.setAttribute('data-pt', dateInput.value); dateTarget.setAttribute('data-en', dateInput.value);
-                                dateInput.oninput = (e) => { dateTarget.textContent = e.target.value; dateTarget.setAttribute('data-pt', e.target.value); dateTarget.setAttribute('data-en', e.target.value); };
-                            }
-                            
-                            const updateHeader = () => { 
-                                if (titleTarget && titleInput && companyInput) {
-                                    titleTarget.innerHTML = `${titleInput.value} <span class="company-name">• ${companyInput.value}</span>`;
-                                    titleTarget.setAttribute('data-pt', titleInput.value); titleTarget.setAttribute('data-en', titleInput.value);
-                                } 
-                            };
-                            if (titleInput) titleInput.oninput = updateHeader; if (companyInput) companyInput.oninput = updateHeader; updateHeader();
-                            
-                            if (descInput && descTarget) { 
-                                descTarget.textContent = descInput.value; descTarget.setAttribute('data-pt', descInput.value); descTarget.setAttribute('data-en', descInput.value);
-                                descInput.oninput = (e) => { descTarget.textContent = e.target.value; descTarget.setAttribute('data-pt', e.target.value); descTarget.setAttribute('data-en', e.target.value); };
-                            }
-                            
-                            const updateBadges = () => {
-                                if (!techsContainer || !techsInput) return;
-                                const list = techsInput.value.split(',').map(t => t.trim()).filter(t => t.length > 0);
-                                techsContainer.innerHTML = '';
-                                list.forEach(tech => { const span = innerDoc.createElement('span'); span.className = 'badge'; span.textContent = tech; techsContainer.appendChild(span); });
-                            };
-                            if (techsInput) techsInput.oninput = updateBadges; updateBadges();
-                        } else { card.style.display = 'none'; }
-                    });
+                                if (dateInput && dateTarget) { 
+                                    dateInput.addEventListener('input', (e) => {
+                                        dateTarget.textContent = e.target.value;
+                                        dateTarget.setAttribute('data-pt', e.target.value);
+                                        dateTarget.setAttribute('data-en', e.target.value);
+                                    });
+                                }
+                                
+                                const updateHeader = () => { 
+                                    if (titleTarget && titleInput && companyInput) {
+                                        titleTarget.innerHTML = `${titleInput.value} <span class="company-name">• ${companyInput.value}</span>`;
+                                        titleTarget.setAttribute('data-pt', titleInput.value);
+                                        titleTarget.setAttribute('data-en', titleInput.value);
+                                    } 
+                                };
+                                if (titleInput) titleInput.addEventListener('input', updateHeader);
+                                if (companyInput) companyInput.addEventListener('input', updateHeader);
+                                
+                                if (expDescInput && expDescTarget) { 
+                                    expDescInput.addEventListener('input', (e) => {
+                                        expDescTarget.textContent = e.target.value;
+                                        expDescTarget.setAttribute('data-pt', e.target.value);
+                                        expDescTarget.setAttribute('data-en', e.target.value);
+                                    });
+                                }
+                                
+                                const updateBadges = () => {
+                                    if (!techsContainer || !techsInput) return;
+                                    const list = techsInput.value.split(',').map(t => t.trim()).filter(t => t.length > 0);
+                                    techsContainer.innerHTML = '';
+                                    list.forEach(tech => {
+                                        const span = innerDoc.createElement('span');
+                                        span.className = 'badge';
+                                        span.textContent = tech;
+                                        techsContainer.appendChild(span);
+                                    });
+                                };
+                                if (techsInput) techsInput.addEventListener('input', updateBadges);
+                            } else { card.style.display = 'none'; }
+                        });
+                    } catch(e) { console.log("Erro ao sincronizar experiências:", e); }
                 }
-                if (selectQtyExp) { syncAllExperiences(); selectQtyExp.addEventListener('change', syncAllExperiences); }
+                if (selectQtyExp) {
+                    syncAllExperiences();
+                    selectQtyExp.addEventListener('change', syncAllExperiences);
+                }
 
-                // Projetos (Com Injeção Inline para forçar 100%)
+                // Motor de Projetos protegido contra nulos
                 const selectQtyProj = document.getElementById('select-qty-proj');
                 const projFileInputs = document.querySelectorAll('.proj-file-input');
 
                 function syncAllProjects() {
-                    const qty = parseInt(selectQtyProj.value);
-                    for (let i = 1; i <= 4; i++) {
-                        document.querySelector(`.id-proj-${i}`).style.display = i <= qty ? 'block' : 'none';
-                    }
-
-                    const gridParent = innerDoc.querySelector('.projects-grid, .projects-container');
-                    const projectCards = innerDoc.querySelectorAll('.project-card, .portfolio-card');
-                    
-                    if (gridParent) {
-                        if (qty === 1) {
-                            gridParent.style.setProperty('grid-template-columns', '1fr', 'important');
-                            gridParent.style.setProperty('width', '100%', 'important');
-                            gridParent.style.setProperty('max-width', '100%', 'important');
-                        } else if (qty === 3) {
-                            gridParent.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
-                            gridParent.style.removeProperty('width'); gridParent.style.removeProperty('max-width');
-                        } else {
-                            gridParent.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
-                            gridParent.style.removeProperty('width'); gridParent.style.removeProperty('max-width');
+                    try {
+                        const qty = parseInt(selectQtyProj.value);
+                        for (let i = 1; i <= 4; i++) {
+                            if(document.querySelector(`.id-proj-${i}`)) document.querySelector(`.id-proj-${i}`).style.display = i <= qty ? 'block' : 'none';
                         }
-                    }
 
-                    projectCards.forEach((card, index) => {
-                        const num = index + 1;
-                        if (index < qty) {
-                            card.style.display = 'flex'; 
-
+                        const gridParent = innerDoc.querySelector('.projects-grid, .projects-container');
+                        const projectCards = innerDoc.querySelectorAll('.project-card, .portfolio-card');
+                        
+                        if (gridParent) {
                             if (qty === 1) {
-                                card.style.setProperty('width', '100%', 'important'); card.style.setProperty('max-width', '100%', 'important'); card.style.setProperty('grid-column', 'span 1', 'important');
-                                const imgWrapper = card.querySelector('.project-image-wrapper');
-                                if (imgWrapper) { imgWrapper.style.setProperty('width', '100%', 'important'); imgWrapper.style.setProperty('max-width', '100%', 'important'); imgWrapper.style.setProperty('height', 'auto', 'important'); imgWrapper.style.setProperty('aspect-ratio', '21 / 9', 'important'); }
-                            } else if (qty === 3 && index === 2) {
-                                card.style.setProperty('grid-column', 'span 2', 'important'); card.style.setProperty('width', '100%', 'important'); card.style.setProperty('max-width', '100%', 'important');
-                                const imgWrapper = card.querySelector('.project-image-wrapper');
-                                if (imgWrapper) { imgWrapper.style.setProperty('width', '100%', 'important'); imgWrapper.style.setProperty('max-width', '100%', 'important'); imgWrapper.style.setProperty('height', 'auto', 'important'); imgWrapper.style.setProperty('aspect-ratio', '21 / 9', 'important'); }
+                                gridParent.style.setProperty('grid-template-columns', '1fr', 'important');
+                                gridParent.style.setProperty('width', '100%', 'important');
+                                gridParent.style.setProperty('max-width', '100%', 'important');
                             } else {
-                                card.style.removeProperty('width'); card.style.removeProperty('max-width'); card.style.removeProperty('grid-column');
-                                const imgWrapper = card.querySelector('.project-image-wrapper');
-                                if (imgWrapper) { imgWrapper.style.removeProperty('width'); imgWrapper.style.removeProperty('max-width'); imgWrapper.style.removeProperty('height'); imgWrapper.style.removeProperty('aspect-ratio'); }
+                                gridParent.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
+                                gridParent.style.removeProperty('width'); gridParent.style.removeProperty('max-width');
                             }
+                        }
 
-                            const titleInput = document.getElementById(`input-proj-title-${num}`);
-                            const descInput = document.getElementById(`input-proj-desc-${num}`);
-                            const techsInput = document.getElementById(`input-proj-techs-${num}`);
-                            const codeInput = document.getElementById(`input-proj-code-${num}`);
-                            const liveInput = document.getElementById(`input-proj-live-${num}`);
-                            const chkDemo = document.getElementById(`chk-proj-demo-${num}`);
+                        projectCards.forEach((card, index) => {
+                            const num = index + 1;
+                            if (index < qty) {
+                                card.style.display = 'flex'; 
 
-                            const titleTarget = card.querySelector('.project-title, h3, h4');
-                            const descTarget = card.querySelector('.project-description, p');
-                            const techsContainer = card.querySelector('.tech-badges, .project-techs');
-                            const imgTarget = card.querySelector('.project-img, img');
-                            
-                            const btnCode = card.querySelector('.project-link-btn:not(.live)');
-                            const btnLive = card.querySelector('.project-link-btn.live');
+                                if (qty === 1) {
+                                    card.style.setProperty('width', '100%', 'important'); card.style.setProperty('max-width', '100%', 'important'); card.style.setProperty('grid-column', 'span 1', 'important');
+                                    const imgWrapper = card.querySelector('.project-image-wrapper');
+                                    if (imgWrapper) { imgWrapper.style.setProperty('width', '100%', 'important'); imgWrapper.style.setProperty('max-width', '100%', 'important'); imgWrapper.style.setProperty('height', 'auto', 'important'); imgWrapper.style.setProperty('aspect-ratio', '21 / 9', 'important'); }
+                                } else if (qty === 3 && index === 2) {
+                                    card.style.setProperty('grid-column', 'span 2', 'important'); card.style.setProperty('width', '100%', 'important'); card.style.setProperty('max-width', '100%', 'important');
+                                    const imgWrapper = card.querySelector('.project-image-wrapper');
+                                    if (imgWrapper) { imgWrapper.style.setProperty('width', '100%', 'important'); imgWrapper.style.setProperty('max-width', '100%', 'important'); imgWrapper.style.setProperty('height', 'auto', 'important'); imgWrapper.style.setProperty('aspect-ratio', '21 / 9', 'important'); }
+                                } else {
+                                    card.style.removeProperty('width'); card.style.removeProperty('max-width'); card.style.removeProperty('grid-column');
+                                    const imgWrapper = card.querySelector('.project-image-wrapper');
+                                    if (imgWrapper) { imgWrapper.style.removeProperty('width'); imgWrapper.style.removeProperty('max-width'); imgWrapper.style.removeProperty('height'); imgWrapper.style.removeProperty('aspect-ratio'); }
+                                }
 
-                            if (titleInput && titleTarget) {
-                                titleTarget.textContent = titleInput.value; titleTarget.setAttribute('data-pt', titleInput.value); titleTarget.setAttribute('data-en', titleInput.value);
-                                titleInput.oninput = (e) => { titleTarget.textContent = e.target.value; titleTarget.setAttribute('data-pt', e.target.value); titleTarget.setAttribute('data-en', e.target.value); };
-                            }
-                            if (descInput && descTarget) {
-                                descTarget.textContent = descInput.value; descTarget.setAttribute('data-pt', descInput.value); descTarget.setAttribute('data-en', descInput.value);
-                                descInput.oninput = (e) => { descTarget.textContent = e.target.value; descTarget.setAttribute('data-pt', e.target.value); descTarget.setAttribute('data-en', e.target.value); };
-                            }
-                            if (imgTarget && uploadedProjImagesUrls[index]) {
-                                imgTarget.src = uploadedProjImagesUrls[index]; imgTarget.style.setProperty('width', '100%', 'important'); imgTarget.style.setProperty('height', '100%', 'important'); imgTarget.style.setProperty('object-fit', 'cover', 'important');
-                            }
+                                const titleInput = document.getElementById(`input-proj-title-${num}`);
+                                const descInput = document.getElementById(`input-proj-desc-${num}`);
+                                const techsInput = document.getElementById(`input-proj-techs-${num}`);
+                                const codeInput = document.getElementById(`input-proj-code-${num}`);
+                                const liveInput = document.getElementById(`input-proj-live-${num}`);
+                                const chkDemo = document.getElementById(`chk-proj-demo-${num}`);
 
-                            const updateTechs = () => {
-                                if (!techsContainer || !techsInput) return;
-                                const list = techsInput.value.split(',').map(t => t.trim()).filter(t => t.length > 0);
-                                techsContainer.innerHTML = '';
-                                list.forEach(tech => { const span = innerDoc.createElement('span'); span.className = 'badge'; span.textContent = tech; techsContainer.appendChild(span); });
-                            };
-                            if (techsInput) techsInput.oninput = updateTechs; updateTechs();
+                                const titleTarget = card.querySelector('.project-title, h3, h4');
+                                const descTarget = card.querySelector('.project-description, p');
+                                const techsContainer = card.querySelector('.tech-badges, .project-techs');
+                                const imgTarget = card.querySelector('.project-img, img');
+                                
+                                const btnCode = card.querySelector('.project-link-btn:not(.live)');
+                                const btnLive = card.querySelector('.project-link-btn.live');
 
-                            if (codeInput && btnCode) { btnCode.setAttribute('href', codeInput.value); codeInput.oninput = (e) => { btnCode.setAttribute('href', e.target.value); }; }
-                            if (liveInput && btnLive) { btnLive.setAttribute('href', liveInput.value); liveInput.oninput = (e) => { btnLive.setAttribute('href', e.target.value); }; }
+                                if (titleInput && titleTarget) {
+                                    titleInput.addEventListener('input', (e) => {
+                                        titleTarget.textContent = e.target.value;
+                                        titleTarget.setAttribute('data-pt', e.target.value);
+                                        titleTarget.setAttribute('data-en', e.target.value);
+                                    });
+                                }
+                                if (descInput && descTarget) {
+                                    descInput.addEventListener('input', (e) => {
+                                        descTarget.textContent = e.target.value;
+                                        descTarget.setAttribute('data-pt', e.target.value);
+                                        descTarget.setAttribute('data-en', e.target.value);
+                                    });
+                                }
+                                if (imgTarget && uploadedProjImagesUrls[index]) {
+                                    imgTarget.src = uploadedProjImagesUrls[index]; imgTarget.style.setProperty('width', '100%', 'important'); imgTarget.style.setProperty('height', '100%', 'important'); imgTarget.style.setProperty('object-fit', 'cover', 'important');
+                                }
 
-                            if (btnLive && chkDemo) {
-                                btnLive.style.setProperty('display', chkDemo.checked ? 'inline-flex' : 'none', 'important');
-                                if (btnCode) { btnCode.style.setProperty('width', chkDemo.checked ? 'auto' : '100%', 'important'); btnCode.style.setProperty('flex', chkDemo.checked ? '1' : 'none', 'important'); }
-                            }
+                                const updateTechs = () => {
+                                    if (!techsContainer || !techsInput) return;
+                                    const list = techsInput.value.split(',').map(t => t.trim()).filter(t => t.length > 0);
+                                    techsContainer.innerHTML = '';
+                                    list.forEach(tech => { 
+                                        const span = innerDoc.createElement('span'); 
+                                        span.className = 'tech-tag';
+                                        if(!card.querySelector('.project-techs')) span.className = 'badge';
+                                        span.textContent = tech; 
+                                        techsContainer.appendChild(span); 
+                                    });
+                                };
+                                if (techsInput) techsInput.addEventListener('input', updateTechs); 
 
-                        } else { card.style.display = 'none'; }
-                    });
+                                if (codeInput && btnCode) { 
+                                    codeInput.addEventListener('input', (e) => { btnCode.setAttribute('href', e.target.value); }); 
+                                }
+                                if (liveInput && btnLive) { 
+                                    liveInput.addEventListener('input', (e) => { btnLive.setAttribute('href', e.target.value); }); 
+                                }
+
+                                if (btnLive && chkDemo) {
+                                    chkDemo.addEventListener('change', () => {
+                                        btnLive.style.setProperty('display', chkDemo.checked ? 'inline-flex' : 'none', 'important');
+                                        if (btnCode) { btnCode.style.setProperty('width', chkDemo.checked ? 'auto' : '100%', 'important'); btnCode.style.setProperty('flex', chkDemo.checked ? '1' : 'none', 'important'); }
+                                    });
+                                }
+
+                            } else { card.style.display = 'none'; }
+                        });
+                    } catch(e) { console.log("Aguardando carregamento de blocos de projetos...", e); }
                 }
                 if (selectQtyProj) { syncAllProjects(); selectQtyProj.addEventListener('change', syncAllProjects); }
 
                 projFileInputs.forEach(input => {
                     input.addEventListener('change', (e) => {
+                        if (e.target.files.length === 0) return;
                         const index = parseInt(input.getAttribute('data-pindex'));
                         uploadedProjImagesUrls[index] = URL.createObjectURL(e.target.files[0]);
                         const labelBtn = document.getElementById(`lbl-proj-img-${index + 1}`);
@@ -903,29 +993,70 @@
                     });
                 });
 
-                // Fotos do Sobre do PC
+                for (let i = 1; i <= 4; i++) {
+                    const fakeProjBtn = document.getElementById(`lbl-proj-img-${i}`);
+                    const realProjInput = document.getElementById(`input-proj-img-${i}`);
+                    if (fakeProjBtn && realProjInput) {
+                        fakeProjBtn.onclick = (e) => { e.preventDefault(); realProjInput.click(); };
+                    }
+                }
+
+                function updatePhotoCSS() {
+                    let css = "";
+                    if (uploadedPhotosUrls[0]) {
+                        css += ` .contact-ui-mockup .avatar-img { content: url("${uploadedPhotosUrls[0]}") !important; } `;
+                        css += ` .swiper-slide img[src*="user.jpg"], .swiper-slide img { content: url("${uploadedPhotosUrls[0]}") !important; opacity: 1 !important; } `;
+                    }
+                    
+                    photoCSSRules = css;
+                    syncPhotosAndVisibilityRules();
+                }
+
                 const photoFileInputs = document.querySelectorAll('.photo-file-input');
                 photoFileInputs.forEach(input => {
                     input.addEventListener('change', (e) => {
+                        if (e.target.files.length === 0) return;
                         const index = parseInt(input.getAttribute('data-index'));
-                        uploadedPhotosUrls[index] = URL.createObjectURL(e.target.files[0]);
+                        const fileUrl = URL.createObjectURL(e.target.files[0]);
+                        uploadedPhotosUrls[index] = fileUrl;
+                        
                         const labelBtn = document.getElementById(`lbl-img-${index + 1}`);
                         if (labelBtn) labelBtn.textContent = `✓ Carregada`;
                         
-                        const targetImages = innerDoc.querySelectorAll('.swiper-slide img, .carousel-slide img, .about-image img, .profile-image img');
-                        if (targetImages[index]) targetImages[index].src = uploadedPhotosUrls[index];
+                        updatePhotoCSS();
                     });
                 });
 
-                // Upload Currículo do PC
+                const fakeBtn = document.getElementById('lbl-img-1');
+                const realInput = document.getElementById('input-img-1');
+                if (fakeBtn && realInput) {
+                    fakeBtn.onclick = (e) => { e.preventDefault(); realInput.click(); };
+                }
+
+                // Currículo (CV)
                 const fileInput = document.getElementById('input-cv-file');
+                const fakeCvBtn = document.getElementById('upload-label');
+                
                 if (fileInput) {
                     fileInput.addEventListener('change', (e) => {
-                        importedCvUrl = URL.createObjectURL(e.target.files[0]);
-                        document.getElementById('upload-label').textContent = `✓ PDF Pronto`;
-                        const cvButtons = innerDoc.querySelectorAll('.btn-download, a[href*="cv"]');
-                        cvButtons.forEach(btn => btn.setAttribute('href', importedCvUrl));
+                        try {
+                            if (e.target.files.length === 0) return;
+                            importedCvUrl = URL.createObjectURL(e.target.files[0]);
+                            if (fakeCvBtn) fakeCvBtn.textContent = `✓ PDF Pronto`;
+                            
+                            const cvButtons = innerDoc.querySelectorAll('.btn-download, a[href*="cv"], a[download]');
+                            cvButtons.forEach(btn => {
+                                btn.setAttribute('href', importedCvUrl);
+                                btn.setAttribute('target', '_blank'); 
+                            });
+                        } catch(err) {
+                            console.log("Erro ao aplicar link do CV:", err);
+                        }
                     });
+                }
+
+                if (fakeCvBtn && fileInput) {
+                    fakeCvBtn.onclick = (e) => { e.preventDefault(); fileInput.click(); };
                 }
 
                 if (innerWindow.ScrollTrigger) innerWindow.ScrollTrigger.refresh();
