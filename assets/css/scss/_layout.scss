@@ -1796,3 +1796,18 @@ canvas {
     letter-spacing: 0.02em;
   }
 }
+
+/* Força os projetos a ficarem um abaixo do outro em uma única coluna */
+.portfolio-grid.portfolio-stack-vertical {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
+    gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
+    max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+    margin: 0 auto; /* Centraliza a coluna na seção */
+}
+
+/* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
+.portfolio-grid.portfolio-stack-vertical .portfolio-card {
+    width: 100% !important;
+}

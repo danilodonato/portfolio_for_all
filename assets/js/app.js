@@ -182,7 +182,11 @@ ScrollTrigger.matchMedia({
             scrollTrigger: {
                 trigger: '.experience-section',
                 start: 'top 120px',
-                end: 'bottom bottom',
+                // CÁLCULO DINÂMICO DO FIM: Impede que a sidebar ultrapasse os cards ativos
+                end: () => {
+                    const wrapper = document.querySelector('.experience-wrapper');
+                    return wrapper ? `+=${wrapper.offsetHeight - 200}` : 'bottom bottom';
+                },
                 scrub: 1,
                 invalidateOnRefresh: true
             }
@@ -211,22 +215,3 @@ const overviewSwiper = new Swiper('.overview-image-wrapper', {
         clickable: true,        
     },
 });
-
-
-function applyColorsToIframe() {
-                const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-                
-                // 1. Aplica as variáveis CSS diretamente na tag <html> (documentElement) de dentro do iframe
-                if (innerDoc && innerDoc.documentElement) {
-                    innerDoc.documentElement.style.setProperty('--primary-color', activeColor);
-                    innerDoc.documentElement.style.setProperty('--primary-glow', activeGlow);
-                    innerDoc.documentElement.style.setProperty('--primary-gradient', activeGradient);
-                }
-
-                // 2. Garante que se houver alguma tag <body> lá dentro, ela também receba as novas cores
-                if (innerDoc && innerDoc.body) {
-                    innerDoc.body.style.setProperty('--primary-color', activeColor);
-                    innerDoc.body.style.setProperty('--primary-glow', activeGlow);
-                    innerDoc.body.style.setProperty('--primary-gradient', activeGradient);
-                }
-            }

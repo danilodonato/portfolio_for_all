@@ -2018,6 +2018,21 @@ canvas {
   letter-spacing: 0.02em;
 }
 
+/* Força os projetos a ficarem um abaixo do outro em uma única coluna */
+.portfolio-grid.portfolio-stack-vertical {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
+  gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
+  max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+  margin: 0 auto; /* Centraliza a coluna na seção */
+}
+
+/* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
+.portfolio-grid.portfolio-stack-vertical .portfolio-card {
+  width: 100% !important;
+}
+
 .gap20 {
   gap: 20px;
 }
@@ -4643,6 +4658,21 @@ canvas {
   letter-spacing: 0.02em;
 }
 
+/* Força os projetos a ficarem um abaixo do outro em uma única coluna */
+.portfolio-grid.portfolio-stack-vertical {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
+  gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
+  max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+  margin: 0 auto; /* Centraliza a coluna na seção */
+}
+
+/* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
+.portfolio-grid.portfolio-stack-vertical .portfolio-card {
+  width: 100% !important;
+}
+
 h1 {
   color: #ffffff;
   font-family: "Space Grotesk", sans-serif;
@@ -6644,6 +6674,21 @@ canvas {
   letter-spacing: 0.02em;
 }
 
+/* Força os projetos a ficarem um abaixo do outro em uma única coluna */
+.portfolio-grid.portfolio-stack-vertical {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
+  gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
+  max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+  margin: 0 auto; /* Centraliza a coluna na seção */
+}
+
+/* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
+.portfolio-grid.portfolio-stack-vertical .portfolio-card {
+  width: 100% !important;
+}
+
 .grid-1 {
   width: calc(8.3333333333% - 8px);
   margin: 4px;
@@ -8460,6 +8505,21 @@ canvas {
   text-align: center;
   margin: 0;
   letter-spacing: 0.02em;
+}
+
+/* Força os projetos a ficarem um abaixo do outro em uma única coluna */
+.portfolio-grid.portfolio-stack-vertical {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
+  gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
+  max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+  margin: 0 auto; /* Centraliza a coluna na seção */
+}
+
+/* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
+.portfolio-grid.portfolio-stack-vertical .portfolio-card {
+  width: 100% !important;
 }
 
 :root {

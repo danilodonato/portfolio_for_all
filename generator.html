@@ -11,9 +11,6 @@
     
     <link rel="stylesheet" href="assets/css/style.css" />
     <style>
-        /* ==========================================
-           REFINAMENTO ESTÉTICO E TIPOGRAFIA (UI)
-        ========================================== */
         :root {
             --bg-panel: #09090b;
             --bg-input: #18181b;
@@ -33,7 +30,6 @@
             overflow: hidden;
         }
 
-        /* Topo da Barra Lateral (Créditos) */
         .caelium-header {
             display: flex;
             align-items: center;
@@ -67,7 +63,6 @@
             width: auto;
         }
 
-        /* Estrutura do Painel Lateral */
         .generator-panel {
             width: 400px;
             background-color: var(--bg-panel);
@@ -103,7 +98,6 @@
             scrollbar-color: var(--border-color) transparent;
         }
 
-        /* Cabeçalhos das Seções Internas */
         h3 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 13px;
@@ -129,7 +123,6 @@
             margin-bottom: 12px;
         }
 
-        /* Input Elements */
         .input-group {
             margin-bottom: 15px;
         }
@@ -165,7 +158,6 @@
             box-shadow: 0 0 0 2px rgba(163, 132, 255, 0.1);
         }
 
-        /* Estilização dos Botões de Upload Customizados */
         .file-upload-wrapper {
             margin-top: 4px;
             width: 100%;
@@ -242,7 +234,6 @@
             accent-color: #A384FF;
         }
 
-        /* Preview Area */
         .preview-area {
             flex: 1;
             background-color: #000;
@@ -327,7 +318,7 @@
             <h3>Seção Sobre</h3>
             <div class="input-group">
                 <label for="input-about-desc">Texto de Descrição (Overview)</label>
-                <textarea id="input-about-desc" rows="4">Sou um desenvolvedor apaixonado por criar soluções eficientes e elegantes. Com experiência em tecnologias modernas, busco sempre alinhar performance e design para entregar a melhor experiência ao usuário final.</textarea>
+                <textarea id="input-about-desc" rows="4">Sou um desenvolvedor apaixonado por tecnologia e design. Nos últimos anos, tenho me dedicado a construir ecossistemas web utilizando as melhores práticas de mercado. Adoro resolver problemas complexos e criar interfaces que sejam ao mesmo tempo elegantes e intuitivas.</textarea>
             </div>
             <div class="input-group">
                 <label for="input-about-location">Sua Localização (Cidade)</label>
@@ -478,7 +469,6 @@
             let customCSSRules = "";
             let photoCSSRules = ""; 
 
-            // Alternador de Responsividade
             const viewButtons = document.querySelectorAll('.view-btn');
             viewButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -490,7 +480,6 @@
                 });
             });
 
-            // Cores
             const colorDots = document.querySelectorAll('.color-dot');
             colorDots.forEach(dot => {
                 dot.addEventListener('click', () => {
@@ -505,13 +494,11 @@
 
             function applyStylesAndVisibility() {
                 const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-                if (!innerDoc) return;
+                if (!innerDoc || !innerDoc.documentElement) return;
 
-                if (innerDoc.documentElement) {
-                    innerDoc.documentElement.style.setProperty('--primary-color', activeColor);
-                    innerDoc.documentElement.style.setProperty('--primary-glow', activeGlow);
-                    innerDoc.documentElement.style.setProperty('--primary-gradient', activeGradient);
-                }
+                innerDoc.documentElement.style.setProperty('--primary-color', activeColor);
+                innerDoc.documentElement.style.setProperty('--primary-glow', activeGlow);
+                innerDoc.documentElement.style.setProperty('--primary-gradient', activeGradient);
 
                 let dynamicStyle = innerDoc.getElementById('generator-dynamic-colors');
                 if (!dynamicStyle) {
@@ -560,9 +547,15 @@
                     .exp-wrapper-single-active { display: flex !important; flex-direction: row !important; align-items: flex-start !important; justify-content: space-between !important; gap: 60px !important; width: 100% !important; }
                     .exp-wrapper-single-active .experience-sidebar { position: relative !important; top: 0 !important; transform: none !important; margin: 0 !important; text-align: left !important; }
 
-                    innerDoc .projects-grid-single-active { grid-template-columns: 1fr !important; width: 100% !important; max-width: 100% !important; }
-                    innerDoc .projects-grid-single-active .project-card { width: 100% !important; max-width: 100% !important; flex-basis: 100% !important; }
-                    innerDoc .projects-grid-single-active .project-image-wrapper { width: 100% !important; max-width: 100% !important; height: auto !important; aspect-ratio: 21 / 9 !important; }
+                    innerDoc .projects-grid { display: grid !important; }
+                    innerDoc .projects-grid.portfolio-full-width { grid-template-columns: 1fr !important; width: 100% !important; max-width: 100% !important; }
+                    innerDoc .projects-grid.portfolio-full-width .project-card { grid-column: span 1 !important; width: 100% !important; max-width: 100% !important; }
+
+                    innerDoc .projects-grid.portfolio-stack-vertical { grid-template-columns: 1fr !important; max-width: 850px !important; margin: 0 auto !important; width: 100% !important; gap: 3.5rem !important; }
+                    innerDoc .projects-grid.portfolio-stack-vertical .project-card { grid-column: span 1 !important; width: 100% !important; }
+
+                    innerDoc .projects-grid.portfolio-three-stretch { grid-template-columns: repeat(2, 1fr) !important; gap: 2.5rem !important; }
+                    innerDoc .projects-grid.portfolio-three-stretch .project-card:nth-child(3) { grid-column: span 2 !important; width: 100% !important; }
 
                     ${customCSSRules}
                     ${photoCSSRules}
@@ -573,16 +566,6 @@
                 const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
                 const innerWindow = iframe.contentWindow;
                 if (!innerDoc || !innerWindow) return;
-
-                // MOTOR DE CAPTURA ROBUSTO: Localiza o parágrafo da descrição do Sobre pelo texto original nativo
-                try {
-                    const allParagraphs = innerDoc.querySelectorAll('p');
-                    allParagraphs.forEach(p => {
-                        if (p.textContent.includes("Sou um desenvolvedor apaixonado") || p.textContent.includes("I am a developer passionate")) {
-                            p.setAttribute('id', 'about-text-target');
-                        }
-                    });
-                } catch(err) { console.log("Aguardando textos do Sobre..."); }
 
                 function syncPhotosAndVisibilityRules() {
                     try {
@@ -644,65 +627,28 @@
 
                 syncPhotosAndVisibilityRules();
 
-                // FIX DOS EVENTOS DE ESCUTA COMPLETA PARA OS INPUTS DO HEADER/HERO (Garante sincronização instantânea)
                 const brandInput = document.getElementById('input-brand');
                 const brandTarget = innerDoc.querySelector('#brand-name');
                 if (brandInput && brandTarget) {
                     brandInput.addEventListener('input', (e) => {
                         brandTarget.textContent = e.target.value;
-                        brandTarget.setAttribute('data-pt', e.target.value);
-                        brandTarget.setAttribute('data-en', e.target.value);
                     });
                 }
 
-                // FIX TOTAL E DEFINITIVO: Altera o nome na Hero e na seção SOBRE simultaneamente ao digitar!
                 const nameInput = document.getElementById('input-name');
                 if (nameInput) {
                     nameInput.addEventListener('input', (e) => {
                         const value = e.target.value;
-                        
-                        // 1. Atualiza o topo (Hero)
-                        const heroNameEl = innerDoc.querySelector('#hero-name') || innerDoc.querySelector('.hero-content h1');
-                        if (heroNameEl) {
-                            heroNameEl.textContent = value;
-                            heroNameEl.setAttribute('data-pt', value);
-                            heroNameEl.setAttribute('data-en', value);
-                        }
-                        
-                        // 2. Procura seletores mapeados na seção Sobre
-                        const aboutTitleSelectors = ['#about h2', '.about h2', '.profile-info h2', '.about-text h2', '#about-name', '.about-title'];
-                        let foundAboutTitle = false;
-                        aboutTitleSelectors.forEach(selector => {
-                            const el = innerDoc.querySelector(selector);
-                            if (el) {
-                                el.textContent = value;
-                                el.setAttribute('data-pt', value);
-                                el.setAttribute('data-en', value);
-                                foundAboutTitle = true;
-                            }
-                        });
-
-                        // 3. Alternativa baseada em texto bruto para garantir compatibilidade
-                        if (!foundAboutTitle) {
-                            const aboutSection = innerDoc.getElementById('about') || innerDoc.querySelector('.about') || innerDoc.querySelector('section');
-                            if (aboutSection) {
-                                const titles = aboutSection.querySelectorAll('h1, h2, h3, p');
-                                titles.forEach(t => {
-                                    if (t.textContent.trim().toUpperCase() === "ALEX SILVA" || t.getAttribute('data-pt') === "Alex Silva") {
-                                        t.textContent = value;
-                                        t.setAttribute('data-pt', value);
-                                        t.setAttribute('data-en', value);
-                                    }
-                                });
-                            }
-                        }
+                        const heroNameEl = innerDoc.getElementById('hero-name');
+                        if (heroNameEl) heroNameEl.textContent = value;
+                        const aboutNameEl = innerDoc.querySelector('.overview-name');
+                        if (aboutNameEl) aboutNameEl.textContent = value;
                         updateFooterText();
                     });
                 }
 
-                // Bio do Hero
                 const bioInput = document.getElementById('input-bio');
-                const bioTarget = innerDoc.querySelector('.hero-content p') || innerDoc.querySelector('#hero p') || innerDoc.querySelector('.hero-bio');
+                const bioTarget = innerDoc.getElementById('hero-bio');
                 if (bioInput && bioTarget) {
                     bioInput.addEventListener('input', (e) => {
                         bioTarget.textContent = e.target.value;
@@ -711,9 +657,8 @@
                     });
                 }
 
-                // FIX DEFINITIVO DO SOBRE: Vincula de forma estável usando o ID customizado injetado
                 const aboutDescInput = document.getElementById('input-about-desc');
-                const aboutDescTarget = innerDoc.querySelector('#about-text-target');
+                const aboutDescTarget = innerDoc.querySelector('.overview-description');
                 if (aboutDescInput && aboutDescTarget) {
                     aboutDescInput.addEventListener('input', (e) => {
                         aboutDescTarget.textContent = e.target.value;
@@ -722,9 +667,8 @@
                     });
                 }
 
-                // Rodapé
                 function updateFooterText() {
-                    const footerElement = innerDoc.querySelector('footer p, .footer p, footer span, .footer-text');
+                    const footerElement = innerDoc.querySelector('.footer-credits');
                     if (footerElement && nameInput) {
                         const currentYear = new Date().getFullYear();
                         const footerString = `© ${currentYear} ${nameInput.value}. Todos os direitos reservados.`;
@@ -735,11 +679,9 @@
                 }
                 updateFooterText();
 
-                // Contato
                 const contactBioInput = document.getElementById('input-contact-bio');
                 const contactEmailInput = document.getElementById('input-contact-email');
-                const contactHeader = Array.from(innerDoc.querySelectorAll('h2, h3, .section-title-glow')).find(el => el.textContent.includes('Contato'));
-                const contactBioTarget = contactHeader ? contactHeader.nextElementSibling : innerDoc.querySelector('.contact-subtitle');
+                const contactBioTarget = innerDoc.querySelector('.contact-description');
                 const startProjectBtn = innerDoc.querySelector('.btn-start-project, a[href^="mailto:"]');
 
                 if (contactBioInput && contactBioTarget) {
@@ -756,44 +698,30 @@
                     contactEmailInput.addEventListener('input', updateMailto);
                 }
 
-                // Fix da Localização sem bolinhas extras
                 const locInput = document.getElementById('input-about-location');
                 const badgeInput = document.getElementById('input-badge');
                 const updateLocationNodeText = () => {
                     if (!locInput) return;
-                    const elements = innerDoc.querySelectorAll('div, span, p, h3, h4, .profile-info');
-                    elements.forEach(el => {
-                        Array.from(el.childNodes).forEach(node => {
-                            if (node.nodeType === Node.TEXT_NODE && (node.nodeValue.includes('Residente em') || node.nodeValue.includes('Based in'))) {
-                                const ptStr = ` Residente em ${locInput.value}`;
-                                node.nodeValue = ptStr;
-                                el.setAttribute('data-pt', ptStr);
-                                el.setAttribute('data-en', ` Based in ${locInput.value}`);
-                            }
-                        });
-                    });
+                    const locationTarget = innerDoc.querySelector('.location-text');
+                    if (locationTarget) {
+                        locationTarget.textContent = `Residente em ${locInput.value}`;
+                        locationTarget.setAttribute('data-pt', `Residente em ${locInput.value}`);
+                        locationTarget.setAttribute('data-en', `Based in ${locInput.value}`);
+                    }
                 };
                 if (locInput) locInput.addEventListener('input', updateLocationNodeText);
                 
-                // Cargo
-                const heroBadge = innerDoc.getElementById('hero-badge-text') || innerDoc.querySelector('.hero-badge');
-                const aboutJob = innerDoc.getElementById('about-job-text') || innerDoc.querySelector('.about-subtitle') || innerDoc.querySelector('.badge-purple');
+                const heroBadge = innerDoc.getElementById('hero-badge-text');
+                const aboutJob = innerDoc.querySelector('.badge-purple');
                 const updateBadgeGlobal = (val) => {
                     if (heroBadge) { heroBadge.textContent = val; heroBadge.setAttribute('data-pt', val); heroBadge.setAttribute('data-en', val); }
                     if (aboutJob) { aboutJob.textContent = val; aboutJob.setAttribute('data-pt', val); aboutJob.setAttribute('data-en', val); }
-                    const elements = innerDoc.querySelectorAll('h1 + h3 span, .profile-info h3 span, h3 > span:first-child');
-                    elements.forEach(el => {
-                        if (el && !el.closest('.swiper-slide') && !el.closest('.carousel-slide')) {
-                            el.textContent = val; el.setAttribute('data-pt', val); el.setAttribute('data-en', val);
-                        }
-                    });
                 };
                 if (badgeInput) {
                     badgeInput.addEventListener('input', (e) => updateBadgeGlobal(e.target.value));
                 }
                 updateLocationNodeText();
 
-                // Timeline Experiências
                 const selectQtyExp = document.getElementById('select-qty-exp');
                 function syncAllExperiences() {
                     try {
@@ -802,17 +730,30 @@
                         if(document.querySelector('.id-exp-2')) document.querySelector('.id-exp-2').style.display = qty >= 2 ? 'block' : 'none';
                         if(document.querySelector('.id-exp-3')) document.querySelector('.id-exp-3').style.display = qty === 3 ? 'block' : 'none';
 
-                        const expWrapper = innerDoc.querySelector('.experience-wrapper, .experience-container, .experience-content');
+                        const expWrapper = innerDoc.querySelector('.experience-wrapper');
+                        const expSection = innerDoc.querySelector('.experience-section');
+                        
                         if (expWrapper) {
-                            if (qty === 1) expWrapper.classList.add('exp-wrapper-single-active');
-                            else expWrapper.classList.remove('exp-wrapper-single-active');
+                            if (qty === 1 || qty === 2) {
+                                expWrapper.classList.add('exp-wrapper-single-active');
+                            } else {
+                                expWrapper.classList.remove('exp-wrapper-single-active');
+                            }
+                            expWrapper.style.height = 'auto';
                         }
 
-                        const expCards = innerDoc.querySelectorAll('.experience-card, .timeline-item, .exp-card');
+                        if (expSection) {
+                            expSection.style.height = 'auto';
+                            expSection.style.minHeight = '0px';
+                        }
+
+                        const expCards = innerDoc.querySelectorAll('.experience-card');
+                        if (!expCards) return;
+
                         expCards.forEach((card, index) => {
                             const num = index + 1;
                             if (index < qty) {
-                                card.style.display = 'flex'; 
+                                card.style.setProperty('display', 'flex', 'important'); 
                                 const dateInput = document.getElementById(`input-exp-date-${num}`);
                                 const titleInput = document.getElementById(`input-exp-title-${num}`);
                                 const companyInput = document.getElementById(`input-exp-company-${num}`);
@@ -825,29 +766,19 @@
                                 const techsContainer = card.querySelector('.tech-badges');
 
                                 if (dateInput && dateTarget) { 
-                                    dateInput.addEventListener('input', (e) => {
-                                        dateTarget.textContent = e.target.value;
-                                        dateTarget.setAttribute('data-pt', e.target.value);
-                                        dateTarget.setAttribute('data-en', e.target.value);
-                                    });
+                                    dateInput.addEventListener('input', (e) => { dateTarget.textContent = e.target.value; });
                                 }
                                 
                                 const updateHeader = () => { 
                                     if (titleTarget && titleInput && companyInput) {
                                         titleTarget.innerHTML = `${titleInput.value} <span class="company-name">• ${companyInput.value}</span>`;
-                                        titleTarget.setAttribute('data-pt', titleInput.value);
-                                        titleTarget.setAttribute('data-en', titleInput.value);
                                     } 
                                 };
                                 if (titleInput) titleInput.addEventListener('input', updateHeader);
                                 if (companyInput) companyInput.addEventListener('input', updateHeader);
                                 
                                 if (expDescInput && expDescTarget) { 
-                                    expDescInput.addEventListener('input', (e) => {
-                                        expDescTarget.textContent = e.target.value;
-                                        expDescTarget.setAttribute('data-pt', e.target.value);
-                                        expDescTarget.setAttribute('data-en', e.target.value);
-                                    });
+                                    expDescInput.addEventListener('input', (e) => { expDescTarget.textContent = e.target.value; });
                                 }
                                 
                                 const updateBadges = () => {
@@ -862,16 +793,23 @@
                                     });
                                 };
                                 if (techsInput) techsInput.addEventListener('input', updateBadges);
-                            } else { card.style.display = 'none'; }
+                            } else { 
+                                card.style.setProperty('display', 'none', 'important'); 
+                            }
                         });
-                    } catch(e) { console.log("Erro ao sincronizar experiências:", e); }
+
+                        setTimeout(() => {
+                            if (innerWindow.ScrollTrigger) innerWindow.ScrollTrigger.refresh();
+                        }, 50);
+
+                    } catch(e) { console.log(e); }
                 }
                 if (selectQtyExp) {
                     syncAllExperiences();
                     selectQtyExp.addEventListener('change', syncAllExperiences);
                 }
 
-                // Motor de Projetos protegido contra nulos
+                // MOTOR DE PROJETOS ANTI-QUEBRA (CORREÇÃO DO CONSOLE)
                 const selectQtyProj = document.getElementById('select-qty-proj');
                 const projFileInputs = document.querySelectorAll('.proj-file-input');
 
@@ -882,38 +820,26 @@
                             if(document.querySelector(`.id-proj-${i}`)) document.querySelector(`.id-proj-${i}`).style.display = i <= qty ? 'block' : 'none';
                         }
 
-                        const gridParent = innerDoc.querySelector('.projects-grid, .projects-container');
-                        const projectCards = innerDoc.querySelectorAll('.project-card, .portfolio-card');
+                        const projectGrid = innerDoc.querySelector('.projects-grid') || innerDoc.querySelector('.portfolio-grid');
+                        const projectCards = innerDoc.querySelectorAll('.project-card') || innerDoc.querySelectorAll('.portfolio-card');
                         
-                        if (gridParent) {
-                            if (qty === 1) {
-                                gridParent.style.setProperty('grid-template-columns', '1fr', 'important');
-                                gridParent.style.setProperty('width', '100%', 'important');
-                                gridParent.style.setProperty('max-width', '100%', 'important');
-                            } else {
-                                gridParent.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
-                                gridParent.style.removeProperty('width'); gridParent.style.removeProperty('max-width');
-                            }
+                        // SE O GRID OU CARDS NÃO EXISTIREM NO DOM AINDA, ABORTA PARA NÃO DAR ERRO NO CONSOLE
+                        if (!projectGrid || !projectCards || projectCards.length === 0) return;
+
+                        projectGrid.classList.remove('portfolio-full-width', 'portfolio-stack-vertical', 'portfolio-three-stretch');
+
+                        if (qty === 1) {
+                            projectGrid.classList.add('portfolio-full-width');
+                        } else if (qty === 2 || qty === 4) {
+                            projectGrid.classList.add('portfolio-stack-vertical');
+                        } else if (qty === 3) {
+                            projectGrid.classList.add('portfolio-three-stretch');
                         }
 
                         projectCards.forEach((card, index) => {
                             const num = index + 1;
                             if (index < qty) {
-                                card.style.display = 'flex'; 
-
-                                if (qty === 1) {
-                                    card.style.setProperty('width', '100%', 'important'); card.style.setProperty('max-width', '100%', 'important'); card.style.setProperty('grid-column', 'span 1', 'important');
-                                    const imgWrapper = card.querySelector('.project-image-wrapper');
-                                    if (imgWrapper) { imgWrapper.style.setProperty('width', '100%', 'important'); imgWrapper.style.setProperty('max-width', '100%', 'important'); imgWrapper.style.setProperty('height', 'auto', 'important'); imgWrapper.style.setProperty('aspect-ratio', '21 / 9', 'important'); }
-                                } else if (qty === 3 && index === 2) {
-                                    card.style.setProperty('grid-column', 'span 2', 'important'); card.style.setProperty('width', '100%', 'important'); card.style.setProperty('max-width', '100%', 'important');
-                                    const imgWrapper = card.querySelector('.project-image-wrapper');
-                                    if (imgWrapper) { imgWrapper.style.setProperty('width', '100%', 'important'); imgWrapper.style.setProperty('max-width', '100%', 'important'); imgWrapper.style.setProperty('height', 'auto', 'important'); imgWrapper.style.setProperty('aspect-ratio', '21 / 9', 'important'); }
-                                } else {
-                                    card.style.removeProperty('width'); card.style.removeProperty('max-width'); card.style.removeProperty('grid-column');
-                                    const imgWrapper = card.querySelector('.project-image-wrapper');
-                                    if (imgWrapper) { imgWrapper.style.removeProperty('width'); imgWrapper.style.removeProperty('max-width'); imgWrapper.style.removeProperty('height'); imgWrapper.style.removeProperty('aspect-ratio'); }
-                                }
+                                card.style.setProperty('display', 'flex', 'important'); 
 
                                 const titleInput = document.getElementById(`input-proj-title-${num}`);
                                 const descInput = document.getElementById(`input-proj-desc-${num}`);
@@ -922,30 +848,22 @@
                                 const liveInput = document.getElementById(`input-proj-live-${num}`);
                                 const chkDemo = document.getElementById(`chk-proj-demo-${num}`);
 
-                                const titleTarget = card.querySelector('.project-title, h3, h4');
-                                const descTarget = card.querySelector('.project-description, p');
-                                const techsContainer = card.querySelector('.tech-badges, .project-techs');
-                                const imgTarget = card.querySelector('.project-img, img');
+                                const titleTarget = card.querySelector('.project-title') || card.querySelector('.portfolio-title');
+                                const descTarget = card.querySelector('.project-description') || card.querySelector('.portfolio-description');
+                                const techsContainer = card.querySelector('.tech-badges') || card.querySelector('.project-techs');
+                                const imgTarget = card.querySelector('.project-img') || card.querySelector('.portfolio-img');
                                 
-                                const btnCode = card.querySelector('.project-link-btn:not(.live)');
-                                const btnLive = card.querySelector('.project-link-btn.live');
+                                const btnCode = card.querySelector('.project-link-btn:not(.live)') || card.querySelector('.portfolio-link:not(.live)');
+                                const btnLive = card.querySelector('.project-link-btn.live') || card.querySelector('.portfolio-link.live');
 
                                 if (titleInput && titleTarget) {
-                                    titleInput.addEventListener('input', (e) => {
-                                        titleTarget.textContent = e.target.value;
-                                        titleTarget.setAttribute('data-pt', e.target.value);
-                                        titleTarget.setAttribute('data-en', e.target.value);
-                                    });
+                                    titleInput.addEventListener('input', (e) => { titleTarget.textContent = e.target.value; });
                                 }
                                 if (descInput && descTarget) {
-                                    descInput.addEventListener('input', (e) => {
-                                        descTarget.textContent = e.target.value;
-                                        descTarget.setAttribute('data-pt', e.target.value);
-                                        descTarget.setAttribute('data-en', e.target.value);
-                                    });
+                                    descInput.addEventListener('input', (e) => { descTarget.textContent = e.target.value; });
                                 }
                                 if (imgTarget && uploadedProjImagesUrls[index]) {
-                                    imgTarget.src = uploadedProjImagesUrls[index]; imgTarget.style.setProperty('width', '100%', 'important'); imgTarget.style.setProperty('height', '100%', 'important'); imgTarget.style.setProperty('object-fit', 'cover', 'important');
+                                    imgTarget.src = uploadedProjImagesUrls[index];
                                 }
 
                                 const updateTechs = () => {
@@ -954,8 +872,7 @@
                                     techsContainer.innerHTML = '';
                                     list.forEach(tech => { 
                                         const span = innerDoc.createElement('span'); 
-                                        span.className = 'tech-tag';
-                                        if(!card.querySelector('.project-techs')) span.className = 'badge';
+                                        span.className = card.querySelector('.tech-tag') ? 'tech-tag' : 'badge';
                                         span.textContent = tech; 
                                         techsContainer.appendChild(span); 
                                     });
@@ -972,13 +889,13 @@
                                 if (btnLive && chkDemo) {
                                     chkDemo.addEventListener('change', () => {
                                         btnLive.style.setProperty('display', chkDemo.checked ? 'inline-flex' : 'none', 'important');
-                                        if (btnCode) { btnCode.style.setProperty('width', chkDemo.checked ? 'auto' : '100%', 'important'); btnCode.style.setProperty('flex', chkDemo.checked ? '1' : 'none', 'important'); }
                                     });
                                 }
-
-                            } else { card.style.display = 'none'; }
+                            } else { 
+                                card.style.setProperty('display', 'none', 'important'); 
+                            }
                         });
-                    } catch(e) { console.log("Aguardando carregamento de blocos de projetos...", e); }
+                    } catch(e) { console.log(e); }
                 }
                 if (selectQtyProj) { syncAllProjects(); selectQtyProj.addEventListener('change', syncAllProjects); }
 
@@ -1005,9 +922,8 @@
                     let css = "";
                     if (uploadedPhotosUrls[0]) {
                         css += ` .contact-ui-mockup .avatar-img { content: url("${uploadedPhotosUrls[0]}") !important; } `;
-                        css += ` .swiper-slide img[src*="user.jpg"], .swiper-slide img { content: url("${uploadedPhotosUrls[0]}") !important; opacity: 1 !important; } `;
+                        css += ` .overview-img { content: url("${uploadedPhotosUrls[0]}") !important; opacity: 1 !important; } `;
                     }
-                    
                     photoCSSRules = css;
                     syncPhotosAndVisibilityRules();
                 }
@@ -1017,12 +933,9 @@
                     input.addEventListener('change', (e) => {
                         if (e.target.files.length === 0) return;
                         const index = parseInt(input.getAttribute('data-index'));
-                        const fileUrl = URL.createObjectURL(e.target.files[0]);
-                        uploadedPhotosUrls[index] = fileUrl;
-                        
+                        uploadedPhotosUrls[index] = URL.createObjectURL(e.target.files[0]);
                         const labelBtn = document.getElementById(`lbl-img-${index + 1}`);
                         if (labelBtn) labelBtn.textContent = `✓ Carregada`;
-                        
                         updatePhotoCSS();
                     });
                 });
@@ -1033,25 +946,18 @@
                     fakeBtn.onclick = (e) => { e.preventDefault(); realInput.click(); };
                 }
 
-                // Currículo (CV)
                 const fileInput = document.getElementById('input-cv-file');
                 const fakeCvBtn = document.getElementById('upload-label');
-                
                 if (fileInput) {
                     fileInput.addEventListener('change', (e) => {
-                        try {
-                            if (e.target.files.length === 0) return;
-                            importedCvUrl = URL.createObjectURL(e.target.files[0]);
-                            if (fakeCvBtn) fakeCvBtn.textContent = `✓ PDF Pronto`;
-                            
-                            const cvButtons = innerDoc.querySelectorAll('.btn-download, a[href*="cv"], a[download]');
-                            cvButtons.forEach(btn => {
-                                btn.setAttribute('href', importedCvUrl);
-                                btn.setAttribute('target', '_blank'); 
-                            });
-                        } catch(err) {
-                            console.log("Erro ao aplicar link do CV:", err);
-                        }
+                        if (e.target.files.length === 0) return;
+                        importedCvUrl = URL.createObjectURL(e.target.files[0]);
+                        if (fakeCvBtn) fakeCvBtn.textContent = `✓ PDF Pronto`;
+                        const cvButtons = innerDoc.querySelectorAll('.btn-download');
+                        cvButtons.forEach(btn => {
+                            btn.setAttribute('href', importedCvUrl);
+                            btn.setAttribute('target', '_blank'); 
+                        });
                     });
                 }
 
