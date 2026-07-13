@@ -298,13 +298,13 @@
             <h3>Cabeçalho</h3>
             <div class="input-group">
                 <label for="input-brand">Nome da Marca (Logo)</label>
-                <input type="text" id="input-brand" value="Henry Hawk">
+                <input type="text" id="input-brand" value="Caelium">
             </div>
 
             <h3>Seção Início (Hero)</h3>
             <div class="input-group">
                 <label for="input-name">Seu Nome</label>
-                <input type="text" id="input-name" value="Alex Silva">
+                <input type="text" id="input-name" value="Caelium">
             </div>
             <div class="input-group">
                 <label for="input-badge">Seu Cargo (Badge / Sobre)</label>
@@ -547,16 +547,56 @@
                     .exp-wrapper-single-active { display: flex !important; flex-direction: row !important; align-items: flex-start !important; justify-content: space-between !important; gap: 60px !important; width: 100% !important; }
                     .exp-wrapper-single-active .experience-sidebar { position: relative !important; top: 0 !important; transform: none !important; margin: 0 !important; text-align: left !important; }
 
-                    innerDoc .projects-grid { display: grid !important; }
-                    innerDoc .projects-grid.portfolio-full-width { grid-template-columns: 1fr !important; width: 100% !important; max-width: 100% !important; }
-                    innerDoc .projects-grid.portfolio-full-width .project-card { grid-column: span 1 !important; width: 100% !important; max-width: 100% !important; }
+                    /* === CORREÇÃO DA RESPONSIVIDADE DOS PROJETOS === */
+                    
+                    innerDoc .projects-grid { 
+                        display: grid !important; 
+                        gap: 2rem !important; 
+                    }
 
-                    innerDoc .projects-grid.portfolio-stack-vertical { grid-template-columns: 1fr !important; max-width: 850px !important; margin: 0 auto !important; width: 100% !important; gap: 3.5rem !important; }
-                    innerDoc .projects-grid.portfolio-stack-vertical .project-card { grid-column: span 1 !important; width: 100% !important; }
+                    /* 1. MOBILE FIRST: Sempre 1 coluna no celular para não quebrar */
+                    innerDoc .projects-grid { 
+                        grid-template-columns: 1fr !important; 
+                    }
+                    innerDoc .projects-grid .project-card { 
+                        grid-column: span 1 !important; 
+                        width: 100% !important; 
+                        max-width: 100% !important;
+                    }
 
-                    innerDoc .projects-grid.portfolio-three-stretch { grid-template-columns: repeat(2, 1fr) !important; gap: 2.5rem !important; }
-                    innerDoc .projects-grid.portfolio-three-stretch .project-card:nth-child(3) { grid-column: span 2 !important; width: 100% !important; }
+                    /* 2. DESKTOP & TABLETS: Aplica os layouts variados a partir de 768px */
+                    @media (min-width: 768px) {
+                        /* Caso de 1 projeto */
+                        innerDoc .projects-grid.portfolio-full-width { 
+                            grid-template-columns: 1fr !important; 
+                            max-width: 900px !important; 
+                            margin: 0 auto !important; 
+                        }
 
+                        /* Caso de 2 ou 4 projetos empilhados/grid normal */
+                        innerDoc .projects-grid.portfolio-stack-vertical { 
+                            grid-template-columns: 1fr !important; 
+                            max-width: 850px !important; 
+                            margin: 0 auto !important; 
+                            gap: 3.5rem !important; 
+                        }
+
+                        /* Caso de 4 projetos (2x2) ou default normal */
+                        innerDoc .projects-grid:not(.portfolio-full-width):not(.portfolio-stack-vertical):not(.portfolio-three-stretch) {
+                            grid-template-columns: repeat(2, 1fr) !important;
+                        }
+
+                        /* Caso de 3 projetos (2 no topo, 1 esticado na base) */
+                        innerDoc .projects-grid.portfolio-three-stretch { 
+                            grid-template-columns: repeat(2, 1fr) !important; 
+                            gap: 2.5rem !important; 
+                        }
+                        innerDoc .projects-grid.portfolio-three-stretch .project-card:nth-child(3) { 
+                            grid-column: span 2 !important; 
+                        }
+                    }
+                    /* =============================================== */
+                    
                     ${customCSSRules}
                     ${photoCSSRules}
                 `;
