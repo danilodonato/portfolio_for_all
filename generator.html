@@ -549,16 +549,18 @@
 
                     /* === CORREÇÃO DA RESPONSIVIDADE DOS PROJETOS === */
                     
-                    innerDoc .projects-grid { 
+                    /* === CORREÇÃO DA RESPONSIVIDADE DOS PROJETOS === */
+                    
+                    .projects-grid { 
                         display: grid !important; 
                         gap: 2rem !important; 
                     }
 
                     /* 1. MOBILE FIRST: Sempre 1 coluna no celular para não quebrar */
-                    innerDoc .projects-grid { 
+                    .projects-grid { 
                         grid-template-columns: 1fr !important; 
                     }
-                    innerDoc .projects-grid .project-card { 
+                    .projects-grid .project-card { 
                         grid-column: span 1 !important; 
                         width: 100% !important; 
                         max-width: 100% !important;
@@ -567,14 +569,14 @@
                     /* 2. DESKTOP & TABLETS: Aplica os layouts variados a partir de 768px */
                     @media (min-width: 768px) {
                         /* Caso de 1 projeto */
-                        innerDoc .projects-grid.portfolio-full-width { 
+                        .projects-grid.portfolio-full-width { 
                             grid-template-columns: 1fr !important; 
                             max-width: 900px !important; 
                             margin: 0 auto !important; 
                         }
 
                         /* Caso de 2 ou 4 projetos empilhados/grid normal */
-                        innerDoc .projects-grid.portfolio-stack-vertical { 
+                        .projects-grid.portfolio-stack-vertical { 
                             grid-template-columns: 1fr !important; 
                             max-width: 850px !important; 
                             margin: 0 auto !important; 
@@ -582,20 +584,21 @@
                         }
 
                         /* Caso de 4 projetos (2x2) ou default normal */
-                        innerDoc .projects-grid:not(.portfolio-full-width):not(.portfolio-stack-vertical):not(.portfolio-three-stretch) {
+                        .projects-grid:not(.portfolio-full-width):not(.portfolio-stack-vertical):not(.portfolio-three-stretch) {
                             grid-template-columns: repeat(2, 1fr) !important;
                         }
 
                         /* Caso de 3 projetos (2 no topo, 1 esticado na base) */
-                        innerDoc .projects-grid.portfolio-three-stretch { 
+                        .projects-grid.portfolio-three-stretch { 
                             grid-template-columns: repeat(2, 1fr) !important; 
                             gap: 2.5rem !important; 
                         }
-                        innerDoc .projects-grid.portfolio-three-stretch .project-card:nth-child(3) { 
+                        .projects-grid.portfolio-three-stretch .project-card:nth-child(3) { 
                             grid-column: span 2 !important; 
                         }
                     }
                     /* =============================================== */
+                    
                     
                     ${customCSSRules}
                     ${photoCSSRules}
