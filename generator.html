@@ -574,6 +574,11 @@
                             max-width: 900px !important; 
                             margin: 0 auto !important; 
                         }
+                        /* Força o cartão a esticar 100% do espaço disponível */
+                        .projects-grid.portfolio-full-width .project-card {
+                            width: 100% !important;
+                            max-width: 100% !important;
+                        }
 
                         /* Caso de 2 ou 4 projetos empilhados/grid normal */
                         .projects-grid.portfolio-stack-vertical { 
@@ -873,11 +878,11 @@
 
                         if (qty === 1) {
                             projectGrid.classList.add('portfolio-full-width');
-                        } else if (qty === 2 || qty === 4) {
-                            projectGrid.classList.add('portfolio-stack-vertical');
                         } else if (qty === 3) {
                             projectGrid.classList.add('portfolio-three-stretch');
                         }
+                        // O grid padrão (sem classes extras) já faz exatamente 2 colunas,
+                        // atendendo perfeitamente o caso de 2 e 4 projetos no desktop!
 
                         projectCards.forEach((card, index) => {
                             const num = index + 1;
