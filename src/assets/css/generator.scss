@@ -1,0 +1,595 @@
+:root {
+    --bg-panel: #09090b;
+    --bg-input: #18181b;
+    --border-color: #27272a;
+    --accent-color: #A384FF;
+    --text-main: #fafafa;
+    --text-muted: #a1a1aa;
+}
+
+body.generator-body {
+    background-color: #000;
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Banner no topo */
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* O Banner */
+.top-alert-banner {
+    width: 100%;
+    background-color: rgba(239, 68, 68, 0.1); 
+    border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    
+    a {
+        color: #f87171;
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 1px dashed #f87171;
+        margin-left: 4px;
+        transition: all 0.2s ease;
+        
+        &:hover {
+            opacity: 0.8;
+            border-bottom-color: transparent;
+        }
+    }
+}
+
+/* Container que segura o painel e o preview lado a lado */
+.generator-content {
+    display: flex;
+    flex: 1; /* Ocupa o resto da tela abaixo do banner */
+    overflow: hidden;
+    width: 100%;
+}
+
+.caelium-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.caelium-header p {
+    display: flex;
+    align-items: center; /* Mantém o alinhamento base da linha */
+    gap: 4px;
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1; 
+}
+
+.caelium-header a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+    /* Remova o display: flex daqui, o link deve se comportar como texto normal */
+}
+
+.caelium-header a:hover {
+    opacity: 0.8;
+}
+
+.caelium-logo {
+    height: 25px;
+    width: auto;
+    display: block;
+    /* Puxe para cima usando um valor negativo. Tente -2px ou -3px */
+    transform: translateY(-2px); 
+    margin-left: 5px;
+}
+
+.generator-panel {
+    width: 400px;
+    background-color: var(--bg-panel);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Mudou de 100vh para 100% para respeitar o banner */
+}
+
+.panel-header {
+    padding: 20px;
+}
+
+.panel-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.panel-header p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 5px 0 0 0;
+}
+
+.panel-inputs {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 20px 40px 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+
+h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+    margin: 30px 0 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h3::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
+h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(163, 132, 255, 0.1);
+}
+
+.file-upload-wrapper {
+    margin-top: 4px;
+    width: 100%;
+}
+
+.file-upload-btn {
+    display: block;
+    width: 100%;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 11px 14px;
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s ease;
+}
+
+.file-upload-btn:hover {
+    background-color: #202024;
+    border-color: var(--accent-color);
+    color: #ffffff;
+}
+
+.file-upload-btn:active {
+    transform: scale(0.99);
+}
+
+.color-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.color-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-dot.active {
+    border-color: #fff;
+    transform: scale(1.1);
+}
+
+.social-toggle-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+
+.social-checkbox,
+.demo-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: #A1A1AA;
+    cursor: pointer;
+}
+
+.social-checkbox input,
+.demo-checkbox input {
+    cursor: pointer;
+    accent-color: #A384FF;
+}
+
+.preview-area {
+    flex: 1;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 100%; /* Garante altura pro iframe */
+    box-sizing: border-box;
+}
+
+.iframe-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.exp-block,
+.project-block {
+    border-left: 2px solid #27272a;
+    padding-left: 12px;
+    margin-bottom: 20px;
+}
+
+.generator-brand-header {
+    display: flex;
+    align-items: center;
+    gap: 16px; 
+    
+    /* O ajuste está aqui: 24px em cima, 20px nas laterais, e 24px embaixo */
+    padding: 0 20px 24px 0; 
+    
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+.brand-logo-icon {
+    width: 54px; /* Tamanho do ícone. Ajuste se achar necessário */
+    height: 54px;
+    object-fit: contain;
+}
+
+.brand-titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brand-titles h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+    line-height: 1;
+}
+
+.brand-titles p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    color: #A1A1AA; /* Cor sutil (muted) */
+    margin: 0;
+    line-height: 1;
+}
+
+/* --- DIVISORES DE SEÇÃO DO PAINEL LATERAL --- */
+.panel-section-divider {
+    display: flex;
+    align-items: center;
+    margin: 48px 0 24px 0; /* Muito espaço em cima, espaço médio embaixo */
+    width: 100%;
+}
+
+.panel-section-divider span {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-color); /* Usa o seu roxo/cor do tema */
+    background: rgba(163, 132, 255, 0.1); /* Fundo roxo translúcido */
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(163, 132, 255, 0.2);
+}
+
+/* A linha que estica até o final */
+.panel-section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin-left: 16px;
+}
+
+/* --- RODAPÉ E BOTÃO DE DOWNLOAD --- */
+.panel-footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linha sutil separando das configurações */
+    display: flex;
+    justify-content: center;
+}
+
+.generate-btn {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important; /* Força tudo a ir para o centro */
+    gap: 12px !important;
+    
+    width: 100% !important;
+    box-sizing: border-box !important; /* MÁGICA: Impede o botão de vazar para fora do painel */
+    
+    padding: 16px 20px;
+    background: var(--accent-color); 
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(163, 132, 255, 0.25); 
+}
+
+/* Protege o ícone e o texto */
+.generate-btn svg {
+    /* A trava absoluta do Flexbox: não cresce (0), não encolhe (0), tamanho base (20px) */
+    flex: 0 0 20px !important; 
+    
+    /* Força as dimensões exatas */
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px !important;
+    
+    display: block;
+}
+
+.generate-btn span {
+    white-space: nowrap; /* Mantém o texto em uma linha só */
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 25px rgba(163, 132, 255, 0.45); 
+    filter: brightness(1.1);
+}
+
+/* --- MODAL DE DOWNLOAD --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Classe para ativar o modal via JavaScript */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: #121214;
+    border: 1px solid rgba(163, 132, 255, 0.2);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    padding: 32px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #A1A1AA;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #ffffff;
+}
+
+/* O mascote falando */
+.mascot-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.mascot-img {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.speech-bubble h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--accent-color);
+    margin: 0 0 4px 0;
+    font-size: 20px;
+}
+
+.speech-bubble p {
+    font-family: 'Outfit', sans-serif;
+    color: #E4E4E7;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.highlight-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.video-container {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 24px;
+}
+
+/* --- ÍCONES SOCIAIS DO MODAL --- */
+.socials-icons {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    align-items: center;
+    gap: 16px; /* Espaço entre os ícones */
+    margin-top: 20px;
+}
+
+.socials-icons .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; /* Tamanho do botão ao redor do ícone */
+    height: 44px;
+    background-color: rgba(255, 255, 255, 0.03); /* Fundo de vidro sutil */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%; /* Deixa arredondado */
+    transition: all 0.3s ease;
+}
+
+/* A TRAVA PARA OS ÍCONES NÃO EXPLODIREM */
+.socials-icons .social-btn img,
+.socials-icons .social-btn svg {
+    width: 18px !important; /* Trava a largura */
+    height: 18px !important; /* Trava a altura */
+    object-fit: contain;
+    display: block;
+}
+
+/* Efeito ao passar o mouse */
+.socials-icons .social-btn:hover {
+    background-color: rgba(163, 132, 255, 0.1); /* Fica levemente roxo */
+    border-color: rgba(163, 132, 255, 0.5);
+    transform: translateY(-4px); /* Pula para cima */
+    box-shadow: 0 8px 20px rgba(163, 132, 255, 0.25); /* Efeito de brilho */
+}
+
+/* --- ÁREA DE CONVITE DAS REDES SOCIAIS --- */
+.social-actions {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.social-invite-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: #A1A1AA; /* Um cinza elegante que não rouba a atenção do vídeo */
+    margin: 0 0 16px 0; /* Espaço exato entre a frase e os botões */
+}
+
+/* Garanta que a sua classe de ícones fique com o margin-top zerado agora */
+.socials-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 0; /* O espaçamento agora é controlado pelo texto acima */
+}

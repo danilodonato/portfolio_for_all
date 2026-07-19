@@ -1,3 +1,16 @@
+// Importando o GSAP e o ScrollTrigger das dependências locais
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Importando o Swiper e seus estilos necessários
+import Swiper from "swiper";
+import "swiper/css"; // O Vite vai incluir os estilos do Swiper automaticamente aqui
+
+// Registrar o plugin do GSAP como você já faz
+gsap.registerPlugin(ScrollTrigger);
+
+// O RESTANTE DO SEU CÓDIGO (Animações, Carrosséis, etc.) CONTINUA EXATAMENTE IGUAL ABAIXO...
+
 // ==========================================
 //          REGISTRO DE PLUGINS (GSAP)
 // ==========================================
@@ -29,41 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. SISTEMA DE TRADUÇÃO (PT / EN) ---
-    const buttonsLang = document.querySelectorAll('.btn-lang');
-    let currentLang = 'PT'; 
-
-    buttonsLang.forEach(button => {
-        button.addEventListener('click', () => {
-            // Efeito visual de clique piscando
-            button.classList.add('clicked');
-            setTimeout(() => button.classList.remove('clicked'), 300);
-
-            // Alterna o idioma
-            currentLang = currentLang === 'PT' ? 'EN' : 'PT';
-
-            // Altera o texto dos botões (Mobile e Desktop)
-            buttonsLang.forEach(btn => {
-                btn.textContent = currentLang === 'PT' ? 'BR' : 'EN';
-            });
-
-            // Traduz os elementos da página
-            const translatableElements = document.querySelectorAll('[data-pt][data-en]');
-            translatableElements.forEach(element => {
-                const textTarget = currentLang === 'EN' ? element.getAttribute('data-en') : element.getAttribute('data-pt');
-
-                // Preserva a tag da empresa (.company-name) se existir
-                if (element.querySelector('.company-name')) {
-                    const companyHTML = element.querySelector('.company-name').outerHTML;
-                    element.innerHTML = `${textTarget} ${companyHTML}`;
-                } else {
-                    element.textContent = textTarget;
-                }
-            });
-        });
-    });
-
-    // --- 3. SCROLL SPY (INDICADOR DE SEÇÃO ATIVA) ---
+    // --- 2. SCROLL SPY (INDICADOR DE SEÇÃO ATIVA) ---
     const sections = document.querySelectorAll('section[id]');
 
     function scrollSpy() {
@@ -166,37 +145,6 @@ if (words.length > 0) {
     });
 }
 
-// --- Parallax da Sidebar de Experiências (Desktop vs Mobile) ---
-ScrollTrigger.matchMedia({
-    "(min-width: 1025px)": function() {
-        gsap.to('.experience-sidebar', {
-            y: () => {
-                const wrapper = document.querySelector('.experience-wrapper');
-                const sidebar = document.querySelector('.experience-sidebar');
-                if (wrapper && sidebar) {
-                    return wrapper.offsetHeight - sidebar.offsetHeight;
-                }
-                return 0;
-            },
-            ease: "none",
-            scrollTrigger: {
-                trigger: '.experience-section',
-                start: 'top 120px',
-                // CÁLCULO DINÂMICO DO FIM: Impede que a sidebar ultrapasse os cards ativos
-                end: () => {
-                    const wrapper = document.querySelector('.experience-wrapper');
-                    return wrapper ? `+=${wrapper.offsetHeight - 200}` : 'bottom bottom';
-                },
-                scrub: 1,
-                invalidateOnRefresh: true
-            }
-        });
-    },
-
-    "(max-width: 1024px)": function() {
-        gsap.set('.experience-sidebar', { clearProps: "all" });
-    }
-});
 
 // --- Carrossel de Imagens (Swiper) ---
 const overviewSwiper = new Swiper('.overview-image-wrapper', {

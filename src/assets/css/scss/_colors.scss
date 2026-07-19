@@ -1,0 +1,27 @@
+:root {
+    // Variáveis nativas que o Gerador vai manipular em tempo real
+    --primary-color: #A384FF;
+    --primary-glow: rgba(163, 132, 255, 0.15);
+    --primary-gradient: linear-gradient(to right, #A384FF, #7C3AED);
+    --profile-img: none;
+    
+    // Cores base do tema dark
+    --bg-main: #000000;
+    --bg-secondary: #09090b;
+    --border-color: #27272a;
+    --text-main: #fafafa;
+    --text-muted: #a1a1aa;
+}
+
+/* ==========================================================================
+   PONTE DE VARIÁVEIS SASS -> CSS NATIVO
+   Isso evita que arquivos antigos quebrem e os torna dinâmicos automaticamente
+   ========================================================================== */
+$title: var(--text-main);
+$text: var(--text-muted);
+$primary: var(--primary-color);
+$primary-color: var(--primary-color);
+$black: var(--bg-main);
+
+// NOTA: Se o terminal acusar "Undefined variable" para outras cores (ex: $dark, $gray), 
+// basta adicioná-las aqui apontando para a variável CSS correspondente!

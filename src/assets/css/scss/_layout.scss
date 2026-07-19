@@ -404,110 +404,113 @@ canvas {
     margin-top: 20px;
   }
 
- @media (max-width: 768px) {
-  /* ... seu código do .menu-toggle e .header-action continuam iguais ... */
-
   @media (max-width: 768px) {
-  
-  // Garante que o container fixo do topo não limite o tamanho do menu
-  .header-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    top: 0 !important;
-    border-radius: 0 !important;
-    border: none !important;
-  }
+    /* ... seu código do .menu-toggle e .header-action continuam iguais ... */
 
-  /* --- MENU MOBILE OCUPANDO 100% DA TELA REAL --- */
-  .nav-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    // Força o posicionamento fixo absoluto sobre qualquer elemento do site
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;  // Ocupa toda a largura do display
-    height: 100vh !important; // Ocupa toda a altura do display
-    
-    // Cor escura sólida e profunda padrão para tampar COMPLETAMENTE o carrossel/conteúdos
-    background-color: #01040d !important; 
-    
-    padding: 40px 24px;
-    gap: 28px;
-    text-align: center;
-    box-sizing: border-box;
-    
-    // Fica acima de absolutamente tudo no site (Z-index alto)
-    z-index: 2000 !important; 
+    @media (max-width: 768px) {
 
-    /* Estado inicial escondido */
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-  }
+      // Garante que o container fixo do topo não limite o tamanho do menu
+      .header-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        top: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+      }
 
-  /* Classe ativada pelo clique do Javascript */
-  .nav-menu.active {
-    opacity: 1;
-    visibility: visible;
-  }
+      /* --- MENU MOBILE OCUPANDO 100% DA TELA REAL --- */
+      .nav-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-  /* Garante que o botão de fechar (X) e a logo fiquem visíveis por cima do fundo do menu */
-  .menu-toggle, .logo {
-    z-index: 2100 !important; // Maior que o z-index do menu para flutuar por cima
-    position: relative;
-  }
+        // Força o posicionamento fixo absoluto sobre qualquer elemento do site
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important; // Ocupa toda a largura do display
+        height: 100vh !important; // Ocupa toda a altura do display
 
-  .nav-link {
-    font-size: 20px;
-    font-family: 'Space Grotesk', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #A1A1AA;
-    text-decoration: none;
-    transition: color 0.2s;
+        // Cor escura sólida e profunda padrão para tampar COMPLETAMENTE o carrossel/conteúdos
+        background-color: #01040d !important;
 
-    &:hover, &.active {
-      color: #ffffff;
+        padding: 40px 24px;
+        gap: 28px;
+        text-align: center;
+        box-sizing: border-box;
+
+        // Fica acima de absolutamente tudo no site (Z-index alto)
+        z-index: 2000 !important;
+
+        /* Estado inicial escondido */
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      /* Classe ativada pelo clique do Javascript */
+      .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Garante que o botão de fechar (X) e a logo fiquem visíveis por cima do fundo do menu */
+      .menu-toggle,
+      .logo {
+        z-index: 2100 !important; // Maior que o z-index do menu para flutuar por cima
+        position: relative;
+      }
+
+      .nav-link {
+        font-size: 20px;
+        font-family: 'Space Grotesk', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #A1A1AA;
+        text-decoration: none;
+        transition: color 0.2s;
+
+        &:hover,
+        &.active {
+          color: #ffffff;
+        }
+      }
+
+      .mobile-only-btn {
+        display: block;
+        margin-top: 20px;
+      }
+    }
+
+    /* CLASSE DE ATIVAÇÃO DISPARADA PELO JAVASCRIPT */
+    .nav-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Estilização dos Links dentro do Menu Mobile */
+    .nav-link {
+      font-size: 22px;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 0.15em;
+      color: #A1A1AA;
+      transition: color 0.2s ease;
+
+      &:hover,
+      &.active {
+        color: #ffffff;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    /* Ajuste no botão de idioma mobile para não ficar colado */
+    .mobile-only-btn {
+      display: block;
+      margin-top: 16px;
     }
   }
-
-  .mobile-only-btn {
-    display: block;
-    margin-top: 20px;
-  }
-}
-
-  /* CLASSE DE ATIVAÇÃO DISPARADA PELO JAVASCRIPT */
-  .nav-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  /* Estilização dos Links dentro do Menu Mobile */
-  .nav-link {
-    font-size: 22px;
-    font-family: 'Space Grotesk', sans-serif;
-    letter-spacing: 0.15em;
-    color: #A1A1AA;
-    transition: color 0.2s ease;
-
-    &:hover, &.active {
-      color: #ffffff;
-      text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
-    }
-  }
-
-  /* Ajuste no botão de idioma mobile para não ficar colado */
-  .mobile-only-btn {
-    display: block;
-    margin-top: 16px;
-  }
-}
 
   /* CLASSE DE ATIVAÇÃO - O JavaScript precisa que isso exista exatamente assim */
   .nav-menu.active {
@@ -1086,59 +1089,62 @@ canvas {
     padding: 60px 20px;
   }
 
-  .experience-wrapper {
+.experience-wrapper {
     display: flex;
     gap: 64px;
     width: 100%;
-    align-items: flex-start; // Essencial para o GSAP ter curso de descida
-
-    @media (max-width: 1024px) {
-      flex-direction: column;
-      gap: 40px;
-    }
-  }
-
-  /* --- COLUNA DA ESQUERDA: PREPARADA PARA O GSAP --- */
-  .experience-sidebar {
-    flex: 1;
-    max-width: 320px;
+    align-items: flex-start; /* Segura a altura perfeitamente */
     position: relative;
-    height: auto;
 
     @media (max-width: 1024px) {
-      max-width: 100%;
-      text-align: center;
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+/* --- COLUNA DA ESQUERDA (BARRA LATERAL) --- */
+.experience-sidebar {
+    flex: 1; /* Ocupa 1 parte do espaço */
+    max-width: 320px;
+    height: max-content; 
+
+    @media (min-width: 1025px) {
+        position: sticky;
+        top: 120px; 
+    }
+
+    @media (max-width: 1024px) {
+        max-width: 100%;
+        text-align: center;
+        position: relative; 
     }
 
     .section-title-glow {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 32px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #ffffff;
-      margin: 0 0 16px 0;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 32px;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin: 0 0 16px 0;
     }
 
     .sidebar-subtext {
-      font-family: 'Outfit', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      color: #A1A1AA;
+        font-family: 'Outfit', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #A1A1AA;
     }
-  }
+}
 
-  /* --- COLUNA DA DIREITA: TIMELINE E CARDS --- */
-  .experience-timeline {
-    flex: 2;
+/* --- COLUNA DA DIREITA (ONDE FICAM OS CARDS) --- */
+.experience-timeline {
+    flex: 2; /* Força essa coluna a ser maior e preencher o resto da tela */
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 56px; // Espaçamento grande entre cada bloco de trabalho
-
-    @media (max-width: 768px) {
-      gap: 40px; // Aproxima sutilmente os cards no mobile
-    }
-  }
+    gap: 32px; /* Espaço entre um card de experiência e outro */
+}
 
   .experience-card {
     display: flex;
@@ -1652,7 +1658,7 @@ canvas {
 
       &:hover {
         background-color: #bca5ff;
-      box-shadow: 0 0 20px rgba(#A384FF, 0.5);
+        box-shadow: 0 0 20px rgba(#A384FF, 0.5);
         transform: translateY(-2px);
 
         // Efeito sutil: o ícone dá uma leve inclinada/empurrada no hover
@@ -1799,15 +1805,33 @@ canvas {
 
 /* Força os projetos a ficarem um abaixo do outro em uma única coluna */
 .portfolio-grid.portfolio-stack-vertical {
-    display: flex !important;
-    flex-direction: column !important;
-    grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
-    gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
-    max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
-    margin: 0 auto; /* Centraliza a coluna na seção */
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: 1fr !important;
+  /* Garante a quebra caso use Grid */
+  gap: 3rem !important;
+  /* Mantém um espaçamento elegante entre eles */
+  max-width: 800px;
+  /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+  margin: 0 auto;
+  /* Centraliza a coluna na seção */
 }
 
 /* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
 .portfolio-grid.portfolio-stack-vertical .portfolio-card {
-    width: 100% !important;
+  width: 100% !important;
 }
+
+/* Quando houver APENAS 1 projeto visível, ele se adapta automaticamente */
+.project-card:only-child {
+  grid-column: 1 / -1;
+  /* Força o card a ignorar as colunas e ocupar a linha inteira */
+  max-width: 700px;
+  /* Limita a largura para ele não ficar gigantesco em monitores ultrawide */
+  justify-self: center;
+  /* Centraliza o card perfeitamente no meio do grid */
+  margin: 0 auto;
+  /* Garantia extra de centralização */
+  width: 100%;
+}
+

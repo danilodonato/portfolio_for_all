@@ -1,1026 +1,417 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio Builder Pro | Caelium</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <style>
-        :root {
-            --bg-panel: #09090b;
-            --bg-input: #18181b;
-            --border-color: #27272a;
-            --accent-color: #A384FF;
-            --text-main: #fafafa;
-            --text-muted: #a1a1aa;
-        }
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
 
-        body.generator-body {
-            background-color: #000;
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .caelium-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-            background: #000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .caelium-header p {
-            margin: 0;
-            font-family: 'Outfit', sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-
-        .caelium-header a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.2s;
-        }
-
-        .caelium-header a:hover {
-            opacity: 0.8;
-        }
-
-        .caelium-logo {
-            height: 20px;
-            width: auto;
-        }
-
-        .generator-panel {
-            width: 400px;
-            background-color: var(--bg-panel);
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        .panel-header {
-            padding: 20px;
-        }
-
-        .panel-header h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 22px;
-            margin: 0;
-            letter-spacing: -0.5px;
-        }
-
-        .panel-header p {
-            font-family: 'Outfit', sans-serif;
-            font-size: 14px;
-            color: var(--text-muted);
-            margin: 5px 0 0 0;
-        }
-
-        .panel-inputs {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0 20px 40px 20px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--border-color) transparent;
-        }
-
-        h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-color);
-            margin: 30px 0 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        h3::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-        }
-
-        h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            margin-top: 5px;
-            margin-bottom: 12px;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            font-family: 'Outfit', sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        textarea,
-        select {
-            width: 100%;
-            background-color: var(--bg-input);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 10px 12px;
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            font-size: 14px;
-            box-sizing: border-box;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 2px rgba(163, 132, 255, 0.1);
-        }
-
-        .file-upload-wrapper {
-            margin-top: 4px;
-            width: 100%;
-        }
-
-        .file-upload-btn {
-            display: block;
-            width: 100%;
-            background-color: var(--bg-input);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 11px 14px;
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            text-align: center;
-            box-sizing: border-box;
-            cursor: pointer;
-            user-select: none;
-            transition: background-color 0.2s, border-color 0.2s, transform 0.1s ease;
-        }
-
-        .file-upload-btn:hover {
-            background-color: #202024;
-            border-color: var(--accent-color);
-            color: #ffffff;
-        }
-
-        .file-upload-btn:active {
-            transform: scale(0.99);
-        }
-
-        .color-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .color-dot {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .color-dot.active {
-            border-color: #fff;
-            transform: scale(1.1);
-        }
-
-        .social-toggle-group {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 8px;
-            margin-bottom: 15px;
-        }
-
-        .social-checkbox, .demo-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 14px;
-            color: #A1A1AA;
-            cursor: pointer;
-        }
-
-        .social-checkbox input, .demo-checkbox input {
-            cursor: pointer;
-            accent-color: #A384FF;
-        }
-
-        .preview-area {
-            flex: 1;
-            background-color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .iframe-wrapper {
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .exp-block, .project-block {
-            border-left: 2px solid #27272a;
-            padding-left: 12px;
-            margin-bottom: 20px;
-        }
-    </style>
+    <!-- SCSS do Portfólio (Global) -->
+    <link rel="stylesheet" href="/src/assets/css/style.scss" />
+    <!-- SCSS exclusivo do Painel do Gerador -->
+    <link rel="stylesheet" href="/src/assets/css/generator.scss" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/svg/icon.svg" />
 </head>
+
 <body class="generator-body">
 
-    <aside class="generator-panel">
-        <div class="caelium-header">
-            <p>Feito por <a href="https://caelium.com.br" target="_blank">Caelium</a></p>
-            <img src="assets/img/logo-caelium.png" alt="Logo Caelium" class="caelium-logo" onerror="this.style.display='none'">
-        </div>
+    <!-- BANNER NO TOPO DA TELA -->
+    <div class="top-alert-banner">
+        <span>🛠️ Curtiu o projeto? O template é open-source! Para relatar bugs ou sugerir ideias, <a
+                href="https://github.com/danilodonato/portfolio_for_all" target="_blank">abra uma Issue ou mande um Pull
+                Request no GitHub 🤍</a></span>
+    </div>
 
-        <div class="panel-header">
-            <h2>Portfolio Builder</h2>
-            <p>Customize em tempo real</p>
-            
-            <div class="preview-toggler" style="margin-top: 15px; display: flex; gap: 5px;">
-                <button class="view-btn active" data-view="desktop" style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input); color: #fff; cursor: pointer; font-family: 'Outfit'; font-size: 13px;">💻 Desktop</button>
-                <button class="view-btn" data-view="tablet" style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input); color: #fff; cursor: pointer; font-family: 'Outfit'; font-size: 13px;">📱 Tablet</button>
-                <button class="view-btn" data-view="mobile" style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input); color: #fff; cursor: pointer; font-family: 'Outfit'; font-size: 13px;">📞 Mobile</button>
-            </div>
-        </div>
+    <!-- WRAPPER QUE SEGURA O PAINEL E O PREVIEW LADO A LADO -->
+    <div class="generator-content">
 
-        <div class="panel-inputs">
-            <h3>Paleta de Cores (Tom Glow)</h3>
-            <div class="color-selector">
-                <div class="color-dot active" data-color="#A384FF" data-glow="rgba(163, 132, 255, 0.15)" data-gradient="linear-gradient(to right, #A384FF, #7C3AED)" style="background: #A384FF;" title="Roxo Premium"></div>
-                <div class="color-dot" data-color="#38BDF8" data-glow="rgba(56, 189, 248, 0.15)" data-gradient="linear-gradient(to right, #38BDF8, #0EA5E9)" style="background: #38BDF8;" title="Ciano Neon"></div>
-                <div class="color-dot" data-color="#34D399" data-glow="rgba(52, 211, 153, 0.15)" data-gradient="linear-gradient(to right, #34D399, #059669)" style="background: #34D399;" title="Verde Esmeralda"></div>
-                <div class="color-dot" data-color="#F472B6" data-glow="rgba(244, 114, 182, 0.15)" data-gradient="linear-gradient(to right, #F472B6, #DB2777)" style="background: #F472B6;" title="Rosa Cyberpunk"></div>
-                <div class="color-dot" data-color="#FB923C" data-glow="rgba(251, 146, 60, 0.15)" data-gradient="linear-gradient(to right, #FB923C, #EA580C)" style="background: #FB923C;" title="Laranja Sunset"></div>
+        <!-- PAINEL LATERAL -->
+        <aside class="generator-panel">
+            <div class="caelium-header">
+                <p>Feito por <a href="https://danilodonato.netlify.app" target="_blank">Caelium</a></p>
+                <img src="/src/assets/svg/logo_caelium.svg" alt="Logo Caelium" class="caelium-logo">
             </div>
 
-            <h3>Cabeçalho</h3>
-            <div class="input-group">
-                <label for="input-brand">Nome da Marca (Logo)</label>
-                <input type="text" id="input-brand" value="Caelium">
-            </div>
+            <div class="panel-header">
+                <!-- NOVA MARCA DO GERADOR COM A LOGO -->
+                <div class="generator-brand-header">
+                    <img src="/src/assets/svg/icon.svg" alt="Ícone da Plataforma" class="brand-logo-icon">
+                    <div class="brand-titles">
+                        <h2>Portfolio Builder</h2>
+                        <p>Customize em tempo real</p>
+                    </div>
+                </div>
 
-            <h3>Seção Início (Hero)</h3>
-            <div class="input-group">
-                <label for="input-name">Seu Nome</label>
-                <input type="text" id="input-name" value="Caelium">
-            </div>
-            <div class="input-group">
-                <label for="input-badge">Seu Cargo (Badge / Sobre)</label>
-                <input type="text" id="input-badge" value="FULL STACK DEV">
-            </div>
-            <div class="input-group">
-                <label for="input-bio">Sua Bio / Descrição Curta</label>
-                <textarea id="input-bio" rows="3">Desenvolvedor Full Stack focado em criar aplicações web modernas, rápidas e com foco total na experiência do usuário. Transformando linhas de código em soluções reais.</textarea>
-            </div>
-
-            <h3>Seção Sobre</h3>
-            <div class="input-group">
-                <label for="input-about-desc">Texto de Descrição (Overview)</label>
-                <textarea id="input-about-desc" rows="4">Sou um desenvolvedor apaixonado por tecnologia e design. Nos últimos anos, tenho me dedicado a construir ecossistemas web utilizando as melhores práticas de mercado. Adoro resolver problemas complexos e criar interfaces que sejam ao mesmo tempo elegantes e intuitivas.</textarea>
-            </div>
-            <div class="input-group">
-                <label for="input-about-location">Sua Localização (Cidade)</label>
-                <input type="text" id="input-about-location" value="Belo Horizonte, Brasil">
-            </div>
-            <div class="input-group">
-                <label>Importar Currículo do PC</label>
-                <div class="file-upload-wrapper">
-                    <div class="file-upload-btn" id="upload-label">📁 Escolher arquivo PDF/Doc</div>
-                    <input type="file" id="input-cv-file" accept=".pdf,.doc,.docx" style="display: none;">
+                <!-- SEUS BOTÕES DE RESPONSIVIDADE (MANTIDOS INTACTOS) -->
+                <div class="preview-toggler" style="margin-top: 15px; display: flex; gap: 5px;">
+                    <button class="view-btn active" data-view="desktop"
+                        style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input); color: #fff; cursor: pointer; font-family: 'Outfit'; font-size: 13px;">💻
+                        Desktop</button>
+                    <button class="view-btn" data-view="tablet"
+                        style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input); color: #fff; cursor: pointer; font-family: 'Outfit'; font-size: 13px;">📱
+                        Tablet</button>
+                    <button class="view-btn" data-view="mobile"
+                        style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input); color: #fff; cursor: pointer; font-family: 'Outfit'; font-size: 13px;">📞
+                        Mobile</button>
                 </div>
             </div>
 
-            <h3>Foto de Perfil (Sobre)</h3>
-            <div class="input-group id-photo-1">
-                <div class="file-upload-wrapper">
-                    <div class="file-upload-btn" id="lbl-img-1">📷 Escolher Foto de Perfil</div>
-                    <input type="file" id="input-img-1" accept="image/*" class="photo-file-input" data-index="0" style="display: none;">
+            <div class="panel-inputs">
+                <h3>Paleta de Cores (Tom Glow)</h3>
+                <div class="color-selector">
+                    <div class="color-dot active" data-color="#A384FF" data-glow="rgba(163, 132, 255, 0.15)"
+                        data-gradient="linear-gradient(to right, #A384FF, #7C3AED)" style="background: #A384FF;"
+                        title="Roxo Premium"></div>
+                    <div class="color-dot" data-color="#38BDF8" data-glow="rgba(56, 189, 248, 0.15)"
+                        data-gradient="linear-gradient(to right, #38BDF8, #0EA5E9)" style="background: #38BDF8;"
+                        title="Ciano Neon"></div>
+                    <div class="color-dot" data-color="#34D399" data-glow="rgba(52, 211, 153, 0.15)"
+                        data-gradient="linear-gradient(to right, #34D399, #059669)" style="background: #34D399;"
+                        title="Verde Esmeralda"></div>
+                    <div class="color-dot" data-color="#F472B6" data-glow="rgba(244, 114, 182, 0.15)"
+                        data-gradient="linear-gradient(to right, #F472B6, #DB2777)" style="background: #F472B6;"
+                        title="Rosa Cyberpunk"></div>
+                    <div class="color-dot" data-color="#FB923C" data-glow="rgba(251, 146, 60, 0.15)"
+                        data-gradient="linear-gradient(to right, #FB923C, #EA580C)" style="background: #FB923C;"
+                        title="Laranja Sunset"></div>
                 </div>
-            </div>
 
-            <h3>Redes Sociais Visíveis</h3>
-            <div class="social-toggle-group">
-                <label class="social-checkbox"><input type="checkbox" id="chk-github" checked data-social="github"> GitHub</label>
-                <label class="social-checkbox"><input type="checkbox" id="chk-linkedin" checked data-social="linkedin"> LinkedIn</label>
-                <label class="social-checkbox"><input type="checkbox" id="chk-instagram" checked data-social="instagram"> Instagram</label>
-                <label class="social-checkbox"><input type="checkbox" id="chk-youtube" checked data-social="youtube"> YouTube</label>
-            </div>
-            <h3>Links das Redes</h3>
-            <div class="input-group link-group-github"><label for="link-github">Link do GitHub</label><input type="text" id="link-github" value="https://github.com/"></div>
-            <div class="input-group link-group-linkedin"><label for="link-linkedin">Link do LinkedIn</label><input type="text" id="link-linkedin" value="https://linkedin.com/"></div>
-            <div class="input-group link-group-instagram"><label for="link-instagram">Link do Instagram</label><input type="text" id="link-instagram" value="https://instagram.com/"></div>
-            <div class="input-group link-group-youtube"><label for="link-youtube">Link do YouTube</label><input type="text" id="link-youtube" value="https://youtube.com/"></div>
-
-            <h3>Gerenciar Experiências Profissionais</h3>
-            <label for="select-qty-exp">Quantidade de experiências:</label>
-            <select id="select-qty-exp" class="exp-select">
-                <option value="1">Apenas 1 Experiência</option>
-                <option value="2">Exibir 2 Experiências</option>
-                <option value="3" selected>Exibir as 3 Experiências</option>
-            </select>
-            <div class="exp-block id-exp-1">
-                <h4 style="color: #A384FF;">Experiência 1 (Superior)</h4>
-                <div class="input-group"><label for="input-exp-date-1">Período / Data</label><input type="text" id="input-exp-date-1" value="2024 - MOMENTO"></div>
-                <div class="input-group"><label for="input-exp-title-1">Título do Cargo</label><input type="text" id="input-exp-title-1" value="DESENVOLVEDOR FULL STACK PLENO"></div>
-                <div class="input-group"><label for="input-exp-company-1">Nome da Empresa</label><input type="text" id="input-exp-company-1" value="StartDev Studio"></div>
-                <div class="input-group"><label for="input-exp-desc-1">Descrição das Atividades</label><textarea id="input-exp-desc-1" rows="3">Responsável pelo desenvolvimento e manutenção de plataformas e-commerce de alto tráfego. Otimização de consultas em bancos de dados e criação de APIs RESTful.</textarea></div>
-                <div class="input-group"><label for="input-exp-techs-1">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-exp-techs-1" value="React, Node.js, TypeScript, PostgreSQL, Docker, AWS"></div>
-            </div>
-            <div class="exp-block id-exp-2">
-                <h4 style="color: #38BDF8;">Experiência 2 (Meio)</h4>
-                <div class="input-group"><label for="input-exp-date-2">Período / Data</label><input type="text" id="input-exp-date-2" value="2022 - 2024"></div>
-                <div class="input-group"><label for="input-exp-title-2">Título do Cargo</label><input type="text" id="input-exp-title-2" value="DESENVOLVEDOR FRONT-END"></div>
-                <div class="input-group"><label for="input-exp-company-2">Nome da Empresa</label><input type="text" id="input-exp-company-2" value="StartDev Studio"></div>
-                <div class="input-group"><label for="input-exp-desc-2">Descrição das Atividades</label><textarea id="input-exp-desc-2" rows="3">Atuei na criação de landing pages de alta conversão e sistemas internos responsivos. Implementação de testes automatizados e foco total na performance.</textarea></div>
-                <div class="input-group"><label for="input-exp-techs-2">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-exp-techs-2" value="JavaScript, Vue.js, Tailwind CSS, Jest, Git, Vite"></div>
-            </div>
-            <div class="exp-block id-exp-3">
-                <h4 style="color: #34D399;">Experiência 3 (Base)</h4>
-                <div class="input-group"><label for="input-exp-date-3">Período / Data</label><input type="text" id="input-exp-date-3" value="2021 - 2022"></div>
-                <div class="input-group"><label for="input-exp-title-3">Título do Cargo</label><input type="text" id="input-exp-title-3" value="ESTAGIÁRIO EM DESENVOLVIMENTO WEB"></div>
-                <div class="input-group"><label for="input-exp-company-3">Nome da Empresa</label><input type="text" id="input-exp-company-3" value="StartDev Studio"></div>
-                <div class="input-group"><label for="input-exp-desc-3">Descrição das Atividades</label><textarea id="input-exp-desc-3" rows="3">Suporte na codificação de layouts vindos do Figma para HTML/CSS, correção de bugs em sistemas legados e escrita de documentação técnica de projetos.</textarea></div>
-                <div class="input-group"><label for="input-exp-techs-3">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-exp-techs-3" value="HTML5, CSS3, JavaScript, Bootstrap, Sass, WordPress"></div>
-            </div>
-
-            <h3>Gerenciar Seção Projetos</h3>
-            <label for="select-qty-proj">Quantidade de projetos exibidos:</label>
-            <select id="select-qty-proj" class="project-select">
-                <option value="1">Exibir 1 Projeto</option>
-                <option value="2" selected>Exibir 2 Projetos</option>
-                <option value="3">Exibir 3 Projetos</option>
-                <option value="4">Exibir 4 Projetos</option>
-            </select>
-            <div class="project-block id-proj-1">
-                <h4 style="color: #A384FF;">Projeto 1</h4>
-                <div class="input-group"><label for="input-proj-title-1">Título do Projeto</label><input type="text" id="input-proj-title-1" value="E-Commerce Platform"></div>
-                <div class="input-group"><label for="input-proj-desc-1">Descrição do Projeto</label><textarea id="input-proj-desc-1" rows="3">Uma plataforma completa de e-commerce com carrinho de compras em tempo real, integração de pagamentos com Stripe e painel administrativo para gerenciamento de produtos.</textarea></div>
-                <div class="input-group"><label for="input-proj-techs-1">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-proj-techs-1" value="React, Node.js, MongoDB"></div>
-                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 1</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-1">🖼 Escolher Imagem 1</div><input type="file" id="input-proj-img-1" accept="image/*" class="proj-file-input" data-pindex="0" style="display: none;"></div></div>
-                <div class="input-group"><label for="input-proj-code-1">Link do Código (GitHub)</label><input type="text" id="input-proj-code-1" value="https://github.com/"></div>
-                <div class="input-group"><label for="input-proj-live-1">Link da Demo Online</label><input type="text" id="input-proj-live-1" value="https://google.com/"></div>
-                <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-1" checked data-proj="1"> Habilitar Botão Demo</label>
-            </div>
-            <div class="project-block id-proj-2">
-                <h4 style="color: #38BDF8;">Projeto 2</h4>
-                <div class="input-group"><label for="input-proj-title-2">Título do Projeto</label><input type="text" id="input-proj-title-2" value="Fintech Dashboard"></div>
-                <div class="input-group"><label for="input-proj-desc-2">Descrição do Projeto</label><textarea id="input-proj-desc-2" rows="3">Dashboard financeiro interativo focado na experiência do usuário, apresentando gráficos analíticos de despesas, controle de saldo e histórico de transações automatizado.</textarea></div>
-                <div class="input-group"><label for="input-proj-techs-2">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-proj-techs-2" value="TypeScript, Vue.js, Tailwind"></div>
-                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 2</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-2">🖼 Escolher Imagem 2</div><input type="file" id="input-proj-img-2" accept="image/*" class="proj-file-input" data-pindex="1" style="display: none;"></div></div>
-                <div class="input-group"><label for="input-proj-code-2">Link do Código (GitHub)</label><input type="text" id="input-proj-code-2" value="https://github.com/"></div>
-                <div class="input-group"><label for="input-proj-live-2">Link da Demo Online</label><input type="text" id="input-proj-live-2" value="https://google.com/"></div>
-                <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-2" checked data-proj="2"> Habilitar Botão Demo</label>
-            </div>
-            <div class="project-block id-proj-3">
-                <h4 style="color: #34D399;">Projeto 3</h4>
-                <div class="input-group"><label for="input-proj-title-3">Título do Projeto</label><input type="text" id="input-proj-title-3" value="Task Management App"></div>
-                <div class="input-group"><label for="input-proj-desc-3">Descrição do Projeto</label><textarea id="input-proj-desc-3" rows="3">Aplicativo de gerenciamento de tarefas em equipes, utilizando metodologias ágeis como Kanban com atualizações em real-time.</textarea></div>
-                <div class="input-group"><label for="input-proj-techs-3">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-proj-techs-3" value="TypeScript, Next.js, Tailwind"></div>
-                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 3</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-3">🖼 Escolher Imagem 3</div><input type="file" id="input-proj-img-3" accept="image/*" class="proj-file-input" data-pindex="2" style="display: none;"></div></div>
-                <div class="input-group"><label for="input-proj-code-3">Link do Código (GitHub)</label><input type="text" id="input-proj-code-3" value="https://github.com/"></div>
-                <div class="input-group"><label for="input-proj-live-3">Link da Demo Online</label><input type="text" id="input-proj-live-3" value="https://google.com/"></div>
-                <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-3" checked data-proj="3"> Habilitar Botão Demo</label>
-            </div>
-            <div class="project-block id-proj-4">
-                <h4 style="color: #F472B6;">Projeto 4</h4>
-                <div class="input-group"><label for="input-proj-title-4">Título do Projeto</label><input type="text" id="input-proj-title-4" value="Fitness Tracker Mobile"></div>
-                <div class="input-group"><label for="input-proj-desc-4">Descrição do Projeto</label><textarea id="input-proj-desc-4" rows="3">Mobile app focado no monitoramento de performance física, ingestão calórica e integração direta com sensores de smartwatches.</textarea></div>
-                <div class="input-group"><label for="input-proj-techs-4">Tecnologias (Separadas por vírgula)</label><input type="text" id="input-proj-techs-4" value="React Native, Expo, Redux"></div>
-                <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 4</label><div class="file-upload-wrapper"><div class="file-upload-btn" id="lbl-proj-img-4">🖼 Escolher Imagem 4</div><input type="file" id="input-proj-img-4" accept="image/*" class="proj-file-input" data-pindex="3" style="display: none;"></div></div>
-                <div class="input-group"><label for="input-proj-code-4">Link do Código (GitHub)</label><input type="text" id="input-proj-code-4" value="https://github.com/"></div>
-                <div class="input-group"><label for="input-proj-live-4">Link da Demo Online</label><input type="text" id="input-proj-live-4" value="https://google.com/"></div>
-                <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-4" checked data-proj="4"> Habilitar Botão Demo</label>
-            </div>
-
-            <h3>Seção Contato & Rodapé</h3>
-            <div class="contact-block">
+                <h3>Cabeçalho</h3>
                 <div class="input-group">
-                    <label for="input-contact-bio">Texto de Apoio (Bio Contato)</label>
-                    <textarea id="input-contact-bio" rows="3">Estou disponível para novos projetos, contratos freelancers ou oportunidades em tempo integral. Vamos construir algo incrível juntos!</textarea>
+                    <label for="input-brand">Nome da Marca (Logo)</label>
+                    <input type="text" id="input-brand" value="Caelium">
+                </div>
+
+                <h3>Seção Início (Hero)</h3>
+                <div class="input-group">
+                    <label for="input-name">Seu Nome</label>
+                    <input type="text" id="input-name" value="Caelium">
                 </div>
                 <div class="input-group">
-                    <label for="input-contact-email">Seu E-mail (Botão Começar Projeto)</label>
-                    <input type="email" id="input-contact-email" value="danilo@exemplo.com" placeholder="seuemail@exemplo.com">
+                    <label for="input-badge">Seu Cargo (Badge / Sobre)</label>
+                    <input type="text" id="input-badge" value="FULL STACK DEV">
+                </div>
+                <div class="input-group">
+                    <label for="input-bio">Sua Bio / Descrição Curta</label>
+                    <textarea id="input-bio"
+                        rows="3">Engenheiro de Dados focado em construir pipelines escaláveis, otimizar arquiteturas em nuvem e garantir a qualidade da informação. Transformando dados brutos em insights estratégicos reais para o negócio.</textarea>
+                </div>
+
+                <div class="panel-section-divider">
+                    <span>Seção Sobre</span>
+                </div>
+                <div class="input-group">
+                    <label for="input-about-desc">Texto de Descrição (Overview)</label>
+                    <textarea id="input-about-desc"
+                        rows="4">Sou um desenvolvedor apaixonado por tecnologia e design. Nos últimos anos, tenho me dedicado a construir ecossistemas web utilizando as melhores práticas de mercado. Adoro resolver problemas complexos e criar interfaces que sejam ao mesmo tempo elegantes e intuitivas.</textarea>
+                </div>
+                <div class="input-group">
+                    <label for="input-about-location">Sua Localização (Cidade)</label>
+                    <input type="text" id="input-about-location" value="Belo Horizonte, Brasil">
+                </div>
+                <div class="input-group">
+                    <label>Importar Currículo do PC</label>
+                    <div class="file-upload-wrapper">
+                        <div class="file-upload-btn" id="upload-label">📁 Escolher arquivo PDF/Doc</div>
+                        <input type="file" id="input-cv-file" accept=".pdf,.doc,.docx" style="display: none;">
+                    </div>
+                </div>
+
+                <h3>Foto de Perfil (Sobre)</h3>
+                <div class="input-group id-photo-1">
+                    <div class="file-upload-wrapper">
+                        <div class="file-upload-btn" id="lbl-img-1">📷 Escolher Foto de Perfil</div>
+                        <input type="file" id="input-img-1" accept="image/*" class="photo-file-input" data-index="0"
+                            style="display: none;">
+                    </div>
+                </div>
+
+                <h3>Redes Sociais Visíveis</h3>
+                <div class="social-toggle-group">
+                    <label class="social-checkbox"><input type="checkbox" id="chk-github" checked data-social="github">
+                        GitHub</label>
+                    <label class="social-checkbox"><input type="checkbox" id="chk-linkedin" checked
+                            data-social="linkedin"> LinkedIn</label>
+                    <label class="social-checkbox"><input type="checkbox" id="chk-instagram" checked
+                            data-social="instagram"> Instagram</label>
+                    <label class="social-checkbox"><input type="checkbox" id="chk-youtube" checked
+                            data-social="youtube"> YouTube</label>
+                </div>
+
+                <h3>Links das Redes</h3>
+                <div class="input-group link-group-github"><label for="link-github">Link do GitHub</label><input
+                        type="text" id="link-github" value="https://github.com/"></div>
+                <div class="input-group link-group-linkedin"><label for="link-linkedin">Link do LinkedIn</label><input
+                        type="text" id="link-linkedin" value="https://linkedin.com/"></div>
+                <div class="input-group link-group-instagram"><label for="link-instagram">Link do
+                        Instagram</label><input type="text" id="link-instagram" value="https://instagram.com/"></div>
+                <div class="input-group link-group-youtube"><label for="link-youtube">Link do YouTube</label><input
+                        type="text" id="link-youtube" value="https://youtube.com/"></div>
+
+                <div class="panel-section-divider">
+                    <span>Seção Experiências</span>
+                </div>
+                <label for="select-qty-exp">Quantidade de experiências:</label>
+                <select id="select-qty-exp" class="exp-select">
+                    <option value="1">Apenas 1 Experiência</option>
+                    <option value="2">Exibir 2 Experiências</option>
+                    <option value="3" selected>Exibir as 3 Experiências</option>
+                </select>
+                <div class="exp-block id-exp-1">
+                    <h4 style="color: #A384FF;">Experiência 1 (Superior)</h4>
+                    <div class="input-group"><label for="input-exp-date-1">Período / Data</label><input type="text"
+                            id="input-exp-date-1" value="2024 - MOMENTO"></div>
+                    <div class="input-group"><label for="input-exp-title-1">Título do Cargo</label><input type="text"
+                            id="input-exp-title-1" value="DESENVOLVEDOR FULL STACK PLENO"></div>
+                    <div class="input-group"><label for="input-exp-company-1">Nome da Empresa</label><input type="text"
+                            id="input-exp-company-1" value="StartDev Studio"></div>
+                    <div class="input-group"><label for="input-exp-desc-1">Descrição das Atividades</label><textarea
+                            id="input-exp-desc-1"
+                            rows="3">Responsável pelo desenvolvimento e manutenção de plataformas e-commerce de alto tráfego. Otimização de consultas em bancos de dados e criação de APIs RESTful.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-exp-techs-1">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-exp-techs-1"
+                            value="React, Node.js, TypeScript, PostgreSQL, Docker, AWS"></div>
+                </div>
+                <div class="exp-block id-exp-2">
+                    <h4 style="color: #38BDF8;">Experiência 2 (Meio)</h4>
+                    <div class="input-group"><label for="input-exp-date-2">Período / Data</label><input type="text"
+                            id="input-exp-date-2" value="2022 - 2024"></div>
+                    <div class="input-group"><label for="input-exp-title-2">Título do Cargo</label><input type="text"
+                            id="input-exp-title-2" value="DESENVOLVEDOR FRONT-END"></div>
+                    <div class="input-group"><label for="input-exp-company-2">Nome da Empresa</label><input type="text"
+                            id="input-exp-company-2" value="StartDev Studio"></div>
+                    <div class="input-group"><label for="input-exp-desc-2">Descrição das Atividades</label><textarea
+                            id="input-exp-desc-2"
+                            rows="3">Atuei na criação de landing pages de alta conversão e sistemas internos responsivos. Implementação de testes automatizados e foco total na performance.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-exp-techs-2">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-exp-techs-2"
+                            value="JavaScript, Vue.js, Tailwind CSS, Jest, Git, Vite"></div>
+                </div>
+                <div class="exp-block id-exp-3">
+                    <h4 style="color: #34D399;">Experiência 3 (Base)</h4>
+                    <div class="input-group"><label for="input-exp-date-3">Período / Data</label><input type="text"
+                            id="input-exp-date-3" value="2021 - 2022"></div>
+                    <div class="input-group"><label for="input-exp-title-3">Título do Cargo</label><input type="text"
+                            id="input-exp-title-3" value="ESTAGIÁRIO EM DESENVOLVIMENTO WEB"></div>
+                    <div class="input-group"><label for="input-exp-company-3">Nome da Empresa</label><input type="text"
+                            id="input-exp-company-3" value="StartDev Studio"></div>
+                    <div class="input-group"><label for="input-exp-desc-3">Descrição das Atividades</label><textarea
+                            id="input-exp-desc-3"
+                            rows="3">Suporte na codificação de layouts vindos do Figma para HTML/CSS, correção de bugs em sistemas legados e escrita de documentação técnica de projetos.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-exp-techs-3">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-exp-techs-3"
+                            value="HTML5, CSS3, JavaScript, Bootstrap, Sass, WordPress"></div>
+                </div>
+
+                <div class="panel-section-divider">
+                    <span>Seção Projetos</span>
+                </div>
+                <label for="select-qty-proj">Quantidade de projetos exibidos:</label>
+                <select id="select-qty-proj" class="project-select">
+                    <option value="1">Exibir 1 Projeto</option>
+                    <option value="2" selected>Exibir 2 Projetos</option>
+                    <option value="3">Exibir 3 Projetos</option>
+                    <option value="4">Exibir 4 Projetos</option>
+                </select>
+                <div class="project-block id-proj-1">
+                    <h4 style="color: #A384FF;">Projeto 1</h4>
+                    <div class="input-group"><label for="input-proj-title-1">Título do Projeto</label><input type="text"
+                            id="input-proj-title-1" value="E-Commerce Platform"></div>
+                    <div class="input-group"><label for="input-proj-desc-1">Descrição do Projeto</label><textarea
+                            id="input-proj-desc-1"
+                            rows="3">Uma plataforma completa de e-commerce com carrinho de compras em tempo real, integração de pagamentos com Stripe e painel administrativo para gerenciamento de produtos.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-proj-techs-1">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-proj-techs-1" value="React, Node.js, MongoDB">
+                    </div>
+                    <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 1</label>
+                        <div class="file-upload-wrapper">
+                            <div class="file-upload-btn" id="lbl-proj-img-1">🖼 Escolher Imagem 1</div><input
+                                type="file" id="input-proj-img-1" accept="image/*" class="proj-file-input"
+                                data-pindex="0" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="input-group"><label for="input-proj-code-1">Link do Código (GitHub)</label><input
+                            type="text" id="input-proj-code-1" value="https://github.com/"></div>
+                    <div class="input-group"><label for="input-proj-live-1">Link da Demo Online</label><input
+                            type="text" id="input-proj-live-1" value="https://google.com/"></div>
+                    <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-1" checked data-proj="1">
+                        Habilitar Botão Demo</label>
+                </div>
+                <div class="project-block id-proj-2">
+                    <h4 style="color: #38BDF8;">Projeto 2</h4>
+                    <div class="input-group"><label for="input-proj-title-2">Título do Projeto</label><input type="text"
+                            id="input-proj-title-2" value="Fintech Dashboard"></div>
+                    <div class="input-group"><label for="input-proj-desc-2">Descrição do Projeto</label><textarea
+                            id="input-proj-desc-2"
+                            rows="3">Dashboard financeiro interativo focado na experiência do usuário, apresentando gráficos analíticos de despesas, controle de saldo e histórico de transações automatizado.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-proj-techs-2">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-proj-techs-2"
+                            value="TypeScript, Vue.js, Tailwind"></div>
+                    <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 2</label>
+                        <div class="file-upload-wrapper">
+                            <div class="file-upload-btn" id="lbl-proj-img-2">🖼 Escolher Imagem 2</div><input
+                                type="file" id="input-proj-img-2" accept="image/*" class="proj-file-input"
+                                data-pindex="1" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="input-group"><label for="input-proj-code-2">Link do Código (GitHub)</label><input
+                            type="text" id="input-proj-code-2" value="https://github.com/"></div>
+                    <div class="input-group"><label for="input-proj-live-2">Link da Demo Online</label><input
+                            type="text" id="input-proj-live-2" value="https://google.com/"></div>
+                    <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-2" checked data-proj="2">
+                        Habilitar Botão Demo</label>
+                </div>
+                <div class="project-block id-proj-3">
+                    <h4 style="color: #34D399;">Projeto 3</h4>
+                    <div class="input-group"><label for="input-proj-title-3">Título do Projeto</label><input type="text"
+                            id="input-proj-title-3" value="Task Management App"></div>
+                    <div class="input-group"><label for="input-proj-desc-3">Descrição do Projeto</label><textarea
+                            id="input-proj-desc-3"
+                            rows="3">Aplicativo de gerenciamento de tarefas em equipes, utilizando metodologias ágeis como Kanban com atualizações em real-time.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-proj-techs-3">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-proj-techs-3"
+                            value="TypeScript, Next.js, Tailwind"></div>
+                    <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 3</label>
+                        <div class="file-upload-wrapper">
+                            <div class="file-upload-btn" id="lbl-proj-img-3">🖼 Escolher Imagem 3</div><input
+                                type="file" id="input-proj-img-3" accept="image/*" class="proj-file-input"
+                                data-pindex="2" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="input-group"><label for="input-proj-code-3">Link do Código (GitHub)</label><input
+                            type="text" id="input-proj-code-3" value="https://github.com/"></div>
+                    <div class="input-group"><label for="input-proj-live-3">Link da Demo Online</label><input
+                            type="text" id="input-proj-live-3" value="https://google.com/"></div>
+                    <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-3" checked data-proj="3">
+                        Habilitar Botão Demo</label>
+                </div>
+                <div class="project-block id-proj-4">
+                    <h4 style="color: #F472B6;">Projeto 4</h4>
+                    <div class="input-group"><label for="input-proj-title-4">Título do Projeto</label><input type="text"
+                            id="input-proj-title-4" value="Fitness Tracker Mobile"></div>
+                    <div class="input-group"><label for="input-proj-desc-4">Descrição do Projeto</label><textarea
+                            id="input-proj-desc-4"
+                            rows="3">Mobile app focado no monitoramento de performance física, ingestão calórica e integração direta com sensores de smartwatches.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-proj-techs-4">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-proj-techs-4"
+                            value="React Native, Expo, Redux"></div>
+                    <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 4</label>
+                        <div class="file-upload-wrapper">
+                            <div class="file-upload-btn" id="lbl-proj-img-4">🖼 Escolher Imagem 4</div><input
+                                type="file" id="input-proj-img-4" accept="image/*" class="proj-file-input"
+                                data-pindex="3" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="input-group"><label for="input-proj-code-4">Link do Código (GitHub)</label><input
+                            type="text" id="input-proj-code-4" value="https://github.com/"></div>
+                    <div class="input-group"><label for="input-proj-live-4">Link da Demo Online</label><input
+                            type="text" id="input-proj-live-4" value="https://google.com/"></div>
+                    <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-4" checked data-proj="4">
+                        Habilitar Botão Demo</label>
+                </div>
+
+                <div class="panel-section-divider">
+                    <span>Seção Contato & Rodapé</span>
+                </div>
+                <div class="contact-block">
+                    <div class="input-group">
+                        <label for="input-contact-bio">Texto de Apoio (Bio Contato)</label>
+                        <textarea id="input-contact-bio"
+                            rows="3">Estou disponível para novos projetos, contratos freelancers ou oportunidades em tempo integral. Vamos construir algo incrível juntos!</textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="input-contact-email">Seu E-mail (Botão Começar Projeto)</label>
+                        <input type="email" id="input-contact-email" value="danilo@exemplo.com"
+                            placeholder="seuemail@exemplo.com">
+                    </div>
+                </div>
+            </div>
+
+            <!-- --- RODAPÉ DO PAINEL (DOWNLOAD) --- -->
+            <div class="panel-footer">
+                <button id="download-zip-btn" class="generate-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor" />
+                    </svg>
+                    <span>Baixar Meu Portfólio (.ZIP)</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- ÁREA DO IFRAME -->
+        <main class="preview-area">
+            <div class="iframe-wrapper view-desktop" id="iframe-wrapper">
+                <iframe src="index.html" id="portfolio-iframe" title="Live Preview"></iframe>
+            </div>
+        </main>
+    </div>
+
+    <!-- --- MODAL DE DOWNLOAD --- -->
+    <div id="download-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-modal-btn" class="close-btn">&times;</button>
+
+            <div class="mascot-header">
+                <!-- Trocando para a sua logo oficial -->
+                <img src="/src/assets/svg/logo_caelium.svg" alt="Logo Caelium" class="mascot-img">
+
+                <div class="speech-bubble">
+                    <h3>FALA, DEV! 🚀</h3>
+                    <p>Seu portfólio de alto nível está saindo do forno! O download começará em instantes.</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <p class="highlight-text">Enquanto isso, que tal aprender a colocar esse site no ar <strong>de
+                        graça</strong> na Vercel?</p>
+
+                <!-- Substitua 'SEU_VIDEO_ID' pelo ID real do seu vídeo no YouTube depois -->
+                <div class="video-container">
+                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/SEU_VIDEO_ID"
+                        title="Como hospedar na Vercel" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+
+                <div class="social-actions">
+                    <p class="social-invite-text">Me siga para mais dicas e projetos f#das:</p>
+                    <div class="socials-icons">
+                        <a href="https://github.com/danilodonato" class="social-btn" aria-label="GitHub"
+                            target="_blank">
+                            <img src="/src/assets/svg/github.svg" alt="GitHub">
+                        </a>
+                        <a href="https://linkedin.com/in/danilodonato" class="social-btn" aria-label="LinkedIn"
+                            target="_blank">
+                            <img src="/src/assets/svg/linkedin.svg" alt="LinkedIn">
+                        </a>
+                        <a href="https://www.youtube.com/@caeliumdev" class="social-btn" aria-label="YouTube"
+                            target="_blank">
+                            <img src="/src/assets/svg/youtube.svg" alt="YouTube">
+                        </a>
+                        <a href="https://www.instagram.com/caelium_dev/" class="social-btn" aria-label="Instagram"
+                            target="_blank">
+                            <img src="/src/assets/svg/insta.svg" alt="Instagram">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </aside>
 
-    <main class="preview-area">
-        <div class="iframe-wrapper view-desktop" id="iframe-wrapper">
-            <iframe src="index.html" id="portfolio-iframe" title="Live Preview"></iframe>
-        </div>
-    </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const iframe = document.getElementById('portfolio-iframe');
-            const wrapper = document.getElementById('iframe-wrapper');
-            
-            let activeColor = "#A384FF";
-            let activeGlow = "rgba(163, 132, 255, 0.15)";
-            let activeGradient = "linear-gradient(to right, #A384FF, #7C3AED)";
-            let importedCvUrl = ""; 
-            let uploadedPhotosUrls = ["", "", ""];
-            let uploadedProjImagesUrls = ["", "", "", ""];
-
-            let customCSSRules = "";
-            let photoCSSRules = ""; 
-
-            const viewButtons = document.querySelectorAll('.view-btn');
-            viewButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    viewButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    const view = btn.getAttribute('data-view');
-                    wrapper.style.width = view === 'mobile' ? '375px' : view === 'tablet' ? '768px' : '100%';
-                    wrapper.style.height = view === 'mobile' ? '667px' : '100%';
-                });
-            });
-
-            const colorDots = document.querySelectorAll('.color-dot');
-            colorDots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    colorDots.forEach(d => d.classList.remove('active'));
-                    dot.classList.add('active');
-                    activeColor = dot.getAttribute('data-color');
-                    activeGlow = dot.getAttribute('data-glow');
-                    activeGradient = dot.getAttribute('data-gradient');
-                    applyStylesAndVisibility();
-                });
-            });
-
-            function applyStylesAndVisibility() {
-                const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-                if (!innerDoc || !innerDoc.documentElement) return;
-
-                innerDoc.documentElement.style.setProperty('--primary-color', activeColor);
-                innerDoc.documentElement.style.setProperty('--primary-glow', activeGlow);
-                innerDoc.documentElement.style.setProperty('--primary-gradient', activeGradient);
-
-                let dynamicStyle = innerDoc.getElementById('generator-dynamic-colors');
-                if (!dynamicStyle) {
-                    dynamicStyle = innerDoc.createElement('style');
-                    dynamicStyle.id = 'generator-dynamic-colors';
-                    innerDoc.head.appendChild(dynamicStyle);
-                }
-
-                dynamicStyle.textContent = `
-                    :root {
-                        --primary-color: ${activeColor} !important;
-                        --primary-glow: ${activeGlow} !important;
-                        --primary-gradient: ${activeGradient} !important;
-                    }
-                    innerDoc, html, body { scrollbar-color: ${activeColor} #030207 !important; }
-                    ::-webkit-scrollbar-thumb { background: ${activeGradient} !important; background-color: ${activeColor} !important; border-radius: 10px !important; }
-                    .logo { color: ${activeColor} !important; }
-                    .logo span, .logo #brand-name { color: #ffffff !important; display: inline-block; }
-                    .logo-bracket, .logo::before, .logo::after { color: ${activeColor} !important; }
-                    .btn-lang { background: ${activeGradient} !important; background-color: ${activeColor} !important; color: #ffffff !important; }
-                    .badge-purple, .about-subtitle, .profile-info h3 span { background: none !important; background-color: transparent !important; box-shadow: none !important; text-shadow: none !important; color: ${activeColor} !important; border: none !important; padding: 0 !important; }
-                    .hero-badge, .tech-badges .badge, .project-techs .tech-tag { background-color: ${activeGlow} !important; color: #ffffff !important; text-shadow: 0 0 15px ${activeColor} !important; box-shadow: 0 0 0 1.5px ${activeColor} !important; }
-                    .tech-badges .badge:hover { transform: translateY(-2px) !important; background-color: rgba(${activeColor}, 0.35) !important; box-shadow: 0 0 0 1.5px ${activeColor} !important; }
-                    .project-card { border: 1px solid rgba(255, 255, 255, 0.08) !important; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important; }
-                    .project-card:hover { border-color: ${activeColor} !important; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px ${activeGlow} !important; }
-                    
-                    .project-links .project-link-btn { border: 1px solid #27272A !important; background-color: rgba(255, 255, 255, 0.05) !important; color: #ffffff !important; transition: all 0.2s ease !important; }
-                    .project-links .project-link-btn:hover { background: ${activeGradient} !important; background-color: ${activeColor} !important; border-color: transparent !important; color: #ffffff !important; }
-                    .project-links .project-link-btn.live { background: ${activeGradient} !important; background-color: ${activeColor} !important; color: #ffffff !important; border: none !important; }
-                    .project-links .project-link-btn.live:hover { background: ${activeGradient} !important; opacity: 0.92 !important; box-shadow: 0 0 15px ${activeGlow} !important; }
-                    .project-link-btn svg, .project-link-btn svg path, .project-link-btn img, .project-link-btn.live svg, .project-link-btn.live svg path { fill: #ffffff !important; color: #ffffff !important; }
-                    
-                    .btn-download, .btn-start-project { background: ${activeGradient} !important; background-color: ${activeColor} !important; color: #ffffff !important; }
-                    .btn-download:hover, .btn-start-project:hover { box-shadow: 0 0 20px ${activeGlow} !important; opacity: 0.9; }
-                    .social-btn { background-color: ${activeGlow} !important; box-shadow: 0 0 0 1.5px ${activeColor} !important; }
-                    .social-btn:hover { background: ${activeGradient} !important; background-color: ${activeColor} !important; box-shadow: 0 0 15px ${activeGlow} !important; }
-                    .job-title { color: #ffffff !important; }
-                    .company-name { color: ${activeColor} !important; }
-                    .avatar-muted-circle svg path { fill: ${activeColor} !important; }
-                    .card-active { border-color: ${activeColor} !important; box-shadow: 0 0 15px ${activeGlow} !important; }
-                    .hero-planet-bg stop[stop-color="#A384FF"], svg stop[stop-color="#A384FF"] { stop-color: ${activeColor} !important; }
-                    svg [fill="#A384FF"] { fill: ${activeColor} !important; }
-                    svg [stroke="#A384FF"] { stroke: ${activeColor} !important; }
-                    .btn-start-project svg path { fill: currentColor !important; }
-
-                    .exp-wrapper-single-active { display: flex !important; flex-direction: row !important; align-items: flex-start !important; justify-content: space-between !important; gap: 60px !important; width: 100% !important; }
-                    .exp-wrapper-single-active .experience-sidebar { position: relative !important; top: 0 !important; transform: none !important; margin: 0 !important; text-align: left !important; }
-
-                    /* === CORREÇÃO DA RESPONSIVIDADE DOS PROJETOS === */
-                    
-                    /* === CORREÇÃO DA RESPONSIVIDADE DOS PROJETOS === */
-                    
-                    .projects-grid { 
-                        display: grid !important; 
-                        gap: 2rem !important; 
-                    }
-
-                    /* 1. MOBILE FIRST: Sempre 1 coluna no celular para não quebrar */
-                    .projects-grid { 
-                        grid-template-columns: 1fr !important; 
-                    }
-                    .projects-grid .project-card { 
-                        grid-column: span 1 !important; 
-                        width: 100% !important; 
-                        max-width: 100% !important;
-                    }
-
-                    /* 2. DESKTOP & TABLETS: Aplica os layouts variados a partir de 768px */
-                    @media (min-width: 768px) {
-                        /* Caso de 1 projeto */
-                        .projects-grid.portfolio-full-width { 
-                            grid-template-columns: 1fr !important; 
-                            max-width: 900px !important; 
-                            margin: 0 auto !important; 
-                        }
-                        /* Força o cartão a esticar 100% do espaço disponível */
-                        .projects-grid.portfolio-full-width .project-card {
-                            width: 100% !important;
-                            max-width: 100% !important;
-                        }
-
-                        /* Caso de 2 ou 4 projetos empilhados/grid normal */
-                        .projects-grid.portfolio-stack-vertical { 
-                            grid-template-columns: 1fr !important; 
-                            max-width: 850px !important; 
-                            margin: 0 auto !important; 
-                            gap: 3.5rem !important; 
-                        }
-
-                        /* Caso de 4 projetos (2x2) ou default normal */
-                        .projects-grid:not(.portfolio-full-width):not(.portfolio-stack-vertical):not(.portfolio-three-stretch) {
-                            grid-template-columns: repeat(2, 1fr) !important;
-                        }
-
-                        /* Caso de 3 projetos (2 no topo, 1 esticado na base) */
-                        .projects-grid.portfolio-three-stretch { 
-                            grid-template-columns: repeat(2, 1fr) !important; 
-                            gap: 2.5rem !important; 
-                        }
-                        .projects-grid.portfolio-three-stretch .project-card:nth-child(3) { 
-                            grid-column: span 2 !important; 
-                        }
-                    }
-                    /* =============================================== */
-                    
-                    
-                    ${customCSSRules}
-                    ${photoCSSRules}
-                `;
-            }
-
-            function setupLiveBinding() {
-                const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-                const innerWindow = iframe.contentWindow;
-                if (!innerDoc || !innerWindow) return;
-
-                function syncPhotosAndVisibilityRules() {
-                    try {
-                        let rules = `
-                            .swiper-slide:not([data-swiper-slide-index="0"]):not(:first-child) { display: none !important; }
-                            .swiper-slide-duplicate { display: none !important; }
-                            .swiper-button-next, .swiper-button-prev, .carousel-arrow, .swiper-pagination { display: none !important; }
-                            .swiper-slide-active, .swiper-slide { pointer-events: none !important; touch-action: none !important; user-select: none !important; }
-                            .swiper-wrapper { transform: translate3d(0px, 0px, 0px) !important; transition-duration: 0ms !important; pointer-events: none !important; }
-                            .overview-swiper, .about-image-card { pointer-events: none !important; touch-action: none !important; }
-                        `;
-
-                        if (!uploadedPhotosUrls[0]) {
-                            rules += `
-                                .swiper-slide:first-child .about-image-card img { opacity: 0 !important; }
-                                .swiper-slide:first-child .about-image-card { 
-                                    background: #111115 !important; 
-                                    border: 2px dashed #27272A !important; 
-                                    display: flex !important; 
-                                    align-items: center !important; 
-                                    justify-content: center !important;
-                                    text-align: center !important;
-                                    padding: 20px !important;
-                                    min-height: 380px !important;
-                                }
-                                .swiper-slide:first-child .about-image-card::after {
-                                    content: "Insira sua foto de perfil no painel lateral 📷" !important;
-                                    color: #71717A !important;
-                                    font-family: 'Outfit', sans-serif !important;
-                                    font-size: 14px !important;
-                                    font-weight: 400 !important;
-                                }
-                            `;
-                        }
-
-                        customCSSRules = rules;
-                        applyStylesAndVisibility();
-
-                        if (innerWindow.overviewSwiper && typeof innerWindow.overviewSwiper.update === 'function') {
-                            innerWindow.overviewSwiper.update();
-                        }
-                    } catch (err) {
-                        console.log("Sincronizando visibilidade...", err);
-                    }
-                }
-
-                const checkboxes = document.querySelectorAll('.social-checkbox input');
-                checkboxes.forEach(chk => {
-                    chk.addEventListener('change', () => {
-                        const net = chk.getAttribute('data-social');
-                        const altNet = net === 'instagram' ? 'insta' : net;
-                        const targets = innerDoc.querySelectorAll(`.social-btn[aria-label*="${net}" i], .social-btn[aria-label*="${altNet}" i], a[href*="${net}" i], a[href*="${altNet}" i]`);
-                        targets.forEach(el => {
-                            const anchor = el.tagName === 'A' ? el : el.closest('a');
-                            if (anchor) anchor.style.setProperty('display', chk.checked ? 'inline-flex' : 'none', 'important');
-                        });
-                    });
-                });
-
-                syncPhotosAndVisibilityRules();
-
-                const brandInput = document.getElementById('input-brand');
-                const brandTarget = innerDoc.querySelector('#brand-name');
-                if (brandInput && brandTarget) {
-                    brandInput.addEventListener('input', (e) => {
-                        brandTarget.textContent = e.target.value;
-                    });
-                }
-
-                const nameInput = document.getElementById('input-name');
-                if (nameInput) {
-                    nameInput.addEventListener('input', (e) => {
-                        const value = e.target.value;
-                        const heroNameEl = innerDoc.getElementById('hero-name');
-                        if (heroNameEl) heroNameEl.textContent = value;
-                        const aboutNameEl = innerDoc.querySelector('.overview-name');
-                        if (aboutNameEl) aboutNameEl.textContent = value;
-                        updateFooterText();
-                    });
-                }
-
-                const bioInput = document.getElementById('input-bio');
-                const bioTarget = innerDoc.getElementById('hero-bio');
-                if (bioInput && bioTarget) {
-                    bioInput.addEventListener('input', (e) => {
-                        bioTarget.textContent = e.target.value;
-                        bioTarget.setAttribute('data-pt', e.target.value);
-                        bioTarget.setAttribute('data-en', e.target.value);
-                    });
-                }
-
-                const aboutDescInput = document.getElementById('input-about-desc');
-                const aboutDescTarget = innerDoc.querySelector('.overview-description');
-                if (aboutDescInput && aboutDescTarget) {
-                    aboutDescInput.addEventListener('input', (e) => {
-                        aboutDescTarget.textContent = e.target.value;
-                        aboutDescTarget.setAttribute('data-pt', e.target.value);
-                        aboutDescTarget.setAttribute('data-en', e.target.value);
-                    });
-                }
-
-                function updateFooterText() {
-                    const footerElement = innerDoc.querySelector('.footer-credits');
-                    if (footerElement && nameInput) {
-                        const currentYear = new Date().getFullYear();
-                        const footerString = `© ${currentYear} ${nameInput.value}. Todos os direitos reservados.`;
-                        footerElement.textContent = footerString;
-                        footerElement.setAttribute('data-pt', footerString);
-                        footerElement.setAttribute('data-en', `© ${currentYear} ${nameInput.value}. All rights reserved.`);
-                    }
-                }
-                updateFooterText();
-
-                const contactBioInput = document.getElementById('input-contact-bio');
-                const contactEmailInput = document.getElementById('input-contact-email');
-                const contactBioTarget = innerDoc.querySelector('.contact-description');
-                const startProjectBtn = innerDoc.querySelector('.btn-start-project, a[href^="mailto:"]');
-
-                if (contactBioInput && contactBioTarget) {
-                    contactBioInput.addEventListener('input', (e) => {
-                        contactBioTarget.textContent = e.target.value;
-                        contactBioTarget.setAttribute('data-pt', e.target.value);
-                        contactBioTarget.setAttribute('data-en', e.target.value);
-                    });
-                }
-
-                if (contactEmailInput) {
-                    const updateMailto = () => { if (startProjectBtn) startProjectBtn.setAttribute('href', `mailto:${contactEmailInput.value.trim()}`); };
-                    updateMailto();
-                    contactEmailInput.addEventListener('input', updateMailto);
-                }
-
-                const locInput = document.getElementById('input-about-location');
-                const badgeInput = document.getElementById('input-badge');
-                const updateLocationNodeText = () => {
-                    if (!locInput) return;
-                    const locationTarget = innerDoc.querySelector('.location-text');
-                    if (locationTarget) {
-                        locationTarget.textContent = `Residente em ${locInput.value}`;
-                        locationTarget.setAttribute('data-pt', `Residente em ${locInput.value}`);
-                        locationTarget.setAttribute('data-en', `Based in ${locInput.value}`);
-                    }
-                };
-                if (locInput) locInput.addEventListener('input', updateLocationNodeText);
-                
-                const heroBadge = innerDoc.getElementById('hero-badge-text');
-                const aboutJob = innerDoc.querySelector('.badge-purple');
-                const updateBadgeGlobal = (val) => {
-                    if (heroBadge) { heroBadge.textContent = val; heroBadge.setAttribute('data-pt', val); heroBadge.setAttribute('data-en', val); }
-                    if (aboutJob) { aboutJob.textContent = val; aboutJob.setAttribute('data-pt', val); aboutJob.setAttribute('data-en', val); }
-                };
-                if (badgeInput) {
-                    badgeInput.addEventListener('input', (e) => updateBadgeGlobal(e.target.value));
-                }
-                updateLocationNodeText();
-
-                const selectQtyExp = document.getElementById('select-qty-exp');
-                function syncAllExperiences() {
-                    try {
-                        const qty = parseInt(selectQtyExp.value);
-                        if(document.querySelector('.id-exp-1')) document.querySelector('.id-exp-1').style.display = 'block';
-                        if(document.querySelector('.id-exp-2')) document.querySelector('.id-exp-2').style.display = qty >= 2 ? 'block' : 'none';
-                        if(document.querySelector('.id-exp-3')) document.querySelector('.id-exp-3').style.display = qty === 3 ? 'block' : 'none';
-
-                        const expWrapper = innerDoc.querySelector('.experience-wrapper');
-                        const expSection = innerDoc.querySelector('.experience-section');
-                        
-                        if (expWrapper) {
-                            if (qty === 1 || qty === 2) {
-                                expWrapper.classList.add('exp-wrapper-single-active');
-                            } else {
-                                expWrapper.classList.remove('exp-wrapper-single-active');
-                            }
-                            expWrapper.style.height = 'auto';
-                        }
-
-                        if (expSection) {
-                            expSection.style.height = 'auto';
-                            expSection.style.minHeight = '0px';
-                        }
-
-                        const expCards = innerDoc.querySelectorAll('.experience-card');
-                        if (!expCards) return;
-
-                        expCards.forEach((card, index) => {
-                            const num = index + 1;
-                            if (index < qty) {
-                                card.style.setProperty('display', 'flex', 'important'); 
-                                const dateInput = document.getElementById(`input-exp-date-${num}`);
-                                const titleInput = document.getElementById(`input-exp-title-${num}`);
-                                const companyInput = document.getElementById(`input-exp-company-${num}`);
-                                const expDescInput = document.getElementById(`input-exp-desc-${num}`);
-                                const techsInput = document.getElementById(`input-exp-techs-${num}`);
-
-                                const dateTarget = card.querySelector('.card-date');
-                                const titleTarget = card.querySelector('.job-title');
-                                const expDescTarget = card.querySelector('.job-description');
-                                const techsContainer = card.querySelector('.tech-badges');
-
-                                if (dateInput && dateTarget) { 
-                                    dateInput.addEventListener('input', (e) => { dateTarget.textContent = e.target.value; });
-                                }
-                                
-                                const updateHeader = () => { 
-                                    if (titleTarget && titleInput && companyInput) {
-                                        titleTarget.innerHTML = `${titleInput.value} <span class="company-name">• ${companyInput.value}</span>`;
-                                    } 
-                                };
-                                if (titleInput) titleInput.addEventListener('input', updateHeader);
-                                if (companyInput) companyInput.addEventListener('input', updateHeader);
-                                
-                                if (expDescInput && expDescTarget) { 
-                                    expDescInput.addEventListener('input', (e) => { expDescTarget.textContent = e.target.value; });
-                                }
-                                
-                                const updateBadges = () => {
-                                    if (!techsContainer || !techsInput) return;
-                                    const list = techsInput.value.split(',').map(t => t.trim()).filter(t => t.length > 0);
-                                    techsContainer.innerHTML = '';
-                                    list.forEach(tech => {
-                                        const span = innerDoc.createElement('span');
-                                        span.className = 'badge';
-                                        span.textContent = tech;
-                                        techsContainer.appendChild(span);
-                                    });
-                                };
-                                if (techsInput) techsInput.addEventListener('input', updateBadges);
-                            } else { 
-                                card.style.setProperty('display', 'none', 'important'); 
-                            }
-                        });
-
-                        setTimeout(() => {
-                            if (innerWindow.ScrollTrigger) innerWindow.ScrollTrigger.refresh();
-                        }, 50);
-
-                    } catch(e) { console.log(e); }
-                }
-                if (selectQtyExp) {
-                    syncAllExperiences();
-                    selectQtyExp.addEventListener('change', syncAllExperiences);
-                }
-
-                // MOTOR DE PROJETOS ANTI-QUEBRA (CORREÇÃO DO CONSOLE)
-                const selectQtyProj = document.getElementById('select-qty-proj');
-                const projFileInputs = document.querySelectorAll('.proj-file-input');
-
-                function syncAllProjects() {
-                    try {
-                        const qty = parseInt(selectQtyProj.value);
-                        for (let i = 1; i <= 4; i++) {
-                            if(document.querySelector(`.id-proj-${i}`)) document.querySelector(`.id-proj-${i}`).style.display = i <= qty ? 'block' : 'none';
-                        }
-
-                        const projectGrid = innerDoc.querySelector('.projects-grid') || innerDoc.querySelector('.portfolio-grid');
-                        const projectCards = innerDoc.querySelectorAll('.project-card') || innerDoc.querySelectorAll('.portfolio-card');
-                        
-                        // SE O GRID OU CARDS NÃO EXISTIREM NO DOM AINDA, ABORTA PARA NÃO DAR ERRO NO CONSOLE
-                        if (!projectGrid || !projectCards || projectCards.length === 0) return;
-
-                        projectGrid.classList.remove('portfolio-full-width', 'portfolio-stack-vertical', 'portfolio-three-stretch');
-
-                        if (qty === 1) {
-                            projectGrid.classList.add('portfolio-full-width');
-                        } else if (qty === 3) {
-                            projectGrid.classList.add('portfolio-three-stretch');
-                        }
-                        // O grid padrão (sem classes extras) já faz exatamente 2 colunas,
-                        // atendendo perfeitamente o caso de 2 e 4 projetos no desktop!
-
-                        projectCards.forEach((card, index) => {
-                            const num = index + 1;
-                            if (index < qty) {
-                                card.style.setProperty('display', 'flex', 'important'); 
-
-                                const titleInput = document.getElementById(`input-proj-title-${num}`);
-                                const descInput = document.getElementById(`input-proj-desc-${num}`);
-                                const techsInput = document.getElementById(`input-proj-techs-${num}`);
-                                const codeInput = document.getElementById(`input-proj-code-${num}`);
-                                const liveInput = document.getElementById(`input-proj-live-${num}`);
-                                const chkDemo = document.getElementById(`chk-proj-demo-${num}`);
-
-                                const titleTarget = card.querySelector('.project-title') || card.querySelector('.portfolio-title');
-                                const descTarget = card.querySelector('.project-description') || card.querySelector('.portfolio-description');
-                                const techsContainer = card.querySelector('.tech-badges') || card.querySelector('.project-techs');
-                                const imgTarget = card.querySelector('.project-img') || card.querySelector('.portfolio-img');
-                                
-                                const btnCode = card.querySelector('.project-link-btn:not(.live)') || card.querySelector('.portfolio-link:not(.live)');
-                                const btnLive = card.querySelector('.project-link-btn.live') || card.querySelector('.portfolio-link.live');
-
-                                if (titleInput && titleTarget) {
-                                    titleInput.addEventListener('input', (e) => { titleTarget.textContent = e.target.value; });
-                                }
-                                if (descInput && descTarget) {
-                                    descInput.addEventListener('input', (e) => { descTarget.textContent = e.target.value; });
-                                }
-                                if (imgTarget && uploadedProjImagesUrls[index]) {
-                                    imgTarget.src = uploadedProjImagesUrls[index];
-                                }
-
-                                const updateTechs = () => {
-                                    if (!techsContainer || !techsInput) return;
-                                    const list = techsInput.value.split(',').map(t => t.trim()).filter(t => t.length > 0);
-                                    techsContainer.innerHTML = '';
-                                    list.forEach(tech => { 
-                                        const span = innerDoc.createElement('span'); 
-                                        span.className = card.querySelector('.tech-tag') ? 'tech-tag' : 'badge';
-                                        span.textContent = tech; 
-                                        techsContainer.appendChild(span); 
-                                    });
-                                };
-                                if (techsInput) techsInput.addEventListener('input', updateTechs); 
-
-                                if (codeInput && btnCode) { 
-                                    codeInput.addEventListener('input', (e) => { btnCode.setAttribute('href', e.target.value); }); 
-                                }
-                                if (liveInput && btnLive) { 
-                                    liveInput.addEventListener('input', (e) => { btnLive.setAttribute('href', e.target.value); }); 
-                                }
-
-                                if (btnLive && chkDemo) {
-                                    chkDemo.addEventListener('change', () => {
-                                        btnLive.style.setProperty('display', chkDemo.checked ? 'inline-flex' : 'none', 'important');
-                                    });
-                                }
-                            } else { 
-                                card.style.setProperty('display', 'none', 'important'); 
-                            }
-                        });
-                    } catch(e) { console.log(e); }
-                }
-                if (selectQtyProj) { syncAllProjects(); selectQtyProj.addEventListener('change', syncAllProjects); }
-
-                projFileInputs.forEach(input => {
-                    input.addEventListener('change', (e) => {
-                        if (e.target.files.length === 0) return;
-                        const index = parseInt(input.getAttribute('data-pindex'));
-                        uploadedProjImagesUrls[index] = URL.createObjectURL(e.target.files[0]);
-                        const labelBtn = document.getElementById(`lbl-proj-img-${index + 1}`);
-                        if (labelBtn) labelBtn.textContent = `✓ Salvo`;
-                        syncAllProjects();
-                    });
-                });
-
-                for (let i = 1; i <= 4; i++) {
-                    const fakeProjBtn = document.getElementById(`lbl-proj-img-${i}`);
-                    const realProjInput = document.getElementById(`input-proj-img-${i}`);
-                    if (fakeProjBtn && realProjInput) {
-                        fakeProjBtn.onclick = (e) => { e.preventDefault(); realProjInput.click(); };
-                    }
-                }
-
-                function updatePhotoCSS() {
-                    let css = "";
-                    if (uploadedPhotosUrls[0]) {
-                        css += ` .contact-ui-mockup .avatar-img { content: url("${uploadedPhotosUrls[0]}") !important; } `;
-                        css += ` .overview-img { content: url("${uploadedPhotosUrls[0]}") !important; opacity: 1 !important; } `;
-                    }
-                    photoCSSRules = css;
-                    syncPhotosAndVisibilityRules();
-                }
-
-                const photoFileInputs = document.querySelectorAll('.photo-file-input');
-                photoFileInputs.forEach(input => {
-                    input.addEventListener('change', (e) => {
-                        if (e.target.files.length === 0) return;
-                        const index = parseInt(input.getAttribute('data-index'));
-                        uploadedPhotosUrls[index] = URL.createObjectURL(e.target.files[0]);
-                        const labelBtn = document.getElementById(`lbl-img-${index + 1}`);
-                        if (labelBtn) labelBtn.textContent = `✓ Carregada`;
-                        updatePhotoCSS();
-                    });
-                });
-
-                const fakeBtn = document.getElementById('lbl-img-1');
-                const realInput = document.getElementById('input-img-1');
-                if (fakeBtn && realInput) {
-                    fakeBtn.onclick = (e) => { e.preventDefault(); realInput.click(); };
-                }
-
-                const fileInput = document.getElementById('input-cv-file');
-                const fakeCvBtn = document.getElementById('upload-label');
-                if (fileInput) {
-                    fileInput.addEventListener('change', (e) => {
-                        if (e.target.files.length === 0) return;
-                        importedCvUrl = URL.createObjectURL(e.target.files[0]);
-                        if (fakeCvBtn) fakeCvBtn.textContent = `✓ PDF Pronto`;
-                        const cvButtons = innerDoc.querySelectorAll('.btn-download');
-                        cvButtons.forEach(btn => {
-                            btn.setAttribute('href', importedCvUrl);
-                            btn.setAttribute('target', '_blank'); 
-                        });
-                    });
-                }
-
-                if (fakeCvBtn && fileInput) {
-                    fakeCvBtn.onclick = (e) => { e.preventDefault(); fileInput.click(); };
-                }
-
-                if (innerWindow.ScrollTrigger) innerWindow.ScrollTrigger.refresh();
-            }
-
-            iframe.addEventListener('load', setupLiveBinding);
-            if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-                setupLiveBinding();
-            }
-        });
-    </script>
+        <!-- Script Extraído -->
+        <script type="module" src="/src/assets/js/generator.js"></script>
 </body>
+
 </html>

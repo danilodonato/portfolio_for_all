@@ -1,0 +1,301 @@
+@use 'colors';
+
+/* ==========================================================================
+   ESTILOS DINÂMICOS DO GERADOR (Controlados via CSS Variables)
+   ========================================================================== */
+
+html,
+body {
+    scrollbar-color: var(--primary-color) #030207 !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-gradient) !important;
+    background-color: var(--primary-color) !important;
+    border-radius: 10px !important;
+}
+
+/* --- LOGO E DESTAQUES GERAIS --- */
+.logo {
+    color: var(--primary-color) !important;
+}
+
+.logo span,
+.logo #brand-name {
+    color: #ffffff !important;
+    display: inline-block;
+}
+
+.logo-bracket,
+.logo::before,
+.logo::after {
+    color: var(--primary-color) !important;
+}
+
+/* --- BOTÕES GERAIS E BADGES (Inclui o botão FULL STACK DEV) --- */
+.btn-lang {
+    background: var(--primary-gradient) !important;
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+.badge-purple,
+.about-subtitle,
+.profile-info h3 span {
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    color: var(--primary-color) !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.hero-badge,
+.tech-badges .badge,
+.project-techs .tech-tag {
+    background-color: var(--primary-glow) !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 15px var(--primary-color) !important;
+    box-shadow: 0 0 0 1.5px var(--primary-color) !important;
+}
+
+.tech-badges .badge:hover {
+    transform: translateY(-2px) !important;
+    background-color: var(--primary-glow) !important;
+    box-shadow: 0 0 0 1.5px var(--primary-color) !important;
+}
+
+/* --- BOTÕES PRINCIPAIS E REDES SOCIAIS --- */
+.social-btn,
+.social-link,
+.social-icon,
+.social-links a {
+    /* Garante o fundo, cor e força a recriação da borda com a cor certa */
+    background-color: var(--primary-glow) !important;
+    border: 1px solid var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    box-shadow: none !important;
+    /* Limpa qualquer sombra antiga que possa parecer borda */
+}
+
+/* Pinta os ícones no estado normal */
+.social-btn svg path,
+.social-link svg path,
+.social-icon svg path,
+.social-links a svg path,
+.social-btn svg circle,
+.social-link svg circle,
+.social-links a svg circle {
+    fill: var(--primary-color) !important;
+    transition: fill 0.3s ease !important;
+}
+
+/* Estado Hover (Mouse por cima) */
+.social-btn:hover,
+.social-link:hover,
+.social-icon:hover,
+.social-links a:hover {
+    background: var(--primary-gradient) !important;
+    background-color: var(--primary-color) !important;
+    border-color: transparent !important;
+    box-shadow: 0 0 15px var(--primary-glow) !important;
+    color: #ffffff !important;
+}
+
+/* Ícones brancos no Hover */
+.social-btn:hover svg path,
+.social-link:hover svg path,
+.social-icon:hover svg path,
+.social-links a:hover svg path,
+.social-btn:hover svg circle,
+.social-link:hover svg circle,
+.social-links a:hover svg circle {
+    fill: #ffffff !important;
+}
+
+/* Botões Maiores ("Baixar Currículo" e "Começar Projeto") */
+.btn-download,
+.btn-start-project {
+    background: var(--primary-gradient) !important;
+    background-color: var(--primary-color) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px var(--primary-glow) !important;
+}
+
+/* --- TEXTOS E ELEMENTOS DE SEÇÕES (Empresas, Ícones, etc) --- */
+/* --- TEXTOS E ELEMENTOS DE SEÇÕES (Empresas, Ícones, etc) --- */
+.company-name {
+    color: var(--primary-color) !important;
+}
+
+.scroll-indicator svg path,
+.scroll-down svg path {
+    stroke: var(--primary-color) !important;
+}
+
+/* Deixamos apenas o Avatar Placeholder, removendo os ícones de chamada (mic/telefone) da regra */
+.avatar-placeholder svg path,
+.avatar-placeholder svg circle {
+    fill: var(--primary-color) !important;
+}
+
+/* --- O PLANETA DA SEÇÃO HERO (.hero-planet-bg) --- */
+/* Colore apenas as linhas e gradientes de dentro do SVG, sem duplicar o fundo */
+
+.hero-planet-bg stop,
+#hero-planet-bg stop,
+.hero-planet-bg stop[stop-color],
+#hero-planet-bg stop[stop-color] {
+    stop-color: var(--primary-color) !important;
+}
+
+.hero-planet-bg path,
+
+
+/* --- CARDS DE PROJETOS --- */
+.project-card {
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+}
+
+.project-card:hover {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--primary-glow) !important;
+}
+
+.project-links .project-link-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid #27272A !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+    transition: all 0.2s ease !important;
+    padding: 10px 20px !important;
+}
+
+.project-links .project-link-btn:hover {
+    background: var(--primary-gradient) !important;
+    background-color: var(--primary-color) !important;
+    border-color: transparent !important;
+}
+
+.project-link-btn svg {
+    width: 20px !important;
+    height: 20px !important;
+    margin-right: 8px !important;
+}
+
+/* --- EXPERIÊNCIAS E GRIDS --- */
+.exp-wrapper-single-active {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 60px !important;
+    width: 100% !important;
+}
+
+.projects-grid {
+    display: grid !important;
+    gap: 2rem !important;
+    grid-template-columns: 1fr !important;
+}
+
+@media (min-width: 768px) {
+    .projects-grid.portfolio-full-width {
+        grid-template-columns: 1fr !important;
+        max-width: 760px !important; /* Mais largo e elegante que 600px, mas não quebra a tela */
+        margin: 0 auto !important; /* Mantém centralizado perfeitamente */
+    }
+
+    .projects-grid:not(.portfolio-full-width):not(.portfolio-three-stretch) {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .projects-grid.portfolio-three-stretch {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .projects-grid.portfolio-three-stretch .project-card:nth-child(3) {
+        grid-column: span 2 !important;
+    }
+}
+
+/* --- ESTILOS DE FOTO DINÂMICA --- */
+.contact-ui-mockup .avatar-img,
+.overview-img {
+    content: var(--profile-img) !important;
+}
+
+.overview-img {
+    opacity: 1 !important;
+}
+
+body.no-profile-photo {
+    .swiper-slide:not([data-swiper-slide-index="0"]):not(:first-child) {
+        display: none !important;
+    }
+
+    .swiper-slide-duplicate {
+        display: none !important;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev,
+    .carousel-arrow,
+    .swiper-pagination {
+        display: none !important;
+    }
+
+    .swiper-slide-active,
+    .swiper-slide {
+        pointer-events: none !important;
+        touch-action: none !important;
+        user-select: none !important;
+    }
+
+    .swiper-wrapper {
+        transform: translate3d(0px, 0px, 0px) !important;
+        transition-duration: 0ms !important;
+        pointer-events: none !important;
+    }
+
+    .overview-swiper,
+    .about-image-card {
+        pointer-events: none !important;
+        touch-action: none !important;
+    }
+
+    .swiper-slide:first-child .about-image-card img {
+        opacity: 0 !important;
+    }
+
+    .swiper-slide:first-child .about-image-card {
+        background: #111115 !important;
+        border: 2px dashed #27272A !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 20px !important;
+        min-height: 380px !important;
+    }
+
+    .swiper-slide:first-child .about-image-card::after {
+        content: "Insira sua foto de perfil no painel lateral 📷" !important;
+        color: #71717A !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+    }
+}
+
+/* Pinta especificamente o bonequinho dentro do container de avatar muted */
+.avatar-muted-circle svg path {
+    fill: var(--primary-color) !important;
+    transition: fill 0.3s ease !important;
+}

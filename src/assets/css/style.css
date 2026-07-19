@@ -5,8 +5,18 @@
   --primary-color: #A384FF;
   --primary-glow: rgba(163, 132, 255, 0.15);
   --primary-gradient: linear-gradient(to right, #A384FF, #7C3AED);
+  --profile-img: none;
+  --bg-main: #000000;
+  --bg-secondary: #09090b;
+  --border-color: #27272a;
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
 }
 
+/* ==========================================================================
+   PONTE DE VARIÁVEIS SASS -> CSS NATIVO
+   Isso evita que arquivos antigos quebrem e os torna dinâmicos automaticamente
+   ========================================================================== */
 *,
 *::after,
 *::before {
@@ -638,7 +648,8 @@ canvas {
     visibility: visible;
   }
   /* Garante que o botão de fechar (X) e a logo fiquem visíveis por cima do fundo do menu */
-  .menu-toggle, .logo {
+  .menu-toggle,
+  .logo {
     z-index: 2100 !important;
     position: relative;
   }
@@ -1240,7 +1251,8 @@ canvas {
   display: flex;
   gap: 64px;
   width: 100%;
-  align-items: flex-start;
+  align-items: flex-start; /* Segura a altura perfeitamente */
+  position: relative;
 }
 
 @media (max-width: 1024px) {
@@ -1250,20 +1262,27 @@ canvas {
   }
 }
 .experience-section {
-  /* --- COLUNA DA ESQUERDA: PREPARADA PARA O GSAP --- */
+  /* --- COLUNA DA ESQUERDA (BARRA LATERAL) --- */
 }
 
 .experience-section .experience-sidebar {
-  flex: 1;
+  flex: 1; /* Ocupa 1 parte do espaço */
   max-width: 320px;
-  position: relative;
-  height: auto;
+  height: -moz-max-content;
+  height: max-content;
 }
 
+@media (min-width: 1025px) {
+  .experience-section .experience-sidebar {
+    position: sticky;
+    top: 120px;
+  }
+}
 @media (max-width: 1024px) {
   .experience-section .experience-sidebar {
     max-width: 100%;
     text-align: center;
+    position: relative;
   }
 }
 .experience-section .experience-sidebar .section-title-glow {
@@ -1284,21 +1303,17 @@ canvas {
 }
 
 .experience-section {
-  /* --- COLUNA DA DIREITA: TIMELINE E CARDS --- */
+  /* --- COLUNA DA DIREITA (ONDE FICAM OS CARDS) --- */
 }
 
 .experience-section .experience-timeline {
-  flex: 2;
+  flex: 2; /* Força essa coluna a ser maior e preencher o resto da tela */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 32px; /* Espaço entre um card de experiência e outro */
 }
 
-@media (max-width: 768px) {
-  .experience-section .experience-timeline {
-    gap: 40px;
-  }
-}
 .experience-section .experience-card {
   display: flex;
   gap: 32px;
@@ -2022,15 +2037,32 @@ canvas {
 .portfolio-grid.portfolio-stack-vertical {
   display: flex !important;
   flex-direction: column !important;
-  grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
-  gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
-  max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
-  margin: 0 auto; /* Centraliza a coluna na seção */
+  grid-template-columns: 1fr !important;
+  /* Garante a quebra caso use Grid */
+  gap: 3rem !important;
+  /* Mantém um espaçamento elegante entre eles */
+  max-width: 800px;
+  /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+  margin: 0 auto;
+  /* Centraliza a coluna na seção */
 }
 
 /* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
 .portfolio-grid.portfolio-stack-vertical .portfolio-card {
   width: 100% !important;
+}
+
+/* Quando houver APENAS 1 projeto visível, ele se adapta automaticamente */
+.project-card:only-child {
+  grid-column: 1/-1;
+  /* Força o card a ignorar as colunas e ocupar a linha inteira */
+  max-width: 700px;
+  /* Limita a largura para ele não ficar gigantesco em monitores ultrawide */
+  justify-self: center;
+  /* Centraliza o card perfeitamente no meio do grid */
+  margin: 0 auto;
+  /* Garantia extra de centralização */
+  width: 100%;
 }
 
 .gap20 {
@@ -3278,7 +3310,8 @@ canvas {
     visibility: visible;
   }
   /* Garante que o botão de fechar (X) e a logo fiquem visíveis por cima do fundo do menu */
-  .menu-toggle, .logo {
+  .menu-toggle,
+  .logo {
     z-index: 2100 !important;
     position: relative;
   }
@@ -3880,7 +3913,8 @@ canvas {
   display: flex;
   gap: 64px;
   width: 100%;
-  align-items: flex-start;
+  align-items: flex-start; /* Segura a altura perfeitamente */
+  position: relative;
 }
 
 @media (max-width: 1024px) {
@@ -3890,20 +3924,27 @@ canvas {
   }
 }
 .experience-section {
-  /* --- COLUNA DA ESQUERDA: PREPARADA PARA O GSAP --- */
+  /* --- COLUNA DA ESQUERDA (BARRA LATERAL) --- */
 }
 
 .experience-section .experience-sidebar {
-  flex: 1;
+  flex: 1; /* Ocupa 1 parte do espaço */
   max-width: 320px;
-  position: relative;
-  height: auto;
+  height: -moz-max-content;
+  height: max-content;
 }
 
+@media (min-width: 1025px) {
+  .experience-section .experience-sidebar {
+    position: sticky;
+    top: 120px;
+  }
+}
 @media (max-width: 1024px) {
   .experience-section .experience-sidebar {
     max-width: 100%;
     text-align: center;
+    position: relative;
   }
 }
 .experience-section .experience-sidebar .section-title-glow {
@@ -3924,21 +3965,17 @@ canvas {
 }
 
 .experience-section {
-  /* --- COLUNA DA DIREITA: TIMELINE E CARDS --- */
+  /* --- COLUNA DA DIREITA (ONDE FICAM OS CARDS) --- */
 }
 
 .experience-section .experience-timeline {
-  flex: 2;
+  flex: 2; /* Força essa coluna a ser maior e preencher o resto da tela */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 32px; /* Espaço entre um card de experiência e outro */
 }
 
-@media (max-width: 768px) {
-  .experience-section .experience-timeline {
-    gap: 40px;
-  }
-}
 .experience-section .experience-card {
   display: flex;
   gap: 32px;
@@ -4662,10 +4699,14 @@ canvas {
 .portfolio-grid.portfolio-stack-vertical {
   display: flex !important;
   flex-direction: column !important;
-  grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
-  gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
-  max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
-  margin: 0 auto; /* Centraliza a coluna na seção */
+  grid-template-columns: 1fr !important;
+  /* Garante a quebra caso use Grid */
+  gap: 3rem !important;
+  /* Mantém um espaçamento elegante entre eles */
+  max-width: 800px;
+  /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+  margin: 0 auto;
+  /* Centraliza a coluna na seção */
 }
 
 /* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
@@ -4673,8 +4714,21 @@ canvas {
   width: 100% !important;
 }
 
+/* Quando houver APENAS 1 projeto visível, ele se adapta automaticamente */
+.project-card:only-child {
+  grid-column: 1/-1;
+  /* Força o card a ignorar as colunas e ocupar a linha inteira */
+  max-width: 700px;
+  /* Limita a largura para ele não ficar gigantesco em monitores ultrawide */
+  justify-self: center;
+  /* Centraliza o card perfeitamente no meio do grid */
+  margin: 0 auto;
+  /* Garantia extra de centralização */
+  width: 100%;
+}
+
 h1 {
-  color: #ffffff;
+  color: var(--text-main);
   font-family: "Space Grotesk", sans-serif;
   font-size: 44px;
   line-height: normal;
@@ -5294,7 +5348,8 @@ canvas {
     visibility: visible;
   }
   /* Garante que o botão de fechar (X) e a logo fiquem visíveis por cima do fundo do menu */
-  .menu-toggle, .logo {
+  .menu-toggle,
+  .logo {
     z-index: 2100 !important;
     position: relative;
   }
@@ -5896,7 +5951,8 @@ canvas {
   display: flex;
   gap: 64px;
   width: 100%;
-  align-items: flex-start;
+  align-items: flex-start; /* Segura a altura perfeitamente */
+  position: relative;
 }
 
 @media (max-width: 1024px) {
@@ -5906,20 +5962,27 @@ canvas {
   }
 }
 .experience-section {
-  /* --- COLUNA DA ESQUERDA: PREPARADA PARA O GSAP --- */
+  /* --- COLUNA DA ESQUERDA (BARRA LATERAL) --- */
 }
 
 .experience-section .experience-sidebar {
-  flex: 1;
+  flex: 1; /* Ocupa 1 parte do espaço */
   max-width: 320px;
-  position: relative;
-  height: auto;
+  height: -moz-max-content;
+  height: max-content;
 }
 
+@media (min-width: 1025px) {
+  .experience-section .experience-sidebar {
+    position: sticky;
+    top: 120px;
+  }
+}
 @media (max-width: 1024px) {
   .experience-section .experience-sidebar {
     max-width: 100%;
     text-align: center;
+    position: relative;
   }
 }
 .experience-section .experience-sidebar .section-title-glow {
@@ -5940,21 +6003,17 @@ canvas {
 }
 
 .experience-section {
-  /* --- COLUNA DA DIREITA: TIMELINE E CARDS --- */
+  /* --- COLUNA DA DIREITA (ONDE FICAM OS CARDS) --- */
 }
 
 .experience-section .experience-timeline {
-  flex: 2;
+  flex: 2; /* Força essa coluna a ser maior e preencher o resto da tela */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 32px; /* Espaço entre um card de experiência e outro */
 }
 
-@media (max-width: 768px) {
-  .experience-section .experience-timeline {
-    gap: 40px;
-  }
-}
 .experience-section .experience-card {
   display: flex;
   gap: 32px;
@@ -6678,15 +6737,32 @@ canvas {
 .portfolio-grid.portfolio-stack-vertical {
   display: flex !important;
   flex-direction: column !important;
-  grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
-  gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
-  max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
-  margin: 0 auto; /* Centraliza a coluna na seção */
+  grid-template-columns: 1fr !important;
+  /* Garante a quebra caso use Grid */
+  gap: 3rem !important;
+  /* Mantém um espaçamento elegante entre eles */
+  max-width: 800px;
+  /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+  margin: 0 auto;
+  /* Centraliza a coluna na seção */
 }
 
 /* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
 .portfolio-grid.portfolio-stack-vertical .portfolio-card {
   width: 100% !important;
+}
+
+/* Quando houver APENAS 1 projeto visível, ele se adapta automaticamente */
+.project-card:only-child {
+  grid-column: 1/-1;
+  /* Força o card a ignorar as colunas e ocupar a linha inteira */
+  max-width: 700px;
+  /* Limita a largura para ele não ficar gigantesco em monitores ultrawide */
+  justify-self: center;
+  /* Centraliza o card perfeitamente no meio do grid */
+  margin: 0 auto;
+  /* Garantia extra de centralização */
+  width: 100%;
 }
 
 .grid-1 {
@@ -7251,7 +7327,8 @@ canvas {
     visibility: visible;
   }
   /* Garante que o botão de fechar (X) e a logo fiquem visíveis por cima do fundo do menu */
-  .menu-toggle, .logo {
+  .menu-toggle,
+  .logo {
     z-index: 2100 !important;
     position: relative;
   }
@@ -7814,7 +7891,8 @@ canvas {
   display: flex;
   gap: 64px;
   width: 100%;
-  align-items: flex-start;
+  align-items: flex-start; /* Segura a altura perfeitamente */
+  position: relative;
 }
 @media (max-width: 1024px) {
   .experience-section .experience-wrapper {
@@ -7823,18 +7901,25 @@ canvas {
   }
 }
 .experience-section {
-  /* --- COLUNA DA ESQUERDA: PREPARADA PARA O GSAP --- */
+  /* --- COLUNA DA ESQUERDA (BARRA LATERAL) --- */
 }
 .experience-section .experience-sidebar {
-  flex: 1;
+  flex: 1; /* Ocupa 1 parte do espaço */
   max-width: 320px;
-  position: relative;
-  height: auto;
+  height: -moz-max-content;
+  height: max-content;
+}
+@media (min-width: 1025px) {
+  .experience-section .experience-sidebar {
+    position: sticky;
+    top: 120px;
+  }
 }
 @media (max-width: 1024px) {
   .experience-section .experience-sidebar {
     max-width: 100%;
     text-align: center;
+    position: relative;
   }
 }
 .experience-section .experience-sidebar .section-title-glow {
@@ -7853,18 +7938,14 @@ canvas {
   color: #A1A1AA;
 }
 .experience-section {
-  /* --- COLUNA DA DIREITA: TIMELINE E CARDS --- */
+  /* --- COLUNA DA DIREITA (ONDE FICAM OS CARDS) --- */
 }
 .experience-section .experience-timeline {
-  flex: 2;
+  flex: 2; /* Força essa coluna a ser maior e preencher o resto da tela */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 56px;
-}
-@media (max-width: 768px) {
-  .experience-section .experience-timeline {
-    gap: 40px;
-  }
+  gap: 32px; /* Espaço entre um card de experiência e outro */
 }
 .experience-section .experience-card {
   display: flex;
@@ -8511,10 +8592,14 @@ canvas {
 .portfolio-grid.portfolio-stack-vertical {
   display: flex !important;
   flex-direction: column !important;
-  grid-template-columns: 1fr !important; /* Garante a quebra caso use Grid */
-  gap: 3rem !important; /* Mantém um espaçamento elegante entre eles */
-  max-width: 800px; /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
-  margin: 0 auto; /* Centraliza a coluna na seção */
+  grid-template-columns: 1fr !important;
+  /* Garante a quebra caso use Grid */
+  gap: 3rem !important;
+  /* Mantém um espaçamento elegante entre eles */
+  max-width: 800px;
+  /* Limita a largura máxima para o card não esticar infinitamente na tela toda */
+  margin: 0 auto;
+  /* Centraliza a coluna na seção */
 }
 
 /* Garante que o card de projeto interno ocupe 100% da largura dessa coluna única */
@@ -8522,213 +8607,314 @@ canvas {
   width: 100% !important;
 }
 
+/* Quando houver APENAS 1 projeto visível, ele se adapta automaticamente */
+.project-card:only-child {
+  grid-column: 1/-1;
+  /* Força o card a ignorar as colunas e ocupar a linha inteira */
+  max-width: 700px;
+  /* Limita a largura para ele não ficar gigantesco em monitores ultrawide */
+  justify-self: center;
+  /* Centraliza o card perfeitamente no meio do grid */
+  margin: 0 auto;
+  /* Garantia extra de centralização */
+  width: 100%;
+}
+
 :root {
   --primary-color: #A384FF;
   --primary-glow: rgba(163, 132, 255, 0.15);
   --primary-gradient: linear-gradient(to right, #A384FF, #7C3AED);
+  --profile-img: none;
+  --bg-main: #000000;
+  --bg-secondary: #09090b;
+  --border-color: #27272a;
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
 }
 
-.generator-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  background-color: #030207;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+/* ==========================================================================
+   PONTE DE VARIÁVEIS SASS -> CSS NATIVO
+   Isso evita que arquivos antigos quebrem e os torna dinâmicos automaticamente
+   ========================================================================== */
+/* ==========================================================================
+   ESTILOS DINÂMICOS DO GERADOR (Controlados via CSS Variables)
+   ========================================================================== */
+html,
+body {
+  scrollbar-color: var(--primary-color) #030207 !important;
 }
 
-.generator-panel {
-  width: 400px;
-  height: 100vh;
-  background-color: #09090B;
-  border-right: 1px solid #27272A;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  z-index: 999;
-  flex-shrink: 0;
-}
-.generator-panel .panel-header {
-  padding: 24px;
-  border-bottom: 1px solid #27272A;
-}
-.generator-panel .panel-header h2 {
-  color: #ffffff;
-  font-size: 20px;
-  margin: 0 0 4px 0;
-}
-.generator-panel .panel-header p {
-  color: #A1A1AA;
-  font-size: 13px;
-  margin: 0 0 16px 0;
-}
-.generator-panel .panel-header .preview-toggler {
-  display: flex;
-  gap: 8px;
-  background: #121118;
-  padding: 4px;
-  border-radius: 6px;
-  border: 1px solid #27272A;
-}
-.generator-panel .panel-header .preview-toggler .view-btn {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: #A1A1AA;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s;
-  font-size: 14px;
-}
-.generator-panel .panel-header .preview-toggler .view-btn:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.02);
-}
-.generator-panel .panel-header .preview-toggler .view-btn.active {
-  background: #7C3AED;
-  color: #ffffff;
-}
-.generator-panel .panel-inputs {
-  padding: 24px;
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.generator-panel .panel-inputs h3 {
-  color: #A384FF;
-  font-size: 14px;
-  margin: 0 0 4px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.generator-panel .color-selector {
-  display: flex;
-  gap: 12px;
-  margin: 8px 0;
-  padding: 4px 0;
-}
-.generator-panel .color-selector .color-dot {
-  width: 26px;
-  height: 26px;
-  border-radius: 50% !important;
-  border: 2px solid #27272A;
-  cursor: pointer;
-  transition: transform 0.2s, border-color 0.2s;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-.generator-panel .color-selector .color-dot:hover {
-  transform: scale(1.15);
-}
-.generator-panel .color-selector .color-dot.active {
-  border-color: #ffffff !important;
-  transform: scale(1.1);
-  box-shadow: 0 0 12px var(--primary-color, #A384FF);
-}
-.generator-panel .input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 4px;
-}
-.generator-panel .input-group label {
-  color: #E4E4E7;
-  font-size: 12px;
-  font-weight: 500;
-}
-.generator-panel .input-group input, .generator-panel .input-group textarea {
-  background-color: #121118;
-  border: 1px solid #27272A;
-  border-radius: 6px;
-  color: #ffffff;
-  padding: 10px;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s;
-  width: 100%;
-  box-sizing: border-box;
-}
-.generator-panel .input-group input:focus, .generator-panel .input-group textarea:focus {
-  border-color: #7C3AED;
-}
-.generator-panel .panel-divider {
-  border: 0;
-  border-top: 1px solid #27272A;
-  margin: 12px 0;
-}
-.generator-panel .panel-footer {
-  padding: 24px;
-  border-top: 1px solid #27272A;
-  background-color: #09090B;
-}
-.generator-panel .panel-footer .btn-export {
-  width: 100%;
-  background-color: #7C3AED;
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.2s;
-}
-.generator-panel .panel-footer .btn-export:hover {
-  background-color: #6D28D9;
+::-webkit-scrollbar-thumb {
+  background: var(--primary-gradient) !important;
+  background-color: var(--primary-color) !important;
+  border-radius: 10px !important;
 }
 
-.preview-area {
-  flex: 1;
-  height: 100vh;
-  background-color: #141416;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  box-sizing: border-box;
-  overflow: hidden;
-  min-width: 0;
+/* --- LOGO E DESTAQUES GERAIS --- */
+.logo {
+  color: var(--primary-color) !important;
 }
-.preview-area .iframe-wrapper {
-  width: 100%;
-  height: 100%;
-  background: #030207;
-  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.5);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #27272A;
-  transition: width 0.3s ease, height 0.3s ease;
-  display: flex;
-  position: relative;
+
+.logo span,
+.logo #brand-name {
+  color: #ffffff !important;
+  display: inline-block;
 }
-.preview-area .iframe-wrapper iframe {
+
+.logo-bracket,
+.logo::before,
+.logo::after {
+  color: var(--primary-color) !important;
+}
+
+/* --- BOTÕES GERAIS E BADGES (Inclui o botão FULL STACK DEV) --- */
+.btn-lang {
+  background: var(--primary-gradient) !important;
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
+.badge-purple,
+.about-subtitle,
+.profile-info h3 span {
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  color: var(--primary-color) !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.hero-badge,
+.tech-badges .badge,
+.project-techs .tech-tag {
+  background-color: var(--primary-glow) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 15px var(--primary-color) !important;
+  box-shadow: 0 0 0 1.5px var(--primary-color) !important;
+}
+
+.tech-badges .badge:hover {
+  transform: translateY(-2px) !important;
+  background-color: var(--primary-glow) !important;
+  box-shadow: 0 0 0 1.5px var(--primary-color) !important;
+}
+
+/* --- BOTÕES PRINCIPAIS E REDES SOCIAIS --- */
+.social-btn,
+.social-link,
+.social-icon,
+.social-links a {
+  /* Garante o fundo, cor e força a recriação da borda com a cor certa */
+  background-color: var(--primary-glow) !important;
+  border: 1px solid var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  box-shadow: none !important;
+  /* Limpa qualquer sombra antiga que possa parecer borda */
+}
+
+/* Pinta os ícones no estado normal */
+.social-btn svg path,
+.social-link svg path,
+.social-icon svg path,
+.social-links a svg path,
+.social-btn svg circle,
+.social-link svg circle,
+.social-links a svg circle {
+  fill: var(--primary-color) !important;
+  transition: fill 0.3s ease !important;
+}
+
+/* Estado Hover (Mouse por cima) */
+.social-btn:hover,
+.social-link:hover,
+.social-icon:hover,
+.social-links a:hover {
+  background: var(--primary-gradient) !important;
+  background-color: var(--primary-color) !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 15px var(--primary-glow) !important;
+  color: #ffffff !important;
+}
+
+/* Ícones brancos no Hover */
+.social-btn:hover svg path,
+.social-link:hover svg path,
+.social-icon:hover svg path,
+.social-links a:hover svg path,
+.social-btn:hover svg circle,
+.social-link:hover svg circle,
+.social-links a:hover svg circle {
+  fill: #ffffff !important;
+}
+
+/* Botões Maiores ("Baixar Currículo" e "Começar Projeto") */
+.btn-download,
+.btn-start-project {
+  background: var(--primary-gradient) !important;
+  background-color: var(--primary-color) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px var(--primary-glow) !important;
+}
+
+/* --- TEXTOS E ELEMENTOS DE SEÇÕES (Empresas, Ícones, etc) --- */
+/* --- TEXTOS E ELEMENTOS DE SEÇÕES (Empresas, Ícones, etc) --- */
+.company-name {
+  color: var(--primary-color) !important;
+}
+
+.scroll-indicator svg path,
+.scroll-down svg path {
+  stroke: var(--primary-color) !important;
+}
+
+/* Deixamos apenas o Avatar Placeholder, removendo os ícones de chamada (mic/telefone) da regra */
+.avatar-placeholder svg path,
+.avatar-placeholder svg circle {
+  fill: var(--primary-color) !important;
+}
+
+/* --- O PLANETA DA SEÇÃO HERO (.hero-planet-bg) --- */
+/* Colore apenas as linhas e gradientes de dentro do SVG, sem duplicar o fundo */
+.hero-planet-bg stop,
+#hero-planet-bg stop,
+.hero-planet-bg stop[stop-color],
+#hero-planet-bg stop[stop-color] {
+  stop-color: var(--primary-color) !important;
+}
+
+.hero-planet-bg path,
+.project-card {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+}
+
+.project-card:hover {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--primary-glow) !important;
+}
+
+.project-links .project-link-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid #27272A !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease !important;
+  padding: 10px 20px !important;
+}
+
+.project-links .project-link-btn:hover {
+  background: var(--primary-gradient) !important;
+  background-color: var(--primary-color) !important;
+  border-color: transparent !important;
+}
+
+.project-link-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 8px !important;
+}
+
+/* --- EXPERIÊNCIAS E GRIDS --- */
+.exp-wrapper-single-active {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 60px !important;
   width: 100% !important;
-  height: 100% !important;
-  min-height: 100% !important;
-  border: none;
-  display: block;
 }
-.preview-area .iframe-wrapper.view-desktop {
-  width: 100%;
-  height: 100%;
+
+.projects-grid {
+  display: grid !important;
+  gap: 2rem !important;
+  grid-template-columns: 1fr !important;
 }
-.preview-area .iframe-wrapper.view-tablet {
-  width: 768px;
-  max-width: 100%;
-  height: 90%;
-  min-height: 500px;
-  border-radius: 24px;
-  border: 8px solid #27272A;
+
+@media (min-width: 768px) {
+  .projects-grid.portfolio-full-width {
+    grid-template-columns: 1fr !important;
+    max-width: 760px !important; /* Mais largo e elegante que 600px, mas não quebra a tela */
+    margin: 0 auto !important; /* Mantém centralizado perfeitamente */
+  }
+  .projects-grid:not(.portfolio-full-width):not(.portfolio-three-stretch) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .projects-grid.portfolio-three-stretch {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .projects-grid.portfolio-three-stretch .project-card:nth-child(3) {
+    grid-column: span 2 !important;
+  }
 }
-.preview-area .iframe-wrapper.view-mobile {
-  width: 375px;
-  max-width: 100%;
-  height: 85%;
-  min-height: 450px;
-  border-radius: 32px;
-  border: 12px solid #27272A;
+/* --- ESTILOS DE FOTO DINÂMICA --- */
+.contact-ui-mockup .avatar-img,
+.overview-img {
+  content: var(--profile-img) !important;
+}
+
+.overview-img {
+  opacity: 1 !important;
+}
+
+body.no-profile-photo .swiper-slide:not([data-swiper-slide-index="0"]):not(:first-child) {
+  display: none !important;
+}
+body.no-profile-photo .swiper-slide-duplicate {
+  display: none !important;
+}
+body.no-profile-photo .swiper-button-next,
+body.no-profile-photo .swiper-button-prev,
+body.no-profile-photo .carousel-arrow,
+body.no-profile-photo .swiper-pagination {
+  display: none !important;
+}
+body.no-profile-photo .swiper-slide-active,
+body.no-profile-photo .swiper-slide {
+  pointer-events: none !important;
+  touch-action: none !important;
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+          user-select: none !important;
+}
+body.no-profile-photo .swiper-wrapper {
+  transform: translate3d(0px, 0px, 0px) !important;
+  transition-duration: 0ms !important;
+  pointer-events: none !important;
+}
+body.no-profile-photo .overview-swiper,
+body.no-profile-photo .about-image-card {
+  pointer-events: none !important;
+  touch-action: none !important;
+}
+body.no-profile-photo .swiper-slide:first-child .about-image-card img {
+  opacity: 0 !important;
+}
+body.no-profile-photo .swiper-slide:first-child .about-image-card {
+  background: #111115 !important;
+  border: 2px dashed #27272A !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 20px !important;
+  min-height: 380px !important;
+}
+body.no-profile-photo .swiper-slide:first-child .about-image-card::after {
+  content: "Insira sua foto de perfil no painel lateral 📷" !important;
+  color: #71717A !important;
+  font-family: "Outfit", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* Pinta especificamente o bonequinho dentro do container de avatar muted */
+.avatar-muted-circle svg path {
+  fill: var(--primary-color) !important;
+  transition: fill 0.3s ease !important;
 }/*# sourceMappingURL=style.css.map */

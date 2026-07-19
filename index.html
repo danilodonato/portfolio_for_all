@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="sites, web, desenvolvimento, frontend, programador, designer, ui, freelancer, website, portfolio, dados, data engineer" />
+    <meta name="keywords"
+        content="sites, web, desenvolvimento, frontend, programador, designer, ui, freelancer, website, portfolio, dados, data engineer" />
     <meta name="copyright" content="[Seu Nome] 2026" />
     <meta name="author" content="[Seu Nome]" />
     <meta name="title" content="[Seu Nome] | Portfolio" />
@@ -12,8 +13,9 @@
 
     <title>Portfolio // [Seu Nome]</title>
 
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="icon" href="./assets/svg/logo.svg" />
+    <!-- Substitua o seu link antigo por este -->
+    <link rel="stylesheet" href="/src/assets/css/style.scss">
+    <link rel="icon" type="image/svg+xml" href="/src/assets/svg/icon.svg" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="" />
@@ -53,12 +55,7 @@
                 <a href="#projetos" class="nav-link" data-pt="Projetos" data-en="Projects">Projetos</a>
                 <a href="#contato" class="nav-link" data-pt="Contato" data-en="Contact">Contato</a>
 
-                <button class="btn-lang mobile-only-btn">BR</button>
             </nav>
-
-            <div class="header-action">
-                <button class="btn-lang" id="btn-lang-desktop">BR</button>
-            </div>
 
         </div>
     </header>
@@ -72,7 +69,7 @@
             </h1>
 
             <p class="hero-description" id="hero-bio"
-                data-pt="Desenvolvedor Full Stack focado em criar aplicações web modernas, rápidas e com foco total na experiência do usuário. Transformando linhas de código em soluções reais."
+                data-pt="Engenheiro de Dados focado em construir pipelines escaláveis, otimizar arquiteturas em nuvem e garantir a qualidade da informação. Transformando dados brutos em insights estratégicos reais para o negócio."
                 data-en="Full Stack Developer focused on creating modern, fast web applications with a total focus on user experience. Transforming lines of code into real solutions.">
                 Desenvolvedor Full Stack focado em criar aplicações web modernas, rápidas e com foco total na
                 experiência do usuário. Transformando linhas de código em soluções reais.
@@ -144,13 +141,13 @@
             <div class="overview-image-wrapper swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="assets/img/user.jpg" alt="Caelium" class="overview-img">
+                        <img src="/src/assets/img/user.jpg" alt="Caelium" class="overview-img">
                     </div>
                     <div class="swiper-slide">
-                        <img src="assets/img/user3.avif" alt="Caelium" class="overview-img">
+                        <img src="/src/assets/img/user3.avif" alt="Caelium" class="overview-img">
                     </div>
                     <div class="swiper-slide">
-                        <img src="assets/img/user4.avif" alt="Caelium" class="overview-img">
+                        <img src="/src/assets/img/user4.avif" alt="Caelium" class="overview-img">
                     </div>
                 </div>
                 <div class="swiper-pagination carousel-dots"></div>
@@ -181,24 +178,29 @@
                 <div class="overview-socials">
                     <span class="socials-label" data-pt="Redes Sociais" data-en="Social Media">Redes Sociais</span>
                     <div class="socials-icons">
-                        <a href="SEU_LINK_DO_GITHUB" class="social-btn" aria-label="GitHub">
-                            <img src="assets/svg/github.svg" alt="GitHub">
+                        <p class="social-invite-text">Me siga para mais dicas e projetos épicos:</p>
+                        <a href="#" class="social-btn" aria-label="GitHub"
+                            target="_blank">
+                            <img src="/src/assets/svg/github.svg" alt="GitHub">
                         </a>
-                        <a href="SEU_LINK_DO_LINKEDIN" class="social-btn" aria-label="LinkedIn">
-                            <img src="assets/svg/linkedin.svg" alt="LinkedIn">
+                        <a href="#" class="social-btn" aria-label="LinkedIn"
+                            target="_blank">
+                            <img src="/src/assets/svg/linkedin.svg" alt="LinkedIn">
                         </a>
-                        <a href="SEU_LINK_DO_YOUTUBE" class="social-btn" aria-label="YouTube">
-                            <img src="assets/svg/youtube.svg" alt="YouTube">
+                        <a href="#" class="social-btn" aria-label="YouTube"
+                            target="_blank">
+                            <img src="/src/assets/svg/youtube.svg" alt="YouTube">
                         </a>
-                        <a href="SEU_LINK_DO_INSTAGRAM" class="social-btn" aria-label="Instagram">
-                            <img src="assets/svg/insta.svg" alt="Instagram">
+                        <a href="#" class="social-btn" aria-label="Instagram"
+                            target="_blank">
+                            <img src="/src/assets/svg/insta.svg" alt="Instagram">
                         </a>
                     </div>
                 </div>
 
                 <a href="assets/pdf/seu-curriculo.pdf" download class="btn-download" data-pt="Baixar Currículo"
                     data-en="Download Resume">
-                    <img src="assets/svg/download.svg" alt="">
+                    <img src="/src/assets/svg/download.svg" alt="">
                     Baixar Currículo
                 </a>
             </div>
@@ -334,7 +336,7 @@
             <!-- PROJETO 1 -->
             <div class="project-card">
                 <div class="project-image-wrapper">
-                    <img src="assets/img/ecommerce.jpg" alt="Capa do Projeto 1" class="project-img">
+                    <img src="/src/assets/img/ecommerce.jpg" alt="Capa do Projeto 1" class="project-img">
                 </div>
                 <div class="project-content">
                     <h3 class="project-title" data-pt="E-Commerce Platform" data-en="E-Commerce Platform">E-Commerce
@@ -354,7 +356,7 @@
 
                     <div class="project-links">
                         <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
-                            <img src="assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
+                            <img src="/src/assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
                                 data-en="Code">Código</span>
                         </a>
                         <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
@@ -372,7 +374,7 @@
             <!-- PROJETO 2 -->
             <div class="project-card">
                 <div class="project-image-wrapper">
-                    <img src="assets/img/fintech.jpg" alt="Capa do Projeto 2" class="project-img">
+                    <img src="/src/assets/img/fintech.jpg" alt="Capa do Projeto 2" class="project-img">
                 </div>
                 <div class="project-content">
                     <h3 class="project-title" data-pt="Fintech Dashboard" data-en="Fintech Dashboard">Fintech Dashboard
@@ -392,7 +394,7 @@
 
                     <div class="project-links">
                         <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
-                            <img src="assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
+                            <img src="/src/assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
                                 data-en="Code">Código</span>
                         </a>
                         <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
@@ -410,7 +412,7 @@
             <!-- PROJETO 3 -->
             <div class="project-card">
                 <div class="project-image-wrapper">
-                    <img src="assets/img/data_analytics.jpg" alt="Capa do Projeto 3" class="project-img">
+                    <img src="/src/assets/img/data_analytics.jpg" alt="Capa do Projeto 3" class="project-img">
                 </div>
                 <div class="project-content">
                     <h3 class="project-title" data-pt="AI Data Analytics SaaS" data-en="AI Data Analytics SaaS">AI Data
@@ -431,7 +433,7 @@
 
                     <div class="project-links">
                         <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
-                            <img src="assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
+                            <img src="/src/assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
                                 data-en="Code">Código</span>
                         </a>
                         <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
@@ -449,7 +451,7 @@
             <!-- PROJETO 4 -->
             <div class="project-card">
                 <div class="project-image-wrapper">
-                    <img src="assets/img/message_api.jpg" alt="Capa do Projeto 4" class="project-img">
+                    <img src="/src/assets/img/message_api.jpg" alt="Capa do Projeto 4" class="project-img">
                 </div>
                 <div class="project-content">
                     <h3 class="project-title" data-pt="Real-Time Messaging API" data-en="Real-Time Messaging API">
@@ -470,7 +472,7 @@
 
                     <div class="project-links">
                         <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
-                            <img src="assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
+                            <img src="/src/assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
                                 data-en="Code">Código</span>
                         </a>
                         <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
@@ -501,16 +503,16 @@
 
                 <div class="contact-socials">
                     <a href="#" class="social-btn" aria-label="GitHub">
-                        <img src="assets/svg/github.svg" alt="GitHub">
+                        <img src="/src/assets/svg/github.svg" alt="GitHub">
                     </a>
                     <a href="#" class="social-btn" aria-label="LinkedIn">
-                        <img src="assets/svg/linkedin.svg" alt="LinkedIn">
+                        <img src="/src/assets/svg/linkedin.svg" alt="LinkedIn">
                     </a>
                     <a href="#" class="social-btn" aria-label="YouTube">
-                        <img src="assets/svg/youtube.svg" alt="YouTube">
+                        <img src="/src/assets/svg/youtube.svg" alt="YouTube">
                     </a>
                     <a href="#" class="social-btn" aria-label="Instagram">
-                        <img src="assets/svg/insta.svg" alt="Instagram">
+                        <img src="/src/assets/svg/insta.svg" alt="Instagram">
                     </a>
                 </div>
 
@@ -526,7 +528,7 @@
             <div class="contact-ui-mockup">
                 <div class="video-card card-active">
                     <div class="avatar-circle-wrapper">
-                        <img src="assets/img/user.jpg" alt="Sua Foto" class="avatar-img">
+                        <img src="/src/assets/img/user.jpg" alt="Sua Foto" class="avatar-img">
                     </div>
                 </div>
 
@@ -570,18 +572,14 @@
 
     <footer class="main-footer">
         <div class="footer-container">
-            <p class="footer-credits" data-pt="&copy; 2026 Danilo Donato. Todos os direitos reservados."
-                data-en="&copy; 2026 Danilo Donato. All rights reserved.">
-                &copy; 2026 Danilo Donato. Todos os direitos reservados.
+            <p class="footer-credits" data-pt="&copy; 2026 Caelium. Todos os direitos reservados."
+                data-en="&copy; 2026 Caelium. All rights reserved.">
+                &copy; 2026 Caelium. Todos os direitos reservados.
             </p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <script src="assets/js/app.js"></script>
+    <script type="module" src="/src/assets/js/app.js"></script>
 </body>
 
 </html>
