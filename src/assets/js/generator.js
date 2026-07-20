@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeGlow = "rgba(163, 132, 255, 0.15)";
     let activeGradient = "linear-gradient(to right, #A384FF, #7C3AED)";
     let activeBgImage = "space.svg"; // Variável para controlar o SVG de fundo
-    
+
     let importedCvUrl = "";
     let uploadedPhotosUrls = ["", "", ""];
     let uploadedProjImagesUrls = ["", "", "", ""];
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             activeColor = dot.getAttribute('data-color');
             activeGlow = dot.getAttribute('data-glow');
             activeGradient = dot.getAttribute('data-gradient');
-            
+
             // Mapeia a cor escolhida para a imagem SVG correspondente na pasta
             const colorMap = {
                 '#A384FF': 'space.svg',
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         innerDoc.documentElement.style.setProperty('--primary-gradient', activeGradient);
 
         // 3. TROCA O BRILHO SVG MANTENDO OS GRADIENTES INTACTOS
-        
+
         // A) Verifica tags <img> normais
         innerDoc.querySelectorAll('img').forEach(img => {
             if (img.src && img.src.includes('space') && img.src.includes('.svg')) {
@@ -73,14 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         let dynamicStyles = "";
-        
+
         // Expressão regular (Regex) para encontrar apenas a parte "url(...space...svg)" sem apagar o linear-gradient
         const bgRegex = /url\(['"]?[^'")]*space[^'")]*\.svg['"]?\)/gi;
         const newUrl = `url("/src/assets/svg/${activeBgImage}")`;
 
         // B) Verifica elementos e pseudo-elementos (::before / ::after) no CSS
         innerDoc.querySelectorAll('body, div, section, main, header').forEach(el => {
-            
+
             // 1. Elemento direto
             const style = innerWindow.getComputedStyle(el);
             if (style.backgroundImage && style.backgroundImage.includes('space') && style.backgroundImage.includes('.svg')) {
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selector = el.id ? '#' + el.id : (el.classList.length > 0 ? '.' + Array.from(el.classList).join('.') : el.tagName.toLowerCase());
                 dynamicStyles += `${selector}::before { background-image: ${newBgBefore} !important; }\n`;
             }
-            
+
             // 3. Pseudo-elemento ::after
             const afterStyle = innerWindow.getComputedStyle(el, '::after');
             if (afterStyle.backgroundImage && afterStyle.backgroundImage.includes('space') && afterStyle.backgroundImage.includes('.svg')) {
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             styleTag.id = 'dynamic-bg-before';
             innerDoc.head.appendChild(styleTag);
         }
-        
+
         styleTag.textContent = dynamicStyles;
     }// Aplica as variáveis CSS e troca as imagens (Versão com preservação de Gradientes)
     function applyCSSVariables() {
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         innerDoc.documentElement.style.setProperty('--primary-gradient', activeGradient);
 
         // 2. TROCA O BRILHO SVG MANTENDO OS GRADIENTES INTACTOS
-        
+
         // A) Verifica tags <img> normais
         innerDoc.querySelectorAll('img').forEach(img => {
             if (img.src && img.src.includes('space') && img.src.includes('.svg')) {
@@ -137,14 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         let dynamicStyles = "";
-        
+
         // Expressão regular (Regex) para encontrar apenas a parte "url(...space...svg)" sem apagar o linear-gradient
         const bgRegex = /url\(['"]?[^'")]*space[^'")]*\.svg['"]?\)/gi;
         const newUrl = `url("/src/assets/svg/${activeBgImage}")`;
 
         // B) Verifica elementos e pseudo-elementos (::before / ::after) no CSS
         innerDoc.querySelectorAll('body, div, section, main, header').forEach(el => {
-            
+
             // 1. Elemento direto
             const style = innerWindow.getComputedStyle(el);
             if (style.backgroundImage && style.backgroundImage.includes('space') && style.backgroundImage.includes('.svg')) {
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selector = el.id ? '#' + el.id : (el.classList.length > 0 ? '.' + Array.from(el.classList).join('.') : el.tagName.toLowerCase());
                 dynamicStyles += `${selector}::before { background-image: ${newBgBefore} !important; }\n`;
             }
-            
+
             // 3. Pseudo-elemento ::after
             const afterStyle = innerWindow.getComputedStyle(el, '::after');
             if (afterStyle.backgroundImage && afterStyle.backgroundImage.includes('space') && afterStyle.backgroundImage.includes('.svg')) {
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             styleTag.id = 'dynamic-bg-before';
             innerDoc.head.appendChild(styleTag);
         }
-        
+
         styleTag.textContent = dynamicStyles;
     }
     function setupLiveBinding() {
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function updatePhotoState() {
             const hasPhoto = !!uploadedPhotosUrls[0];
             innerDoc.body.classList.toggle('no-profile-photo', !hasPhoto);
-            
+
             if (hasPhoto) {
                 innerDoc.documentElement.style.setProperty('--profile-img', `url("${uploadedPhotosUrls[0]}")`);
             }
@@ -277,10 +277,10 @@ document.addEventListener('DOMContentLoaded', () => {
         function syncExperiences() {
             const qty = parseInt(selectQtyExp.value);
             const expCards = innerDoc.querySelectorAll('.experience-card');
-            
-            for(let i=1; i<=3; i++) {
+
+            for (let i = 1; i <= 3; i++) {
                 const block = document.querySelector(`.id-exp-${i}`);
-                if(block) block.style.display = i <= qty ? 'block' : 'none';
+                if (block) block.style.display = i <= qty ? 'block' : 'none';
             }
 
             const expWrapper = innerDoc.querySelector('.experience-wrapper');
@@ -290,9 +290,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const num = index + 1;
                 if (index < qty) {
                     card.style.setProperty('display', 'flex', 'important');
-                    
+
                     const titleInput = document.getElementById(`input-exp-title-${num}`);
                     const companyInput = document.getElementById(`input-exp-company-${num}`);
+
+                    // Aqui usamos classe porque o 'card.querySelector' busca isoladamente SÓ dentro deste card
                     const titleTarget = card.querySelector('.job-title');
 
                     if (titleInput && companyInput && titleTarget) {
@@ -301,8 +303,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         companyInput.addEventListener('input', updateTitle);
                     }
 
-                    bindText(`input-exp-date-${num}`, '.card-date');
-                    bindText(`input-exp-desc-${num}`, '.job-description');
+                    // === A CORREÇÃO ESTÁ AQUI 👇 ===
+                    // Trocamos '.card-date' por '#exp-date-1', '#exp-date-2'...
+                    bindText(`input-exp-date-${num}`, `#exp-date-${num}`);
+
+                    // Trocamos '.job-description' por '#exp-desc-1', '#exp-desc-2'...
+                    bindText(`input-exp-desc-${num}`, `#exp-desc-${num}`);
+                    // ===============================
 
                     const techsInput = document.getElementById(`input-exp-techs-${num}`);
                     const techsContainer = card.querySelector('.tech-badges');
@@ -310,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         techsInput.addEventListener('input', (e) => {
                             techsContainer.innerHTML = '';
                             e.target.value.split(',').forEach(tech => {
-                                if(!tech.trim()) return;
+                                if (!tech.trim()) return;
                                 const span = innerDoc.createElement('span');
                                 span.className = 'badge';
                                 span.textContent = tech.trim();
@@ -333,9 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const projectCards = innerDoc.querySelectorAll('.project-card, .portfolio-card');
             const projectGrid = innerDoc.querySelector('.projects-grid, .portfolio-grid');
 
-            for(let i=1; i<=4; i++) {
+            for (let i = 1; i <= 4; i++) {
                 const block = document.querySelector(`.id-proj-${i}`);
-                if(block) block.style.display = i <= qty ? 'block' : 'none';
+                if (block) block.style.display = i <= qty ? 'block' : 'none';
             }
 
             if (!projectGrid || !projectCards) return;
@@ -361,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         techsInput.addEventListener('input', (e) => {
                             techsContainer.innerHTML = '';
                             e.target.value.split(',').forEach(tech => {
-                                if(!tech.trim()) return;
+                                if (!tech.trim()) return;
                                 const span = innerDoc.createElement('span');
                                 span.className = card.querySelector('.tech-tag') ? 'tech-tag' : 'badge';
                                 span.textContent = tech.trim();
@@ -378,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (codeInput && btnCode) codeInput.addEventListener('input', (e) => btnCode.setAttribute('href', e.target.value));
                     if (liveInput && btnLive) liveInput.addEventListener('input', (e) => btnLive.setAttribute('href', e.target.value));
-                    
+
                     if (btnLive && chkDemo) {
                         chkDemo.addEventListener('change', () => {
                             btnLive.style.setProperty('display', chkDemo.checked ? 'inline-flex' : 'none', 'important');
@@ -412,13 +419,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        [1,2,3,4].forEach(i => {
+        [1, 2, 3, 4].forEach(i => {
             const btn = document.getElementById(`lbl-proj-img-${i}`);
             const inp = document.getElementById(`input-proj-img-${i}`);
-            if(btn && inp) btn.onclick = () => inp.click();
+            if (btn && inp) btn.onclick = () => inp.click();
         });
         const btnProfile = document.getElementById('lbl-img-1');
-        if(btnProfile) btnProfile.onclick = () => document.getElementById('input-img-1').click();
+        if (btnProfile) btnProfile.onclick = () => document.getElementById('input-img-1').click();
 
         const cvInput = document.getElementById('input-cv-file');
         const cvBtn = document.getElementById('upload-label');
@@ -450,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Abre o modal quando clicar em baixar
     downloadBtn.addEventListener('click', () => {
         modal.classList.add('active');
-        
+
         // AQUI ENTRARÁ A LÓGICA DO JSZip QUE FAREMOS EM SEGUIDA!
         // gerarZipDoPortfolio();
     });
@@ -474,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
     downloadBtn.addEventListener('click', async () => {
         // Mostra a tela bonita da sua logo falando
         modal.classList.add('active');
-        
+
         // Chama a função pesada que gera o arquivo
         await gerarZipDoPortfolio();
     });
@@ -507,11 +514,11 @@ async function gerarZipDoPortfolio() {
         // Coloque aqui o caminho exato de tudo que o site precisa para funcionar:
         const assetsNecessarios = [
             // Seus estilos (Ajuste o caminho se o nome for diferente)
-            "/src/assets/css/style.css", 
-            
+            "/src/assets/css/style.css",
+
             // Seu JavaScript do portfólio (se houver)
             // "/src/assets/js/main.js",
-            
+
             // Suas imagens e SVGs
             "/src/assets/svg/github.svg",
             "/src/assets/svg/linkedin.svg",
@@ -527,10 +534,10 @@ async function gerarZipDoPortfolio() {
                 const response = await fetch(url);
                 if (response.ok) {
                     const blob = await response.blob();
-                    
+
                     // Remove a primeira barra (/) para evitar criar uma pasta vazia na raiz do ZIP
                     const caminhoNoZip = url.startsWith('/') ? url.substring(1) : url;
-                    
+
                     // O JSZip cria as pastas (src/assets/svg/...) automaticamente!
                     zip.file(caminhoNoZip, blob);
                 } else {
