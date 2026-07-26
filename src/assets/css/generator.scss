@@ -77,7 +77,7 @@ body.generator-body {
 }
 
 .caelium-header a {
-    color: var(--accent-color);
+    color: #2BDEFD;
     text-decoration: none;
     font-weight: 600;
     transition: opacity 0.2s;
@@ -184,6 +184,11 @@ select {
     font-size: 14px;
     box-sizing: border-box;
     transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+textarea {
+    resize: vertical;
+    max-width: 100%;
 }
 
 input:focus,
@@ -592,4 +597,44 @@ iframe {
     align-items: center;
     gap: 16px;
     margin-top: 0; /* O espaçamento agora é controlado pelo texto acima */
+}
+
+/* ==========================================================================
+   AJUSTE MÍNIMO PARA TELAS ESTREITAS
+   O gerador é uma ferramenta de edição pensada pra desktop (painel + preview
+   lado a lado). Isso aqui não tenta replicar a experiência completa, só evita
+   que o painel de 400px fixos estoure a tela e quebre o layout num celular:
+   empilha painel e preview em vez de lado a lado.
+   ========================================================================== */
+@media (max-width: 900px) {
+    body.generator-body {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    .generator-content {
+        flex: none;
+        flex-direction: column;
+        overflow: visible;
+    }
+
+    .generator-panel {
+        flex: none;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .panel-inputs {
+        flex: none;
+        max-height: 50vh;
+    }
+
+    .preview-area {
+        flex: none;
+        height: 60vh;
+        padding: 12px;
+    }
 }

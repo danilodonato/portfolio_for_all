@@ -60,7 +60,6 @@ body.generator-body {
   display: flex;
   align-items: center;
   padding: 15px 20px;
-  background: #000;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -94,6 +93,7 @@ body.generator-body {
   display: block;
   /* Puxe para cima usando um valor negativo. Tente -2px ou -3px */
   transform: translateY(-2px);
+  margin-left: 5px;
 }
 
 .generator-panel {
@@ -307,19 +307,19 @@ iframe {
   margin-bottom: 20px;
 }
 
-/* --- CABEÇALHO DA MARCA NO PAINEL LATERAL --- */
 .generator-brand-header {
   display: flex;
   align-items: center;
-  gap: 16px; /* Espaçamento entre a logo e os textos */
-  padding: 0 20px 24px; /* Ajuste o padding de acordo com o seu painel */
+  gap: 16px;
+  /* O ajuste está aqui: 24px em cima, 20px nas laterais, e 24px embaixo */
+  padding: 0 20px 24px 0;
   margin-bottom: 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Uma linha super sutil para separar do menu */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .brand-logo-icon {
-  width: 42px; /* Tamanho do ícone. Ajuste se achar necessário */
-  height: 42px;
+  width: 54px; /* Tamanho do ícone. Ajuste se achar necessário */
+  height: 54px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -345,4 +345,248 @@ iframe {
   color: #A1A1AA; /* Cor sutil (muted) */
   margin: 0;
   line-height: 1;
+}
+
+/* --- DIVISORES DE SEÇÃO DO PAINEL LATERAL --- */
+.panel-section-divider {
+  display: flex;
+  align-items: center;
+  margin: 48px 0 24px 0; /* Muito espaço em cima, espaço médio embaixo */
+  width: 100%;
+}
+
+.panel-section-divider span {
+  font-family: "Outfit", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-color); /* Usa o seu roxo/cor do tema */
+  background: rgba(163, 132, 255, 0.1); /* Fundo roxo translúcido */
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(163, 132, 255, 0.2);
+}
+
+/* A linha que estica até o final */
+.panel-section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-left: 16px;
+}
+
+/* --- RODAPÉ E BOTÃO DE DOWNLOAD --- */
+.panel-footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linha sutil separando das configurações */
+  display: flex;
+  justify-content: center;
+}
+
+.generate-btn {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important; /* Força tudo a ir para o centro */
+  gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important; /* MÁGICA: Impede o botão de vazar para fora do painel */
+  padding: 16px 20px;
+  background: var(--accent-color);
+  color: #ffffff;
+  font-family: "Outfit", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(163, 132, 255, 0.25);
+}
+
+/* Protege o ícone e o texto */
+.generate-btn svg {
+  /* A trava absoluta do Flexbox: não cresce (0), não encolhe (0), tamanho base (20px) */
+  flex: 0 0 20px !important;
+  /* Força as dimensões exatas */
+  width: 20px !important;
+  height: 20px !important;
+  max-width: 20px !important;
+  display: block;
+}
+
+.generate-btn span {
+  white-space: nowrap; /* Mantém o texto em uma linha só */
+}
+
+.generate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(163, 132, 255, 0.45);
+  filter: brightness(1.1);
+}
+
+/* --- MODAL DE DOWNLOAD --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Classe para ativar o modal via JavaScript */
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  background: #121214;
+  border: 1px solid rgba(163, 132, 255, 0.2);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  padding: 32px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #A1A1AA;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #ffffff;
+}
+
+/* O mascote falando */
+.mascot-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.mascot-img {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.speech-bubble h3 {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--accent-color);
+  margin: 0 0 4px 0;
+  font-size: 20px;
+}
+
+.speech-bubble p {
+  font-family: "Outfit", sans-serif;
+  color: #E4E4E7;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.highlight-text {
+  font-family: "Outfit", sans-serif;
+  font-size: 15px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.video-container {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+/* --- ÍCONES SOCIAIS DO MODAL --- */
+.socials-icons {
+  display: flex;
+  justify-content: center; /* Centraliza os botões */
+  align-items: center;
+  gap: 16px; /* Espaço entre os ícones */
+  margin-top: 20px;
+}
+
+.socials-icons .social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; /* Tamanho do botão ao redor do ícone */
+  height: 44px;
+  background-color: rgba(255, 255, 255, 0.03); /* Fundo de vidro sutil */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%; /* Deixa arredondado */
+  transition: all 0.3s ease;
+}
+
+/* A TRAVA PARA OS ÍCONES NÃO EXPLODIREM */
+.socials-icons .social-btn img,
+.socials-icons .social-btn svg {
+  width: 18px !important; /* Trava a largura */
+  height: 18px !important; /* Trava a altura */
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: block;
+}
+
+/* Efeito ao passar o mouse */
+.socials-icons .social-btn:hover {
+  background-color: rgba(163, 132, 255, 0.1); /* Fica levemente roxo */
+  border-color: rgba(163, 132, 255, 0.5);
+  transform: translateY(-4px); /* Pula para cima */
+  box-shadow: 0 8px 20px rgba(163, 132, 255, 0.25); /* Efeito de brilho */
+}
+
+/* --- ÁREA DE CONVITE DAS REDES SOCIAIS --- */
+.social-actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.social-invite-text {
+  font-family: "Outfit", sans-serif;
+  font-size: 14px;
+  color: #A1A1AA; /* Um cinza elegante que não rouba a atenção do vídeo */
+  margin: 0 0 16px 0; /* Espaço exato entre a frase e os botões */
+}
+
+/* Garanta que a sua classe de ícones fique com o margin-top zerado agora */
+.socials-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 0; /* O espaçamento agora é controlado pelo texto acima */
 }/*# sourceMappingURL=generator.css.map */

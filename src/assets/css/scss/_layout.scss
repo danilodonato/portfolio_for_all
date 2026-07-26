@@ -621,6 +621,17 @@ canvas {
   margin: 0 0 40px 0;
 }
 
+/* Textos de descrição vêm de campos livres do gerador: sem isso, uma string
+   longa sem espaços (ex: digitada sem parar) estoura o container para o lado. */
+.hero-description,
+.overview-description,
+.job-description,
+.project-description,
+.contact-description {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 .hero-badge {
   background-color: rgba(#A384FF, 0.25);
   color: #ffffff;
@@ -748,6 +759,13 @@ canvas {
   align-items: center;
   position: relative;
 
+  // No mobile o app.js não usa mais pin/scroll-jacking pra essa seção (ver public/app.js),
+  // então não faz sentido forçar 100vh de altura pra caber só a lista de palavras
+  @media (max-width: 768px) {
+    min-height: auto;
+    padding: 60px 24px;
+  }
+
   .keywords-wrapper {
     position: relative;
     width: 100%;
@@ -756,6 +774,12 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 768px) {
+      height: auto;
+      flex-direction: column;
+      gap: 16px;
+    }
   }
 
   .reveal-text {
@@ -773,6 +797,11 @@ canvas {
 
     @media (max-width: 768px) {
       font-size: 32px;
+      // Sem pin no mobile, todas ficam visíveis ao mesmo tempo: tira do absolute
+      // pra não sobrepor uma em cima da outra
+      position: static;
+      opacity: 1;
+      transform: none;
     }
   }
 }

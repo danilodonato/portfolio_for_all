@@ -1,11 +1,3 @@
-// Importando o GSAP e o ScrollTrigger das dependências locais
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Importando o Swiper e seus estilos necessários
-import Swiper from "swiper";
-import "swiper/css"; // O Vite vai incluir os estilos do Swiper automaticamente aqui
-
 // Registrar o plugin do GSAP como você já faz
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,49 +109,52 @@ function createStars() {
 const words = gsap.utils.toArray('.reveal-text');
 
 if (words.length > 0) {
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.keywords-section', 
-            start: 'top top',            
-            end: `+=${words.length * 100}%`, 
-            pin: true,                   
-            scrub: 1,                    
-        }
-    });
+    // No mobile o scroll-jacking (pin + centenas de % de scroll extra por palavra)
+    // deixa a página exageradamente longa. Em vez disso, mostra as palavras direto,
+    // sem pin, empilhadas em fluxo normal (ajuste correspondente no CSS).
+    if (window.matchMedia('(max-width: 768px)').matches) {
+        gsap.set(words, { opacity: 1, y: 0 });
+    } else {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.keywords-section',
+                start: 'top top',
+                end: `+=${words.length * 100}%`,
+                pin: true,
+                scrub: 1,
+            }
+        });
 
-    words.forEach((word, index) => {
-        tl.to(word, {
-            opacity: 1,
-            y: 0,
-            duration: 1
-        })
-        .to({}, { duration: 0.5 });
-        
-        if (index < words.length - 1) {
+        words.forEach((word, index) => {
             tl.to(word, {
-                opacity: 0,
-                y: -40,
+                opacity: 1,
+                y: 0,
                 duration: 1
-            });
-        }
-    });
+            })
+            .to({}, { duration: 0.5 });
+
+            if (index < words.length - 1) {
+                tl.to(word, {
+                    opacity: 0,
+                    y: -40,
+                    duration: 1
+                });
+            }
+        });
+    }
 }
 
 
 // --- Carrossel de Imagens (Swiper) ---
+const overviewSlidesCount = document.querySelectorAll('.overview-image-wrapper .swiper-slide').length;
 const overviewSwiper = new Swiper('.overview-image-wrapper', {
-    loop: true,                 
-    grabCursor: true,           
+    loop: overviewSlidesCount > 1,
+    grabCursor: true,
     effect: 'slide',            
     speed: 600,                 
 
     autoplay: {
         delay: 2000,            
         disableOnInteraction: false, 
-    },
-
-    pagination: {
-        el: '.carousel-dots',
-        clickable: true,        
     },
 });

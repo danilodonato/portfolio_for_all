@@ -13,8 +13,8 @@
     "url": "git+https://github.com/danilodonato/portfolio_for_all.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Danilo Donato",
+  "license": "MIT",
   "type": "commonjs",
   "bugs": {
     "url": "https://github.com/danilodonato/portfolio_for_all/issues"

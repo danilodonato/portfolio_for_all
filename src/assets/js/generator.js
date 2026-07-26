@@ -249,6 +249,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     footerElement.textContent = footerString;
                     footerElement.setAttribute('data-pt', footerString);
                 }
+
+                innerDoc.title = `Portfolio // ${nameInput.value}`;
             });
         }
 
@@ -356,8 +358,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (index < qty) {
                     card.style.setProperty('display', 'flex', 'important');
 
-                    bindText(`input-proj-title-${num}`, '.project-title, .portfolio-title');
-                    bindText(`input-proj-desc-${num}`, '.project-description, .portfolio-description');
+                    // === A MÁGICA ACONTECE AQUI 👇 ===
+                    // Trocamos as classes genéricas pelos IDs únicos de cada card!
+                    bindText(`input-proj-title-${num}`, `#proj-title-${num}`);
+                    bindText(`input-proj-desc-${num}`, `#proj-desc-${num}`);
+                    // =================================
 
                     const imgTarget = card.querySelector('.project-img, .portfolio-img');
                     if (imgTarget && uploadedProjImagesUrls[index]) imgTarget.src = uploadedProjImagesUrls[index];
@@ -438,6 +443,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 innerDoc.querySelectorAll('.btn-download').forEach(b => {
                     b.setAttribute('href', importedCvUrl);
                     b.setAttribute('target', '_blank');
+                    // Preserva o nome/extensão real do arquivo para a exportação em zip
+                    b.setAttribute('data-export-filename', e.target.files[0].name);
                 });
             });
         }
@@ -497,65 +504,204 @@ async function gerarZipDoPortfolio() {
     try {
         const zip = new JSZip();
 
-        // 1. Capturar o iframe onde o portfólio está sendo modificado
-        const iframe = document.getElementById('portfolio-iframe');
-        let htmlContent = iframe.contentWindow.document.documentElement.outerHTML;
+        // 1. Capturar o iframe e CLONAR a estrutura
+        const iframeDoc = document.getElementById('portfolio-iframe').contentWindow.document;
+        const htmlClone = iframeDoc.documentElement.cloneNode(true);
 
-        // Limpeza de injeções do Vite (Remove scripts de recarregamento automático do Dev Server do HTML final)
-        htmlContent = htmlContent.replace(/<script type="module" src="\/@vite\/client"><\/script>/g, '');
+        // === 2. A EXTRAÇÃO DEFINITIVA DO CSS (USANDO CSSOM) ===
+        // Lê as regras diretamente da memória de renderização do navegador!
+        let combinedCSS = "";
+        try {
+            const sheets = iframeDoc.styleSheets;
+            for (let i = 0; i < sheets.length; i++) {
+                const sheet = sheets[i];
+                // Pula fontes do Google para não dar bloqueio de segurança
+                if (sheet.href && sheet.href.includes('fonts.googleapis')) continue;
+                
+                try {
+                    const rules = sheet.cssRules || sheet.rules;
+                    for (let j = 0; j < rules.length; j++) {
+                        combinedCSS += rules[j].cssText + "\n";
+                    }
+                } catch (err) {
+                    console.warn("Ignorando stylesheet externo (CORS)");
+                }
+            }
+        } catch (error) {
+            console.error("Erro ao ler CSSOM", error);
+        }
 
-        // Adiciona a tag DOCTYPE
-        htmlContent = "<!DOCTYPE html>\n" + htmlContent;
+        // Conserta os caminhos de imagens de fundo no CSS (/src/ => ./src/)
+        combinedCSS = combinedCSS.replace(/http:\/\/localhost:\d+\/src\//g, './src/');
+        combinedCSS = combinedCSS.replace(/url\(['"]?\/src\//gi, 'url("./src/');
+        
+        // Salva o CSS super poderoso e completo no ZIP!
+        zip.file("style.css", combinedCSS);
 
-        // Adiciona o HTML principal na raiz do ZIP
+        // === 3. FAXINA NO HTML ===
+        // Limpa as tags de estilo e os scripts do Vite, pois o CSS final já foi salvo
+        htmlClone.querySelectorAll('style').forEach(el => el.remove());
+        htmlClone.querySelectorAll('script[src*="@vite"]').forEach(el => el.remove());
+
+        // Desfaz a "sujeira" que o GSAP/ScrollTrigger deixou no DOM ao vivo (pin-spacer,
+        // transforms inline). Se isso for exportado junto, o app.js recria o pin em cima
+        // de um HTML que já nasce pinado e o layout quebra no arquivo baixado.
+        htmlClone.querySelectorAll('.pin-spacer').forEach(spacer => {
+            while (spacer.firstChild) {
+                spacer.parentNode.insertBefore(spacer.firstChild, spacer);
+            }
+            spacer.remove();
+        });
+        htmlClone.querySelectorAll('.keywords-section, .reveal-text').forEach(el => {
+            el.removeAttribute('style');
+        });
+
+        // Garante que o HTML chame o nosso novo style.css
+        let hasCss = false;
+        htmlClone.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href') || '';
+            // Só troca o link do NOSSO CSS (Vite/SCSS). CDNs externos (Swiper, fontes)
+            // precisam continuar apontando para fora, senão perdem o CSS inteiro no
+            // export (o CSSOM não consegue ler regras cross-origin por CORS).
+            if (href.includes('style.scss') || href.includes('style.css')) {
+                link.setAttribute('href', './style.css');
+                hasCss = true;
+            }
+        });
+        if (!hasCss) {
+            const cssLink = iframeDoc.createElement('link');
+            cssLink.rel = 'stylesheet';
+            cssLink.href = './style.css';
+            htmlClone.querySelector('head').appendChild(cssLink);
+        }
+
+        // Arruma os scripts locais
+        htmlClone.querySelectorAll('script[src]').forEach(script => {
+            let currentSrc = script.getAttribute('src');
+            if (currentSrc && currentSrc.startsWith('http')) return; 
+            if (currentSrc && (currentSrc.includes('app.js') || currentSrc.includes('svg-inject'))) {
+                script.removeAttribute('type'); 
+                script.setAttribute('defer', 'true');
+                let nomeScript = currentSrc.split('/').pop();
+                script.setAttribute('src', './' + nomeScript);
+            }
+        });
+
+        // Se o usuário nunca importou um currículo, o botão ainda aponta pro
+        // placeholder "assets/pdf/seu-curriculo.pdf" (que não existe). Em vez de
+        // exportar um link morto, esconde o botão.
+        htmlClone.querySelectorAll('.btn-download').forEach(btn => {
+            const href = btn.getAttribute('href') || '';
+            if (!href.startsWith('blob:')) {
+                btn.style.setProperty('display', 'none', 'important');
+            }
+        });
+
+        // === 4. RASTREAMENTO PROFUNDO DE IMAGENS ===
+        const arquivosBlob = [];
+        let blobCounter = 1;
+
+        htmlClone.querySelectorAll('img, [href]').forEach(el => {
+            let currentPath = el.getAttribute('src') || el.getAttribute('href');
+            if (!currentPath) return;
+
+            if (currentPath.startsWith('blob:')) {
+                // Respeita o nome/extensão original (ex: currículo em PDF) quando disponível,
+                // em vez de forçar tudo para .jpg como se fosse imagem
+                const nomeOriginal = el.getAttribute('data-export-filename');
+                let novoNome = nomeOriginal || `img_upload_${blobCounter}.jpg`;
+                el.removeAttribute('data-export-filename');
+                if (!arquivosBlob.some(b => b.url === currentPath)) {
+                    arquivosBlob.push({ url: currentPath, nome: novoNome });
+                }
+                if (el.hasAttribute('src')) el.setAttribute('src', './' + novoNome);
+                if (el.hasAttribute('href') && !el.hasAttribute('rel')) el.setAttribute('href', './' + novoNome);
+                blobCounter++;
+            } else if (currentPath.includes('/src/')) {
+                let cleanPath = currentPath.split('/src/').pop();
+                if (el.hasAttribute('src')) el.setAttribute('src', './src/' + cleanPath);
+                if (el.hasAttribute('href') && !currentPath.includes('.css')) el.setAttribute('href', './src/' + cleanPath);
+            }
+        });
+
+        // Inclui o próprio htmlClone (a tag <html>): é nela que a foto de perfil é
+        // aplicada via --profile-img, e querySelectorAll não busca no próprio elemento
+        [htmlClone, ...htmlClone.querySelectorAll('[style]')].forEach(el => {
+            let inlineStyle = el.getAttribute('style');
+            if (inlineStyle && inlineStyle.includes('blob:')) {
+                const regexBlob = /blob:http[^)"']+/g;
+                const matches = inlineStyle.match(regexBlob);
+                if (matches) {
+                    matches.forEach(blobUrl => {
+                        let novoNome = `img_upload_${blobCounter}.jpg`;
+                        if (!arquivosBlob.some(b => b.url === blobUrl)) {
+                            arquivosBlob.push({ url: blobUrl, nome: novoNome });
+                        }
+                        inlineStyle = inlineStyle.replace(blobUrl, './' + novoNome);
+                        blobCounter++;
+                    });
+                    el.setAttribute('style', inlineStyle);
+                }
+            }
+        });
+
+        // Prepara e salva o HTML no ZIP
+        const htmlContent = "<!DOCTYPE html>\n" + htmlClone.outerHTML;
         zip.file("index.html", htmlContent);
 
-        // 2. LISTA DE ARQUIVOS (ASSETS) DO PORTFÓLIO
-        // Coloque aqui o caminho exato de tudo que o site precisa para funcionar:
+        // === 5. LISTA DE ARQUIVOS PADRÃO ===
         const assetsNecessarios = [
-            // Seus estilos (Ajuste o caminho se o nome for diferente)
-            "/src/assets/css/style.css",
-
-            // Seu JavaScript do portfólio (se houver)
-            // "/src/assets/js/main.js",
-
-            // Suas imagens e SVGs
+            "/app.js",
+            "/src/assets/js/svg-inject.min.js",
+            "/src/assets/svg/icon.svg",
             "/src/assets/svg/github.svg",
             "/src/assets/svg/linkedin.svg",
             "/src/assets/svg/youtube.svg",
             "/src/assets/svg/insta.svg",
-            "/src/assets/svg/logo_caelium.svg"
-            // Continue adicionando outras imagens/assets que o iframe utiliza...
+            "/src/assets/svg/logo_caelium.svg",
+            "/src/assets/svg/download.svg",
+            "/src/assets/img/user.jpg",
+            "/src/assets/img/ecommerce.jpg",
+            "/src/assets/img/fintech.jpg",
+            "/src/assets/img/data_analytics.jpg",
+            "/src/assets/img/message_api.jpg",
+            "/src/assets/img/user3.avif",
+            "/src/assets/img/user4.avif"
         ];
 
-        // 3. Baixar cada arquivo da lista e colocar na pasta correta dentro do ZIP
+        // 6. Baixar arquivos do projeto
         for (const url of assetsNecessarios) {
             try {
                 const response = await fetch(url);
                 if (response.ok) {
                     const blob = await response.blob();
-
-                    // Remove a primeira barra (/) para evitar criar uma pasta vazia na raiz do ZIP
-                    const caminhoNoZip = url.startsWith('/') ? url.substring(1) : url;
-
-                    // O JSZip cria as pastas (src/assets/svg/...) automaticamente!
+                    let caminhoNoZip = url === '/app.js' ? 'app.js' : url.replace(/^\//, '');
                     zip.file(caminhoNoZip, blob);
-                } else {
-                    console.warn(`Arquivo não encontrado para o ZIP: ${url}`);
                 }
-            } catch (erroArquivo) {
-                console.error(`Erro ao tentar baixar ${url}:`, erroArquivo);
+            } catch (erro) {
+                console.error(`Erro ao baixar ${url}:`, erro);
             }
         }
 
-        // 4. Empacotar tudo (Gera o arquivo final)
-        const content = await zip.generateAsync({ type: "blob" });
+        // 7. Salvar as fotos reais upadas
+        for (const imgBlob of arquivosBlob) {
+            try {
+                const response = await fetch(imgBlob.url);
+                if (response.ok) {
+                    const blob = await response.blob();
+                    zip.file(imgBlob.nome, blob); 
+                }
+            } catch (e) {
+                console.error(`Erro ao salvar imagem upada:`, e);
+            }
+        }
 
-        // 5. Acionar o download para o usuário
+        // 8. FINALIZAR E EXPORTAR O ZIP
+        const content = await zip.generateAsync({ type: "blob" });
         saveAs(content, "meu-portfolio.zip");
 
     } catch (error) {
         console.error("Erro ao gerar o ZIP:", error);
-        alert("Ops! Houve um erro ao empacotar seu portfólio. Tente novamente.");
+        alert("Ops! Houve um erro ao empacotar seu portfólio.");
     }
 }

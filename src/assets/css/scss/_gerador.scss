@@ -10,7 +10,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-gradient) !important;
+    /* background-image em vez do shorthand "background": um shorthand com var()
+       vira "pending-substitution" no CSSOM e serializa vazio ao ler via cssRules
+       no export, perdendo o gradiente no HTML exportado. */
+    background-image: var(--primary-gradient) !important;
     background-color: var(--primary-color) !important;
     border-radius: 10px !important;
 }
@@ -34,7 +37,7 @@ body {
 
 /* --- BOTÕES GERAIS E BADGES (Inclui o botão FULL STACK DEV) --- */
 .btn-lang {
-    background: var(--primary-gradient) !important;
+    background-image: var(--primary-gradient) !important;
     background-color: var(--primary-color) !important;
     color: #ffffff !important;
 }
@@ -71,9 +74,13 @@ body {
 .social-link,
 .social-icon,
 .social-links a {
-    /* Garante o fundo, cor e força a recriação da borda com a cor certa */
+    /* Garante o fundo, cor e força a recriação da borda com a cor certa.
+       Longhands em vez do shorthand "border": quando um shorthand tem var() dentro,
+       o CSSOM serializa os sub-valores (border-style/width) como vazios ao ler via
+       cssRules no export, e a borda some no HTML exportado. */
     background-color: var(--primary-glow) !important;
-    border: 1px solid var(--primary-color) !important;
+    border-width: 1px !important;
+    border-style: solid !important;
     border-color: var(--primary-color) !important;
     color: var(--primary-color) !important;
     box-shadow: none !important;
@@ -97,7 +104,7 @@ body {
 .social-link:hover,
 .social-icon:hover,
 .social-links a:hover {
-    background: var(--primary-gradient) !important;
+    background-image: var(--primary-gradient) !important;
     background-color: var(--primary-color) !important;
     border-color: transparent !important;
     box-shadow: 0 0 15px var(--primary-glow) !important;
@@ -118,7 +125,7 @@ body {
 /* Botões Maiores ("Baixar Currículo" e "Começar Projeto") */
 .btn-download,
 .btn-start-project {
-    background: var(--primary-gradient) !important;
+    background-image: var(--primary-gradient) !important;
     background-color: var(--primary-color) !important;
     border-color: transparent !important;
     color: #ffffff !important;
@@ -178,7 +185,7 @@ body {
 }
 
 .project-links .project-link-btn:hover {
-    background: var(--primary-gradient) !important;
+    background-image: var(--primary-gradient) !important;
     background-color: var(--primary-color) !important;
     border-color: transparent !important;
 }

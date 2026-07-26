@@ -31,7 +31,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <script src="assets/js/svg-inject.min.js"></script>
 </head>
 
 <body>
@@ -39,7 +38,7 @@
         <div class="header-content">
 
             <div class="logo">
-                { <span id="brand-name">Caelium</span> }
+                { <span id="brand-name">Dan</span> }
             </div>
 
             <button class="menu-toggle" id="menu-toggle" aria-label="Abrir Menu">
@@ -143,14 +142,7 @@
                     <div class="swiper-slide">
                         <img src="/src/assets/img/user.jpg" alt="Caelium" class="overview-img">
                     </div>
-                    <div class="swiper-slide">
-                        <img src="/src/assets/img/user3.avif" alt="Caelium" class="overview-img">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/src/assets/img/user4.avif" alt="Caelium" class="overview-img">
-                    </div>
                 </div>
-                <div class="swiper-pagination carousel-dots"></div>
             </div>
 
             <div class="overview-info">
@@ -222,12 +214,16 @@
 
                 <!-- CARD 1 -->
                 <div class="experience-card">
-                    <div class="card-date" data-pt="2024 - MOMENTO" data-en="2024 - PRESENT">2024 - MOMENTO</div>
+                    <!-- OLHA O ID AQUI 👇 -->
+                    <div id="exp-date-1" class="card-date" data-pt="2024 - MOMENTO" data-en="2024 - PRESENT">2024 -
+                        MOMENTO</div>
                     <div class="card-content">
                         <h3 class="job-title" data-pt="DESENVOLVEDOR FULL STACK PLENO"
                             data-en="MID-LEVEL FULL STACK DEVELOPER">ENGENHEIRO DE DADOS PLENO <span
                                 class="company-name">• DataFlow Solutions</span></h3>
-                        <p class="job-description"
+
+                        <!-- OLHA O ID AQUI 👇 -->
+                        <p id="exp-desc-1" class="job-description"
                             data-pt="Responsável pelo desenvolvimento e manutenção de plataformas e-commerce de alto tráfego. Otimização de consultas em bancos de dados e criação de APIs RESTful integradas a serviços de pagamento."
                             data-en="Responsible for the development and maintenance of high-traffic e-commerce platforms. Database query optimization and creation of RESTful APIs integrated with payment services.">
                             Responsável pelo desenvolvimento e manutenção de pipelines de dados em lote e tempo real de
@@ -247,11 +243,14 @@
 
                 <!-- CARD 2 -->
                 <div class="experience-card">
-                    <div class="card-date" data-pt="2022 - 2024" data-en="2022 - 2024">2022 - 2024</div>
+                    <!-- OLHA O ID AQUI 👇 -->
+                    <div id="exp-date-2" class="card-date" data-pt="2022 - 2024" data-en="2022 - 2024">2022 - 2024</div>
                     <div class="card-content">
                         <h3 class="job-title" data-pt="DESENVOLVEDOR FRONT-END" data-en="FRONT-END DEVELOPER">
                             DESENVOLVEDOR FRONT-END <span class="company-name">• Apex Analytics</span></h3>
-                        <p class="job-description"
+
+                        <!-- OLHA O ID AQUI 👇 -->
+                        <p id="exp-desc-2" class="job-description"
                             data-pt="Atuei na criação de landing pages de alta conversão e sistemas internos responsivos. Implementação de testes automatizados e foco total na melhora da pontuação do Core Web Vitals da empresa."
                             data-en="Acted in the creation of high-conversion landing pages and responsive internal systems. Automated test implementation and total focus on improving the company's Core Web Vitals score.">
                             Atuei na criação de rotinas de ETL/ELT para ingestão de dados de mais de 10 APIs diferentes.
@@ -271,12 +270,15 @@
 
                 <!-- CARD 3 -->
                 <div class="experience-card">
-                    <div class="card-date" data-pt="2021 - 2022" data-en="2021 - 2022">2021 - 2022</div>
+                    <!-- OLHA O ID AQUI 👇 -->
+                    <div id="exp-date-3" class="card-date" data-pt="2021 - 2022" data-en="2021 - 2022">2021 - 2022</div>
                     <div class="card-content">
                         <h3 class="job-title" data-pt="ESTAGIÁRIO EM DESENVOLVIMENTO WEB"
-                            data-en="WEB DEVELOPMENT INTERN">ESTAGIÁRIO EM DADOS<span
-                                class="company-name">• StartData Studio</span></h3>
-                        <p class="job-description"
+                            data-en="WEB DEVELOPMENT INTERN">ESTAGIÁRIO EM DADOS<span class="company-name">• StartData
+                                Studio</span></h3>
+
+                        <!-- OLHA O ID AQUI 👇 -->
+                        <p id="exp-desc-3" class="job-description"
                             data-pt="Suporte na extração e limpeza de dados via web scraping, correção de bugs em rotinas de extração legadas e escrita de documentação técnica (Dicionário de Dados) da empresa">
                             Suporte na extração e limpeza de dados via web scraping, correção de bugs em rotinas de
                             extração legadas e escrita de documentação técnica (Dicionário de Dados) da empresa
@@ -292,11 +294,14 @@
 
                 <!-- CARD 4 -->
                 <div class="experience-card">
-                    <div class="card-date" data-pt="2020 - 2021" data-en="2020 - 2021">2020 - 2021</div>
+                    <!-- OLHA O ID AQUI 👇 -->
+                    <div id="exp-date-4" class="card-date" data-pt="2020 - 2021" data-en="2020 - 2021">2020 - 2021</div>
                     <div class="card-content">
                         <h3 class="job-title" data-pt="ESTAGIÁRIO EM SUPORTE E QA" data-en="SUPPORT AND QA INTERN">
                             ESTAGIÁRIO EM SUPORTE E QA <span class="company-name">• StartData Studio</span></h3>
-                        <p class="job-description"
+
+                        <!-- OLHA O ID AQUI 👇 -->
+                        <p id="exp-desc-4" class="job-description"
                             data-pt="Atuei na execução de testes manuais de software para garantia de qualidade (QA), abertura de chamados técnicos e auxílio na manutenção preventiva de bancos de dados locais e configurações de servidores internos."
                             data-en="Acted in performing manual software tests for quality assurance (QA), technical ticket support, and assistance in preventive maintenance of local databases and internal server configurations.">
                             Suporte na extração e limpeza de dados via web scraping, correção de bugs em rotinas de
@@ -332,20 +337,23 @@
                     <img src="/src/assets/img/ecommerce.jpg" alt="Capa do Projeto 1" class="project-img">
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title" data-pt="E-Commerce Platform" data-en="E-Commerce Platform">E-Commerce
-                        Data Pipeline</h3>
-                    <p class="project-description"
-                        data-pt="Uma plataforma completa de e-commerce com carrinho de compras em tempo real, integração de pagamentos com Stripe e painel administrativo para gerenciamento de produtos."
-                        data-en="A complete e-commerce platform with real-time shopping cart, Stripe payment integration, and administrative panel for product management.">
-                        Um pipeline de dados ponta a ponta processando milhões de eventos de cliques e compras diários.
-                        Os dados são ingeridos em tempo real, transformados e centralizados em um Data Warehouse para
-                        alimentar os dashboards da diretoria.
+                    <!-- ID ADICIONADO AQUI 👇 -->
+                    <h3 id="proj-title-1" class="project-title" data-pt="E-Commerce Real-Time Pipeline"
+                        data-en="E-Commerce Real-Time Pipeline">E-Commerce Real-Time Pipeline</h3>
+                    <!-- ID ADICIONADO AQUI 👇 -->
+                    <p id="proj-desc-1" class="project-description"
+                        data-pt="Pipeline de dados ponta a ponta processando milhões de eventos diários. Os dados são ingeridos em tempo real via Kafka, transformados com PySpark e centralizados em um Data Warehouse no Snowflake."
+                        data-en="End-to-end data pipeline processing millions of daily events. Data is ingested in real-time via Kafka, transformed with PySpark, and centralized in a Snowflake Data Warehouse.">
+                        Pipeline de dados ponta a ponta processando milhões de eventos diários. Os dados são ingeridos
+                        em tempo real via Kafka, transformados com PySpark e centralizados em um Data Warehouse no
+                        Snowflake.
                     </p>
 
                     <div class="tech-badges">
                         <span class="badge">Apache Kafka</span>
                         <span class="badge">PySpark</span>
-                        <span class="badge">MongoDB</span>
+                        <span class="badge">Snowflake</span>
+                        <span class="badge">AWS</span>
                     </div>
 
                     <div class="project-links">
@@ -371,19 +379,24 @@
                     <img src="/src/assets/img/fintech.jpg" alt="Capa do Projeto 2" class="project-img">
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title" data-pt="Fintech Dashboard" data-en="Fintech Dashboard">Fintech Dashboard
+                    <!-- ID ADICIONADO AQUI 👇 -->
+                    <h3 id="proj-title-2" class="project-title" data-pt="Fintech Data Lakehouse"
+                        data-en="Fintech Data Lakehouse">
+                        Fintech Data Lakehouse
                     </h3>
-                    <p class="project-description"
-                        data-pt="Dashboard financeiro interativo focado na experiência do usuário, apresentando gráficos analíticos de despesas, controle de saldo e histórico de transações automatizado."
-                        data-en="Interactive financial dashboard focused on user experience, featuring analytical expense charts, balance control, and automated transaction history.">
-                        Dashboard financeiro interativo focado na experiência do usuário, apresentando gráficos
-                        analíticos de despesas, controle de saldo e histórico de transações automatizado.
+                    <!-- ID ADICIONADO AQUI 👇 -->
+                    <p id="proj-desc-2" class="project-description"
+                        data-pt="Arquitetura de Data Lakehouse para dados financeiros. Orquestração de rotinas diárias de ETL/ELT com Airflow, modelagem dimensional e implementação rigorosa de testes de Data Quality com dbt."
+                        data-en="Data Lakehouse architecture for financial data. Orchestration of daily ETL/ELT routines with Airflow, dimensional modeling, and strict implementation of Data Quality tests with dbt.">
+                        Arquitetura de Data Lakehouse para dados financeiros. Orquestração de rotinas diárias de ETL/ELT
+                        com Airflow, modelagem dimensional e implementação rigorosa de testes de Data Quality com dbt.
                     </p>
 
                     <div class="tech-badges">
-                        <span class="badge">TypeScript</span>
-                        <span class="badge">Vue.js</span>
-                        <span class="badge">Tailwind</span>
+                        <span class="badge">dbt</span>
+                        <span class="badge">Apache Airflow</span>
+                        <span class="badge">Google BigQuery</span>
+                        <span class="badge">SQL</span>
                     </div>
 
                     <div class="project-links">
@@ -409,20 +422,23 @@
                     <img src="/src/assets/img/data_analytics.jpg" alt="Capa do Projeto 3" class="project-img">
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title" data-pt="AI Data Analytics SaaS" data-en="AI Data Analytics SaaS">AI Data
-                        Analytics SaaS</h3>
-                    <p class="project-description"
-                        data-pt="Plataforma SaaS que automatiza a ingestão de dados e gera relatórios preditivos inteligentes. Conta com dashboards interativos, modelagem de dados automatizada e relatórios exportáveis com insights em tempo real."
-                        data-en="SaaS platform that automates data ingestion and generates smart predictive reports. It features interactive dashboards, automated data modeling, and exportable reports with real-time insights.">
-                        Plataforma SaaS que automatiza a ingestão de dados e gera relatórios preditivos inteligentes.
-                        Conta com dashboards interativos, modelagem de dados automatizada e relatórios exportáveis com
-                        insights em tempo real.
+                    <!-- ID ADICIONADO AQUI 👇 -->
+                    <h3 id="proj-title-3" class="project-title" data-pt="Log Processing Platform"
+                        data-en="Log Processing Platform">Log Processing Platform</h3>
+                    <!-- ID ADICIONADO AQUI 👇 -->
+                    <p id="proj-desc-3" class="project-description"
+                        data-pt="Plataforma de processamento de logs distribuídos em larga escala. Ingestão de terabytes de dados não estruturados, normalização e armazenamento otimizado para consultas e monitoramento de segurança."
+                        data-en="Large-scale distributed log processing platform. Ingestion of terabytes of unstructured data, normalization, and optimized storage for security monitoring and queries.">
+                        Plataforma de processamento de logs distribuídos em larga escala. Ingestão de terabytes de dados
+                        não estruturados, normalização e armazenamento otimizado para consultas e monitoramento de
+                        segurança.
                     </p>
 
                     <div class="tech-badges">
                         <span class="badge">Python</span>
-                        <span class="badge">React</span>
-                        <span class="badge">FastAPI</span>
+                        <span class="badge">Elasticsearch</span>
+                        <span class="badge">Logstash</span>
+                        <span class="badge">Docker</span>
                     </div>
 
                     <div class="project-links">
@@ -448,20 +464,23 @@
                     <img src="/src/assets/img/message_api.jpg" alt="Capa do Projeto 4" class="project-img">
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title" data-pt="Real-Time Messaging API" data-en="Real-Time Messaging API">
-                        Real-Time Messaging API</h3>
-                    <p class="project-description"
-                        data-pt="Uma API de microsserviços ultrarrápida desenvolvida para suportar milhares de conexões simultâneas via WebSockets. Inclui barramento de eventos, monitoramento de métricas integrado e persistência em cache."
-                        data-en="An ultra-fast microservices API developed to support thousands of simultaneous connections via WebSockets. Includes event bus, integrated metrics monitoring, and cache persistence.">
-                        Uma API de microsserviços ultrarrápida desenvolvida para suportar milhares de conexões
-                        simultâneas via WebSockets. Inclui barramento de eventos, monitoramento de métricas integrado e
-                        persistência em cache.
+                    <!-- ID ADICIONADO AQUI 👇 -->
+                    <h3 id="proj-title-4" class="project-title" data-pt="Legacy ETL Integrator"
+                        data-en="Legacy ETL Integrator">Legacy ETL Integrator</h3>
+                    <!-- ID ADICIONADO AQUI 👇 -->
+                    <p id="proj-desc-4" class="project-description"
+                        data-pt="Sistema robusto de integração em lote (Batch) conectando múltiplos CRMs e ERPs legados. Automação completa de extração, limpeza de dados com Pandas e carga no Data Warehouse corporativo."
+                        data-en="Robust batch integration system connecting multiple legacy CRMs and ERPs. Complete automation of extraction, data cleansing with Pandas, and loading into the corporate Data Warehouse.">
+                        Sistema robusto de integração em lote (Batch) conectando múltiplos CRMs e ERPs legados.
+                        Automação completa de extração, limpeza de dados com Pandas e carga no Data Warehouse
+                        corporativo.
                     </p>
 
                     <div class="tech-badges">
-                        <span class="badge">Node.js</span>
-                        <span class="badge">Redis</span>
-                        <span class="badge">Docker</span>
+                        <span class="badge">Python</span>
+                        <span class="badge">Pandas</span>
+                        <span class="badge">PostgreSQL</span>
+                        <span class="badge">Bash</span>
                     </div>
 
                     <div class="project-links">
@@ -573,7 +592,10 @@
         </div>
     </footer>
 
-    <script type="module" src="/src/assets/js/app.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="/app.js"></script>
 </body>
 
 </html>
