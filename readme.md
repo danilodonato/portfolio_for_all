@@ -11,7 +11,7 @@ Gerador de portfólio para desenvolvedores: preencha seus dados num painel visua
 
 ## Como usar
 
-1. Acesse o gerador (`/generator.html`).
+1. Acesse o gerador (raiz do site).
 2. Preencha as informações no painel lateral — o preview à direita atualiza em tempo real.
 3. Clique em **Baixar Meu Portfólio (.ZIP)**.
 4. Extraia o `.zip` e hospede a pasta em qualquer serviço de site estático (Vercel, Netlify, GitHub Pages, etc.).
@@ -27,8 +27,8 @@ npm run dev
 
 Isso abre o projeto em `http://localhost:5173`, com duas páginas:
 
-- `/index.html` — portfólio de exemplo (template base)
-- `/generator.html` — painel do gerador
+- `/` (`index.html`) — painel do gerador
+- `/demo.html` — portfólio de exemplo (template base)
 
 Outros comandos:
 

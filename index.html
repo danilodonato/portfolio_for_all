@@ -4,598 +4,414 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords"
-        content="sites, web, desenvolvimento, frontend, programador, designer, ui, freelancer, website, portfolio, dados, data engineer" />
-    <meta name="copyright" content="[Seu Nome] 2026" />
-    <meta name="author" content="[Seu Nome]" />
-    <meta name="title" content="[Seu Nome] | Portfolio" />
-    <meta name="description" content="Portfolio profissional de [Seu Nome]." />
+    <title>Portfolio Builder Pro | Caelium</title>
 
-    <title>Portfolio // [Seu Nome]</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
 
-    <!-- Substitua o seu link antigo por este -->
-    <link rel="stylesheet" href="/src/assets/css/style.scss">
+    <!-- SCSS do Portfólio (Global) -->
+    <link rel="stylesheet" href="/src/assets/css/style.scss" />
+    <!-- SCSS exclusivo do Painel do Gerador -->
+    <link rel="stylesheet" href="/src/assets/css/generator.scss" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/svg/icon.svg" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="" />
-    <meta property="og:title" content="[Seu Nome] | Portfolio" />
-    <meta property="og:description" content="Conheça meus projetos e experiências profissionais." />
-    <meta property="og:image" content="svg/metatag.png" />
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="" />
-    <meta property="twitter:title" content="[Seu Nome] | Portfolio" />
-    <meta property="twitter:description" content="Conheça meus projetos e experiências profissionais." />
-    <meta property="twitter:image" content="svg/metatag.png" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
 </head>
 
-<body>
-    <header class="header-container">
-        <div class="header-content">
+<body class="generator-body">
 
-            <div class="logo">
-                { <span id="brand-name">Dan</span> }
+    <!-- BANNER NO TOPO DA TELA -->
+    <div class="top-alert-banner">
+        <span>🛠️ Curtiu o projeto? O template é open-source! Para relatar bugs ou sugerir ideias, <a
+                href="https://github.com/danilodonato/portfolio_for_all" target="_blank">abra uma Issue ou mande um Pull
+                Request no GitHub 🤍</a></span>
+    </div>
+
+    <!-- WRAPPER QUE SEGURA O PAINEL E O PREVIEW LADO A LADO -->
+    <div class="generator-content">
+
+        <!-- PAINEL LATERAL -->
+        <aside class="generator-panel">
+            <div class="caelium-header">
+                <p>Feito por <a href="https://danilodonato.netlify.app" target="_blank">Caelium</a></p>
+                <img src="/src/assets/svg/logo_caelium.svg" alt="Logo Caelium" class="caelium-logo">
             </div>
 
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+            <div class="panel-header">
+                <!-- NOVA MARCA DO GERADOR COM A LOGO -->
+                <div class="generator-brand-header">
+                    <img src="/src/assets/svg/icon.svg" alt="Ícone da Plataforma" class="brand-logo-icon">
+                    <div class="brand-titles">
+                        <h2>Portfolio Builder</h2>
+                        <p>Customize em tempo real</p>
+                    </div>
+                </div>
 
-            <nav class="nav-menu" id="nav-menu">
-                <a href="#inicio" class="nav-link active" data-pt="Início" data-en="Home">Início</a>
-                <a href="#sobre" class="nav-link" data-pt="Sobre" data-en="About">Sobre</a>
-                <a href="#experiencias" class="nav-link" data-pt="Experiências" data-en="Experience">Experiências</a>
-                <a href="#projetos" class="nav-link" data-pt="Projetos" data-en="Projects">Projetos</a>
-                <a href="#contato" class="nav-link" data-pt="Contato" data-en="Contact">Contato</a>
-
-            </nav>
-
-        </div>
-    </header>
-
-    <section class="relative hero-container" id="inicio">
-        <div class="stars-container"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span data-pt="Olá! Eu sou" data-en="Hi! I am">Olá! Eu sou</span> <br class="desktop-break">
-                <span id="hero-name">Caelium</span>
-            </h1>
-
-            <p class="hero-description" id="hero-bio"
-                data-pt="Engenheiro de Dados focado em construir pipelines escaláveis, otimizar arquiteturas em nuvem e garantir a qualidade da informação. Transformando dados brutos em insights estratégicos reais para o negócio."
-                data-en="Full Stack Developer focused on creating modern, fast web applications with a total focus on user experience. Transforming lines of code into real solutions.">
-                Engenheiro de Dados focado em construir pipelines escaláveis, otimizar arquiteturas em nuvem e garantir
-                a qualidade da informação.
-            </p>
-
-            <div class="hero-badge" id="hero-badge-text" data-pt="DATA ENGINEER" data-en="DATA ENGINEER">
-                DATA ENGINEER
+                <!-- SEUS BOTÕES DE RESPONSIVIDADE (MANTIDOS INTACTOS) -->
+                <div class="preview-toggler" style="margin-top: 15px; display: flex; gap: 5px;">
+                    <button class="view-btn active" data-view="desktop"
+                        style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input); color: #fff; cursor: pointer; font-family: 'Outfit'; font-size: 13px;">💻
+                        Desktop</button>
+                    <button class="view-btn" data-view="tablet"
+                        style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input); color: #fff; cursor: pointer; font-family: 'Outfit'; font-size: 13px;">📱
+                        Tablet</button>
+                    <button class="view-btn" data-view="mobile"
+                        style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input); color: #fff; cursor: pointer; font-family: 'Outfit'; font-size: 13px;">📞
+                        Mobile</button>
+                </div>
             </div>
 
-            <div class="scroll-indicator">
-                <span class="scroll-text" data-pt="SCROLL" data-en="SCROLL">SCROLL</span>
-                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="material-symbols:keyboard-double-arrow-down-rounded">
-                        <path id="arrow2"
-                            d="M17.0001 14.3983L22.5251 8.90876C22.7848 8.64904 23.1097 8.51304 23.4998 8.50076C23.8898 8.48848 24.226 8.62448 24.5084 8.90876C24.7682 9.16848 24.898 9.49904 24.898 9.90043C24.898 10.3018 24.7682 10.6324 24.5084 10.8921L17.9918 17.4088C17.8501 17.5504 17.6966 17.651 17.5314 17.7105C17.3661 17.77 17.189 17.7993 17.0001 17.7983C16.8112 17.7983 16.6341 17.7691 16.4689 17.7105C16.3036 17.652 16.1501 17.5514 16.0084 17.4088L9.49177 10.8921C9.23205 10.6324 9.09605 10.308 9.08377 9.91884C9.07149 9.52973 9.20749 9.19304 9.49177 8.90876C9.75149 8.64904 10.082 8.51918 10.4834 8.51918C10.8848 8.51918 11.2154 8.64904 11.4751 8.90876L17.0001 14.3983Z"
-                            fill="white" />
-                        <path id="arrow1"
-                            d="M17.0001 20.8821L22.5251 15.3925C22.7848 15.1328 23.1097 14.9968 23.4998 14.9845C23.8898 14.9722 24.226 15.1082 24.5084 15.3925C24.7682 15.6522 24.898 15.9828 24.898 16.3842C24.898 16.7856 24.7682 17.1161 24.5084 17.3759L17.9918 23.8925C17.8501 24.0342 17.6966 24.1348 17.5314 24.1943C17.3661 24.2538 17.189 24.2831 17.0001 24.2821C16.8112 24.2821 16.6341 24.2528 16.4689 24.1943C16.3036 24.1357 16.1501 24.0351 16.0084 23.8925L9.49177 17.3759C9.23205 17.1161 9.09605 16.7917 9.08377 16.4026C9.07149 16.0135 9.20749 15.6768 9.49177 15.3925C9.75149 15.1328 10.082 15.0029 10.4834 15.0029C10.8848 15.0029 11.2154 15.1328 11.4751 15.3925L17.0001 20.8821Z"
-                            fill="white" />
-                    </g>
-                </svg>
-            </div>
-        </div>
+            <div class="panel-inputs">
+                <h3>Paleta de Cores (Tom Glow)</h3>
+                <div class="color-selector">
+                    <div class="color-dot active" data-color="#A384FF" data-glow="rgba(163, 132, 255, 0.15)"
+                        data-gradient="linear-gradient(to right, #A384FF, #7C3AED)" style="background: #A384FF;"
+                        title="Roxo Premium"></div>
+                    <div class="color-dot" data-color="#38BDF8" data-glow="rgba(56, 189, 248, 0.15)"
+                        data-gradient="linear-gradient(to right, #38BDF8, #0EA5E9)" style="background: #38BDF8;"
+                        title="Ciano Neon"></div>
+                    <div class="color-dot" data-color="#34D399" data-glow="rgba(52, 211, 153, 0.15)"
+                        data-gradient="linear-gradient(to right, #34D399, #059669)" style="background: #34D399;"
+                        title="Verde Esmeralda"></div>
+                    <div class="color-dot" data-color="#F472B6" data-glow="rgba(244, 114, 182, 0.15)"
+                        data-gradient="linear-gradient(to right, #F472B6, #DB2777)" style="background: #F472B6;"
+                        title="Rosa Cyberpunk"></div>
+                    <div class="color-dot" data-color="#FB923C" data-glow="rgba(251, 146, 60, 0.15)"
+                        data-gradient="linear-gradient(to right, #FB923C, #EA580C)" style="background: #FB923C;"
+                        title="Laranja Sunset"></div>
+                </div>
 
-        <svg class="hero-planet-bg" viewBox="0 0 1920 703" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_f_308_4)">
-                <path
-                    d="M1910.98 351.5C1910.98 435.171 1481.17 503 950.98 503C420.786 503 -9.02014 435.171 -9.02014 351.5C-9.02014 267.829 420.786 200 950.98 200C1481.17 200 1910.98 267.829 1910.98 351.5Z"
-                    fill="url(#paint0_radial_308_4)" />
-            </g>
-            <path
-                d="M960 310.993C1225 310.993 1464.87 332.813 1638.42 368.068C1725.22 385.698 1795.33 406.668 1843.69 429.894C1867.88 441.509 1886.52 453.638 1899.09 466.114C1911.65 478.584 1918 491.247 1918 503.993C1918 516.74 1911.65 529.403 1899.09 541.873C1886.52 554.349 1867.88 566.478 1843.69 578.093C1795.33 601.319 1725.22 622.289 1638.42 639.919C1464.87 675.174 1225 696.993 960 696.993C694.995 696.993 455.135 675.174 281.575 639.919C194.779 622.289 124.67 601.319 76.3076 578.093C52.1219 566.478 33.4808 554.349 20.9131 541.873C8.35006 529.403 2 516.74 2 503.993C2 491.247 8.35006 478.584 20.9131 466.114C33.4808 453.638 52.1219 441.509 76.3076 429.894C124.67 406.668 194.779 385.698 281.575 368.068C455.135 332.813 694.995 310.993 960 310.993Z"
-                fill="#01040D" stroke="url(#paint1_radial_308_4)" stroke-width="4" />
-            <defs>
-                <filter id="filter0_f_308_4" x="-209.02" y="0" width="2320" height="703" filterUnits="userSpaceOnUse"
-                    color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                    <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_308_4" />
-                </filter>
-                <radialGradient id="paint0_radial_308_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
-                    gradientTransform="translate(960 351.881) rotate(90) scale(143.751 910.895)">
-                    <stop stop-color="#A384FF" />
-                    <stop offset="1" stop-color="#24274B" stop-opacity="0" />
-                </radialGradient>
-                <radialGradient id="paint1_radial_308_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
-                    gradientTransform="translate(960 308.993) rotate(90) scale(186.5 918.154)">
-                    <stop stop-color="#A384FF" />
-                    <stop offset="1" stop-opacity="0" />
-                </radialGradient>
-            </defs>
-        </svg>
-    </section>
+                <h3>Cabeçalho</h3>
+                <div class="input-group">
+                    <label for="input-brand">Nome da Marca (Logo)</label>
+                    <input type="text" id="input-brand" value="Caelium">
+                </div>
 
-    <section class="keywords-section">
-        <div class="keywords-wrapper">
-            <h2 class="reveal-text" data-pt="Inovador" data-en="Innovative">Inovador</h2>
-            <h2 class="reveal-text" data-pt="Focado em Performance" data-en="Performance Focused">Focado em Performance
-            </h2>
-            <h2 class="reveal-text" data-pt="Criador de Soluções" data-en="Solution Creator">Criador de Soluções</h2>
-            <h2 class="reveal-text" data-pt="Conheça seu próximo dev" data-en="Meet your next dev">Conheça seu próximo
-                dev</h2>
-        </div>
-    </section>
+                <h3>Seção Início (Hero)</h3>
+                <div class="input-group">
+                    <label for="input-name">Seu Nome</label>
+                    <input type="text" id="input-name" value="Caelium">
+                </div>
+                <div class="input-group">
+                    <label for="input-badge">Seu Cargo (Badge / Sobre)</label>
+                    <input type="text" id="input-badge" value="DATA ENGINEER">
+                </div>
+                <div class="input-group">
+                    <label for="input-bio">Sua Bio / Descrição Curta</label>
+                    <textarea id="input-bio"
+                        rows="3">Engenheiro de Dados focado em construir pipelines escaláveis, otimizar arquiteturas em nuvem e garantir a qualidade da informação. Transformando dados brutos em insights estratégicos reais para o negócio.</textarea>
+                </div>
 
-    <section class="container overview-section" id="sobre">
-        <div class="overview-container">
+                <div class="panel-section-divider">
+                    <span>Seção Sobre</span>
+                </div>
+                <div class="input-group">
+                    <label for="input-about-desc">Texto de Descrição (Overview)</label>
+                    <textarea id="input-about-desc"
+                        rows="4">Sou um desenvolvedor apaixonado por tecnologia e design. Nos últimos anos, tenho me dedicado a construir ecossistemas web utilizando as melhores práticas de mercado. Adoro resolver problemas complexos e criar interfaces que sejam ao mesmo tempo elegantes e intuitivas.</textarea>
+                </div>
+                <div class="input-group">
+                    <label for="input-about-location">Sua Localização (Cidade)</label>
+                    <input type="text" id="input-about-location" value="São Paulo, Brasil">
+                </div>
+                <div class="input-group">
+                    <label>Importar Currículo do PC</label>
+                    <div class="file-upload-wrapper">
+                        <div class="file-upload-btn" id="upload-label">📁 Escolher arquivo PDF/Doc</div>
+                        <input type="file" id="input-cv-file" accept=".pdf,.doc,.docx" style="display: none;">
+                    </div>
+                </div>
 
-            <div class="overview-image-wrapper swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="/src/assets/img/user.jpg" alt="Caelium" class="overview-img">
+                <h3>Foto de Perfil (Sobre)</h3>
+                <div class="input-group id-photo-1">
+                    <div class="file-upload-wrapper">
+                        <div class="file-upload-btn" id="lbl-img-1">📷 Escolher Foto de Perfil</div>
+                        <input type="file" id="input-img-1" accept="image/*" class="photo-file-input" data-index="0"
+                            style="display: none;">
+                    </div>
+                </div>
+
+                <h3>Redes Sociais Visíveis</h3>
+                <div class="social-toggle-group">
+                    <label class="social-checkbox"><input type="checkbox" id="chk-github" checked data-social="github">
+                        GitHub</label>
+                    <label class="social-checkbox"><input type="checkbox" id="chk-linkedin" checked
+                            data-social="linkedin"> LinkedIn</label>
+                    <label class="social-checkbox"><input type="checkbox" id="chk-instagram" checked
+                            data-social="instagram"> Instagram</label>
+                    <label class="social-checkbox"><input type="checkbox" id="chk-youtube" checked
+                            data-social="youtube"> YouTube</label>
+                </div>
+
+                <h3>Links das Redes</h3>
+                <div class="input-group link-group-github"><label for="link-github">Link do GitHub</label><input
+                        type="text" id="link-github" value="https://github.com/"></div>
+                <div class="input-group link-group-linkedin"><label for="link-linkedin">Link do LinkedIn</label><input
+                        type="text" id="link-linkedin" value="https://linkedin.com/"></div>
+                <div class="input-group link-group-instagram"><label for="link-instagram">Link do
+                        Instagram</label><input type="text" id="link-instagram" value="https://instagram.com/"></div>
+                <div class="input-group link-group-youtube"><label for="link-youtube">Link do YouTube</label><input
+                        type="text" id="link-youtube" value="https://youtube.com/"></div>
+
+                <div class="panel-section-divider">
+                    <span>Seção Experiências</span>
+                </div>
+                <label for="select-qty-exp">Quantidade de experiências:</label>
+                <select id="select-qty-exp" class="exp-select">
+                    <option value="1">Apenas 1 Experiência</option>
+                    <option value="2">Exibir 2 Experiências</option>
+                    <option value="3" selected>Exibir as 3 Experiências</option>
+                </select>
+                <div class="exp-block id-exp-1">
+                    <h4 style="color: #A384FF;">Experiência 1 (Superior)</h4>
+                    <div class="input-group"><label for="input-exp-date-1">Período / Data</label><input type="text"
+                            id="input-exp-date-1" value="2024 - MOMENTO"></div>
+                    <div class="input-group"><label for="input-exp-title-1">Título do Cargo</label><input type="text"
+                            id="input-exp-title-1" value="ENGENHEIRO DE DADOS PLENO"></div>
+                    <div class="input-group"><label for="input-exp-company-1">Nome da Empresa</label><input type="text"
+                            id="input-exp-company-1" value="StartData Studio"></div>
+                    <div class="input-group"><label for="input-exp-desc-1">Descrição das Atividades</label><textarea
+                            id="input-exp-desc-1"
+                            rows="3">Responsável pelo desenvolvimento e manutenção de pipelines de dados em lote e tempo real de alto volume. Otimização de custos em processamento na nuvem, modelagem dimensional e arquitetura de um Data Lakehouse corporativo.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-exp-techs-1">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-exp-techs-1"
+                            value="Python, PySpark, Apache Airflow, Snowflake, AWS, Docker"></div>
+                </div>
+                <div class="exp-block id-exp-2">
+                    <h4 style="color: #38BDF8;">Experiência 2 (Meio)</h4>
+                    <div class="input-group"><label for="input-exp-date-2">Período / Data</label><input type="text"
+                            id="input-exp-date-2" value="2022 - 2024"></div>
+                    <div class="input-group"><label for="input-exp-title-2">Título do Cargo</label><input type="text"
+                            id="input-exp-title-2" value="ENGENHEIRO DE DADOS JÚNIOR"></div>
+                    <div class="input-group"><label for="input-exp-company-2">Nome da Empresa</label><input type="text"
+                            id="input-exp-company-2" value="StartData Studio"></div>
+                    <div class="input-group"><label for="input-exp-desc-2">Descrição das Atividades</label><textarea
+                            id="input-exp-desc-2"
+                            rows="3">Atuei na criação de rotinas de ETL/ELT para ingestão de dados de mais de 10 APIs diferentes. Implementação de testes automatizados de qualidade de dados (Data Quality) e governança da informação para os times de negócios.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-exp-techs-2">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-exp-techs-2"
+                            value="SQL,  dbt, Python, PostgreSQL, Google, BigQuery, Git"></div>
+                </div>
+                <div class="exp-block id-exp-3">
+                    <h4 style="color: #34D399;">Experiência 3 (Base)</h4>
+                    <div class="input-group"><label for="input-exp-date-3">Período / Data</label><input type="text"
+                            id="input-exp-date-3" value="2021 - 2022"></div>
+                    <div class="input-group"><label for="input-exp-title-3">Título do Cargo</label><input type="text"
+                            id="input-exp-title-3" value="ESTAGIÁRIO EM DADOS"></div>
+                    <div class="input-group"><label for="input-exp-company-3">Nome da Empresa</label><input type="text"
+                            id="input-exp-company-3" value="StartData Studio"></div>
+                    <div class="input-group"><label for="input-exp-desc-3">Descrição das Atividades</label><textarea
+                            id="input-exp-desc-3"
+                            rows="3">Suporte na extração e limpeza de dados via web scraping, correção de bugs em rotinas de extração legadas e escrita de documentação técnica (Dicionário de Dados) da empresa.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-exp-techs-3">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-exp-techs-3"
+                            value="Python, Pandas, SQL, Bash"></div>
+                </div>
+
+                <div class="panel-section-divider">
+                    <span>Seção Projetos</span>
+                </div>
+                <label for="select-qty-proj">Quantidade de projetos exibidos:</label>
+                <select id="select-qty-proj" class="project-select">
+                    <option value="1">Exibir 1 Projeto</option>
+                    <option value="2" selected>Exibir 2 Projetos</option>
+                    <option value="3">Exibir 3 Projetos</option>
+                    <option value="4">Exibir 4 Projetos</option>
+                </select>
+                <div class="project-block id-proj-1">
+                    <h4 style="color: #A384FF;">Projeto 1</h4>
+                    <div class="input-group"><label for="input-proj-title-1">Título do Projeto</label><input type="text"
+                            id="input-proj-title-1" value="E-Commerce Data Pipeline"></div>
+                    <div class="input-group"><label for="input-proj-desc-1">Descrição do Projeto</label><textarea
+                            id="input-proj-desc-1"
+                            rows="3">Um pipeline de dados ponta a ponta processando milhões de eventos de cliques e compras diários. Os dados são ingeridos em tempo real, transformados e centralizados em um Data Warehouse para alimentar os dashboards da diretoria.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-proj-techs-1">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-proj-techs-1" value="Apache Kafka, PySpark, MongoDB">
+                    </div>
+                    <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 1</label>
+                        <div class="file-upload-wrapper">
+                            <div class="file-upload-btn" id="lbl-proj-img-1">🖼 Escolher Imagem 1</div><input
+                                type="file" id="input-proj-img-1" accept="image/*" class="proj-file-input"
+                                data-pindex="0" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="input-group"><label for="input-proj-code-1">Link do Código (GitHub)</label><input
+                            type="text" id="input-proj-code-1" value="https://github.com/"></div>
+                    <div class="input-group"><label for="input-proj-live-1">Link da Demo Online</label><input
+                            type="text" id="input-proj-live-1" value="https://google.com/"></div>
+                    <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-1" checked data-proj="1">
+                        Habilitar Botão Demo</label>
+                </div>
+                <div class="project-block id-proj-2">
+                    <h4 style="color: #38BDF8;">Projeto 2</h4>
+                    <div class="input-group"><label for="input-proj-title-2">Título do Projeto</label><input type="text"
+                            id="input-proj-title-2" value="Fintech Fraud Detection Architecture"></div>
+                    <div class="input-group"><label for="input-proj-desc-2">Descrição do Projeto</label><textarea
+                            id="input-proj-desc-2"
+                            rows="3">Arquitetura de dados orientada a eventos para processar transações financeiras em tempo real. O sistema valida regras de negócio e alimenta modelos de Machine Learning em milissegundos para detecção de anomalias e fraudes.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-proj-techs-2">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-proj-techs-2"
+                            value="AWS Kinesis, AWS Lambda, DynamoDB"></div>
+                    <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 2</label>
+                        <div class="file-upload-wrapper">
+                            <div class="file-upload-btn" id="lbl-proj-img-2">🖼 Escolher Imagem 2</div><input
+                                type="file" id="input-proj-img-2" accept="image/*" class="proj-file-input"
+                                data-pindex="1" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="input-group"><label for="input-proj-code-2">Link do Código (GitHub)</label><input
+                            type="text" id="input-proj-code-2" value="https://github.com/"></div>
+                    <div class="input-group"><label for="input-proj-live-2">Link da Demo Online</label><input
+                            type="text" id="input-proj-live-2" value="https://google.com/"></div>
+                    <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-2" checked data-proj="2">
+                        Habilitar Botão Demo</label>
+                </div>
+                <div class="project-block id-proj-3">
+                    <h4 style="color: #34D399;">Projeto 3</h4>
+                    <div class="input-group"><label for="input-proj-title-3">Título do Projeto</label><input type="text"
+                            id="input-proj-title-3" value="Analytics Infrastructure SaaS"></div>
+                    <div class="input-group"><label for="input-proj-desc-3">Descrição do Projeto</label><textarea
+                            id="input-proj-desc-3"
+                            rows="3">Plataforma que automatiza a ingestão de dados de clientes SaaS. Conta com orquestração de fluxos complexos de dependências, modelagem de dados automatizada e entrega de tabelas agregadas prontas para consumo de ferramentas de BI.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-proj-techs-3">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-proj-techs-3"
+                            value="Python, dbt, Google BigQuery"></div>
+                    <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 3</label>
+                        <div class="file-upload-wrapper">
+                            <div class="file-upload-btn" id="lbl-proj-img-3">🖼 Escolher Imagem 3</div><input
+                                type="file" id="input-proj-img-3" accept="image/*" class="proj-file-input"
+                                data-pindex="2" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="input-group"><label for="input-proj-code-3">Link do Código (GitHub)</label><input
+                            type="text" id="input-proj-code-3" value="https://github.com/"></div>
+                    <div class="input-group"><label for="input-proj-live-3">Link da Demo Online</label><input
+                            type="text" id="input-proj-live-3" value="https://google.com/"></div>
+                    <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-3" checked data-proj="3">
+                        Habilitar Botão Demo</label>
+                </div>
+                <div class="project-block id-proj-4">
+                    <h4 style="color: #F472B6;">Projeto 4</h4>
+                    <div class="input-group"><label for="input-proj-title-4">Título do Projeto</label><input type="text"
+                            id="input-proj-title-4" value="Real-Time Log Processing System"></div>
+                    <div class="input-group"><label for="input-proj-desc-4">Descrição do Projeto</label><textarea
+                            id="input-proj-desc-4"
+                            rows="3">Um sistema de microsserviços ultrarrápido desenvolvido para suportar a ingestão de milhares de logs simultâneos. Inclui particionamento eficiente, monitoramento de métricas integrado de saúde do cluster e persistência otimizada no Data Lake.</textarea>
+                    </div>
+                    <div class="input-group"><label for="input-proj-techs-4">Tecnologias (Separadas por
+                            vírgula)</label><input type="text" id="input-proj-techs-4"
+                            value="Apache Spark Streaming, Kafka, Docker"></div>
+                    <div class="input-group"><label style="color:#ffffff">Importar Mockup do Projeto 4</label>
+                        <div class="file-upload-wrapper">
+                            <div class="file-upload-btn" id="lbl-proj-img-4">🖼 Escolher Imagem 4</div><input
+                                type="file" id="input-proj-img-4" accept="image/*" class="proj-file-input"
+                                data-pindex="3" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="input-group"><label for="input-proj-code-4">Link do Código (GitHub)</label><input
+                            type="text" id="input-proj-code-4" value="https://github.com/"></div>
+                    <div class="input-group"><label for="input-proj-live-4">Link da Demo Online</label><input
+                            type="text" id="input-proj-live-4" value="https://google.com/"></div>
+                    <label class="demo-checkbox"><input type="checkbox" id="chk-proj-demo-4" checked data-proj="4">
+                        Habilitar Botão Demo</label>
+                </div>
+
+                <div class="panel-section-divider">
+                    <span>Seção Contato & Rodapé</span>
+                </div>
+                <div class="contact-block">
+                    <div class="input-group">
+                        <label for="input-contact-bio">Texto de Apoio (Bio Contato)</label>
+                        <textarea id="input-contact-bio"
+                            rows="3">Estou disponível para novos projetos, contratos freelancers ou oportunidades em tempo integral. Vamos construir algo incrível juntos!</textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="input-contact-email">Seu E-mail (Botão Começar Projeto)</label>
+                        <input type="email" id="input-contact-email" value="danilo@exemplo.com"
+                            placeholder="seuemail@exemplo.com">
                     </div>
                 </div>
             </div>
 
-            <div class="overview-info">
-                <h2 class="overview-name">Caelium</h2>
+            <!-- --- RODAPÉ DO PAINEL (DOWNLOAD) --- -->
+            <div class="panel-footer">
+                <button id="download-zip-btn" class="generate-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor" />
+                    </svg>
+                    <span>Baixar Meu Portfólio (.ZIP)</span>
+                </button>
+            </div>
+        </aside>
 
-                <div class="overview-subtitle">
-                    <span class="badge-purple" data-pt="Data Engineer">Data Engineer</span>
-                    <span class="separator">•</span>
-                    <span class="location-text" data-pt="São Paulo, Brasil"
-                        data-en="Based in São Paulo, Brazil">Residente em São Paulo, Brasil</span>
+        <!-- ÁREA DO IFRAME -->
+        <main class="preview-area">
+            <div class="iframe-wrapper view-desktop" id="iframe-wrapper">
+                <iframe src="demo.html" id="portfolio-iframe" title="Live Preview"></iframe>
+            </div>
+        </main>
+    </div>
+
+    <!-- --- MODAL DE DOWNLOAD --- -->
+    <div id="download-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-modal-btn" class="close-btn">&times;</button>
+
+            <div class="mascot-header">
+                <!-- Trocando para a sua logo oficial -->
+                <img src="/src/assets/svg/logo_caelium_happy.svg" alt="Logo Caelium" class="mascot-img">
+
+                <div class="speech-bubble">
+                    <h3>FALA, DEV! 🚀</h3>
+                    <p>Seu portfólio de alto nível está saindo do forno! O download começará em instantes.</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <p class="highlight-text">Enquanto isso, que tal aprender a colocar esse site no ar <strong>de
+                        graça</strong> na Vercel?</p>
+
+                <!-- Substitua 'SEU_VIDEO_ID' pelo ID real do seu vídeo no YouTube depois -->
+                <div class="video-container">
+                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/SEU_VIDEO_ID"
+                        title="Como hospedar na Vercel" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                 </div>
 
-                <hr class="overview-divider">
-
-                <h3 class="overview-title" data-pt="Overview" data-en="Overview">Overview</h3>
-
-                <p class="overview-description"
-                    data-pt="Sou um desenvolvedor apaixonado por tecnologia e design. Nos últimos anos, tenho me dedicado a construir ecossistemas web utilizando as melhores práticas de mercado. Adoro resolver problemas complexos e criar interfaces que sejam ao mesmo tempo elegantes e intuitivas."
-                    data-en="I am a developer passionate about technology and design. Over the last few years, I have dedicated myself to building web ecosystems using the best market practices. I love solving complex problems and creating interfaces that are both elegant and intuitive.">
-                    Sou um profissional apaixonado por dados e arquitetura em larga escala. Nos últimos anos, tenho me
-                    dedicado a construir ecossistemas de dados (Data Lakes e Data Warehouses) utilizando as melhores
-                    práticas de mercado. Adoro resolver problemas complexos de processamento, modelagem e criar
-                    pipelines que sejam ao mesmo tempo eficientes, seguros e resilientes.
-                </p>
-
-                <div class="overview-socials">
-                    <span class="socials-label" data-pt="Redes Sociais" data-en="Social Media">Redes Sociais</span>
+                <div class="social-actions">
+                    <p class="social-invite-text">Me siga para mais dicas e projetos f#das:</p>
                     <div class="socials-icons">
-
-                        <a href="#" class="social-btn" aria-label="GitHub" target="_blank">
+                        <a href="https://github.com/danilodonato" class="social-btn" aria-label="GitHub"
+                            target="_blank">
                             <img src="/src/assets/svg/github.svg" alt="GitHub">
                         </a>
-                        <a href="#" class="social-btn" aria-label="LinkedIn" target="_blank">
+                        <a href="https://linkedin.com/in/danilodonato" class="social-btn" aria-label="LinkedIn"
+                            target="_blank">
                             <img src="/src/assets/svg/linkedin.svg" alt="LinkedIn">
                         </a>
-                        <a href="#" class="social-btn" aria-label="YouTube" target="_blank">
+                        <a href="https://www.youtube.com/@caeliumdev" class="social-btn" aria-label="YouTube"
+                            target="_blank">
                             <img src="/src/assets/svg/youtube.svg" alt="YouTube">
                         </a>
-                        <a href="#" class="social-btn" aria-label="Instagram" target="_blank">
+                        <a href="https://www.instagram.com/caelium_dev/" class="social-btn" aria-label="Instagram"
+                            target="_blank">
                             <img src="/src/assets/svg/insta.svg" alt="Instagram">
                         </a>
                     </div>
                 </div>
-
-                <a href="assets/pdf/seu-curriculo.pdf" download class="btn-download" data-pt="Baixar Currículo"
-                    data-en="Download Resume">
-                    <img src="/src/assets/svg/download.svg" alt="">
-                    Baixar Currículo
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="container experience-section" id="experiencias">
-        <div class="experience-wrapper">
-
-            <div class="experience-sidebar">
-                <h2 class="section-title-glow" data-pt="Experiências" data-en="Experience">Experiências</h2>
-                <p class="sidebar-subtext"
-                    data-pt="Construindo soluções robustas, escaláveis e focadas na experiência do usuário ao longo dos anos."
-                    data-en="Building robust, scalable solutions focused on user experience over the years.">
-                    Construindo arquiteturas robustas, pipelines escaláveis e focados na democratização dos dados ao
-                    longo dos anos.
-                </p>
-            </div>
-
-            <div class="experience-timeline">
-
-                <!-- CARD 1 -->
-                <div class="experience-card">
-                    <!-- OLHA O ID AQUI 👇 -->
-                    <div id="exp-date-1" class="card-date" data-pt="2024 - MOMENTO" data-en="2024 - PRESENT">2024 -
-                        MOMENTO</div>
-                    <div class="card-content">
-                        <h3 class="job-title" data-pt="DESENVOLVEDOR FULL STACK PLENO"
-                            data-en="MID-LEVEL FULL STACK DEVELOPER">ENGENHEIRO DE DADOS PLENO <span
-                                class="company-name">• DataFlow Solutions</span></h3>
-
-                        <!-- OLHA O ID AQUI 👇 -->
-                        <p id="exp-desc-1" class="job-description"
-                            data-pt="Responsável pelo desenvolvimento e manutenção de plataformas e-commerce de alto tráfego. Otimização de consultas em bancos de dados e criação de APIs RESTful integradas a serviços de pagamento."
-                            data-en="Responsible for the development and maintenance of high-traffic e-commerce platforms. Database query optimization and creation of RESTful APIs integrated with payment services.">
-                            Responsável pelo desenvolvimento e manutenção de pipelines de dados em lote e tempo real de
-                            alto volume. Otimização de custos em processamento na nuvem, modelagem dimensional e
-                            arquitetura de um Data Lakehouse corporativo.
-                        </p>
-                        <div class="tech-badges">
-                            <span class="badge">Python</span>
-                            <span class="badge">PySpark</span>
-                            <span class="badge">Apache Airflow</span>
-                            <span class="badge">Snowflake</span>
-                            <span class="badge">AWS</span>
-                            <span class="badge">Docker</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 2 -->
-                <div class="experience-card">
-                    <!-- OLHA O ID AQUI 👇 -->
-                    <div id="exp-date-2" class="card-date" data-pt="2022 - 2024" data-en="2022 - 2024">2022 - 2024</div>
-                    <div class="card-content">
-                        <h3 class="job-title" data-pt="DESENVOLVEDOR FRONT-END" data-en="FRONT-END DEVELOPER">
-                            DESENVOLVEDOR FRONT-END <span class="company-name">• Apex Analytics</span></h3>
-
-                        <!-- OLHA O ID AQUI 👇 -->
-                        <p id="exp-desc-2" class="job-description"
-                            data-pt="Atuei na criação de landing pages de alta conversão e sistemas internos responsivos. Implementação de testes automatizados e foco total na melhora da pontuação do Core Web Vitals da empresa."
-                            data-en="Acted in the creation of high-conversion landing pages and responsive internal systems. Automated test implementation and total focus on improving the company's Core Web Vitals score.">
-                            Atuei na criação de rotinas de ETL/ELT para ingestão de dados de mais de 10 APIs diferentes.
-                            Implementação de testes automatizados de qualidade de dados (Data Quality) e governança da
-                            informação para os times de negócios.
-                        </p>
-                        <div class="tech-badges">
-                            <span class="badge">SQL</span>
-                            <span class="badge">dbt (data build tool)</span>
-                            <span class="badge">Python</span>
-                            <span class="badge">PostgreSQL</span>
-                            <span class="badge">Google BigQuery</span>
-                            <span class="badge">Git</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 3 -->
-                <div class="experience-card">
-                    <!-- OLHA O ID AQUI 👇 -->
-                    <div id="exp-date-3" class="card-date" data-pt="2021 - 2022" data-en="2021 - 2022">2021 - 2022</div>
-                    <div class="card-content">
-                        <h3 class="job-title" data-pt="ESTAGIÁRIO EM DESENVOLVIMENTO WEB"
-                            data-en="WEB DEVELOPMENT INTERN">ESTAGIÁRIO EM DADOS<span class="company-name">• StartData
-                                Studio</span></h3>
-
-                        <!-- OLHA O ID AQUI 👇 -->
-                        <p id="exp-desc-3" class="job-description"
-                            data-pt="Suporte na extração e limpeza de dados via web scraping, correção de bugs em rotinas de extração legadas e escrita de documentação técnica (Dicionário de Dados) da empresa">
-                            Suporte na extração e limpeza de dados via web scraping, correção de bugs em rotinas de
-                            extração legadas e escrita de documentação técnica (Dicionário de Dados) da empresa
-                        </p>
-                        <div class="tech-badges">
-                            <span class="badge">Python</span>
-                            <span class="badge">Pandas</span>
-                            <span class="badge">SQL</span>
-                            <span class="badge">Bash</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 4 -->
-                <div class="experience-card">
-                    <!-- OLHA O ID AQUI 👇 -->
-                    <div id="exp-date-4" class="card-date" data-pt="2020 - 2021" data-en="2020 - 2021">2020 - 2021</div>
-                    <div class="card-content">
-                        <h3 class="job-title" data-pt="ESTAGIÁRIO EM SUPORTE E QA" data-en="SUPPORT AND QA INTERN">
-                            ESTAGIÁRIO EM SUPORTE E QA <span class="company-name">• StartData Studio</span></h3>
-
-                        <!-- OLHA O ID AQUI 👇 -->
-                        <p id="exp-desc-4" class="job-description"
-                            data-pt="Atuei na execução de testes manuais de software para garantia de qualidade (QA), abertura de chamados técnicos e auxílio na manutenção preventiva de bancos de dados locais e configurações de servidores internos."
-                            data-en="Acted in performing manual software tests for quality assurance (QA), technical ticket support, and assistance in preventive maintenance of local databases and internal server configurations.">
-                            Suporte na extração e limpeza de dados via web scraping, correção de bugs em rotinas de
-                            extração legadas e escrita de documentação técnica (Dicionário de Dados) da empresa.
-                        </p>
-                        <div class="tech-badges">
-                            <span class="badge">Python</span>
-                            <span class="badge">Pandas</span>
-                            <span class="badge">SQL</span>
-                            <span class="badge">Bash</span>
-                            <span class="badge">Metabase</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </section>
 
-    <section class="container projects-section" id="projetos">
-        <div class="projects-header">
-            <h2 class="section-title-glow" data-pt="Projetos" data-en="Projects">Projetos</h2>
-            <p class="projects-subtitle"
-                data-pt="Alguns dos principais trabalhos e aplicações que desenvolvi recentemente."
-                data-en="Some of the main works and applications I have recently developed.">Alguns dos principais
-                trabalhos e aplicações que desenvolvi recentemente.</p>
-        </div>
-
-        <div class="projects-grid">
-            <!-- PROJETO 1 -->
-            <div class="project-card">
-                <div class="project-image-wrapper">
-                    <img src="/src/assets/img/ecommerce.jpg" alt="Capa do Projeto 1" class="project-img">
-                </div>
-                <div class="project-content">
-                    <!-- ID ADICIONADO AQUI 👇 -->
-                    <h3 id="proj-title-1" class="project-title" data-pt="E-Commerce Real-Time Pipeline"
-                        data-en="E-Commerce Real-Time Pipeline">E-Commerce Real-Time Pipeline</h3>
-                    <!-- ID ADICIONADO AQUI 👇 -->
-                    <p id="proj-desc-1" class="project-description"
-                        data-pt="Pipeline de dados ponta a ponta processando milhões de eventos diários. Os dados são ingeridos em tempo real via Kafka, transformados com PySpark e centralizados em um Data Warehouse no Snowflake."
-                        data-en="End-to-end data pipeline processing millions of daily events. Data is ingested in real-time via Kafka, transformed with PySpark, and centralized in a Snowflake Data Warehouse.">
-                        Pipeline de dados ponta a ponta processando milhões de eventos diários. Os dados são ingeridos
-                        em tempo real via Kafka, transformados com PySpark e centralizados em um Data Warehouse no
-                        Snowflake.
-                    </p>
-
-                    <div class="tech-badges">
-                        <span class="badge">Apache Kafka</span>
-                        <span class="badge">PySpark</span>
-                        <span class="badge">Snowflake</span>
-                        <span class="badge">AWS</span>
-                    </div>
-
-                    <div class="project-links">
-                        <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
-                            <img src="/src/assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
-                                data-en="Code">Código</span>
-                        </a>
-                        <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"
-                                    fill="currentColor" />
-                            </svg> Demo
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJETO 2 -->
-            <div class="project-card">
-                <div class="project-image-wrapper">
-                    <img src="/src/assets/img/fintech.jpg" alt="Capa do Projeto 2" class="project-img">
-                </div>
-                <div class="project-content">
-                    <!-- ID ADICIONADO AQUI 👇 -->
-                    <h3 id="proj-title-2" class="project-title" data-pt="Fintech Data Lakehouse"
-                        data-en="Fintech Data Lakehouse">
-                        Fintech Data Lakehouse
-                    </h3>
-                    <!-- ID ADICIONADO AQUI 👇 -->
-                    <p id="proj-desc-2" class="project-description"
-                        data-pt="Arquitetura de Data Lakehouse para dados financeiros. Orquestração de rotinas diárias de ETL/ELT com Airflow, modelagem dimensional e implementação rigorosa de testes de Data Quality com dbt."
-                        data-en="Data Lakehouse architecture for financial data. Orchestration of daily ETL/ELT routines with Airflow, dimensional modeling, and strict implementation of Data Quality tests with dbt.">
-                        Arquitetura de Data Lakehouse para dados financeiros. Orquestração de rotinas diárias de ETL/ELT
-                        com Airflow, modelagem dimensional e implementação rigorosa de testes de Data Quality com dbt.
-                    </p>
-
-                    <div class="tech-badges">
-                        <span class="badge">dbt</span>
-                        <span class="badge">Apache Airflow</span>
-                        <span class="badge">Google BigQuery</span>
-                        <span class="badge">SQL</span>
-                    </div>
-
-                    <div class="project-links">
-                        <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
-                            <img src="/src/assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
-                                data-en="Code">Código</span>
-                        </a>
-                        <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"
-                                    fill="currentColor" />
-                            </svg> Demo
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJETO 3 -->
-            <div class="project-card">
-                <div class="project-image-wrapper">
-                    <img src="/src/assets/img/data_analytics.jpg" alt="Capa do Projeto 3" class="project-img">
-                </div>
-                <div class="project-content">
-                    <!-- ID ADICIONADO AQUI 👇 -->
-                    <h3 id="proj-title-3" class="project-title" data-pt="Log Processing Platform"
-                        data-en="Log Processing Platform">Log Processing Platform</h3>
-                    <!-- ID ADICIONADO AQUI 👇 -->
-                    <p id="proj-desc-3" class="project-description"
-                        data-pt="Plataforma de processamento de logs distribuídos em larga escala. Ingestão de terabytes de dados não estruturados, normalização e armazenamento otimizado para consultas e monitoramento de segurança."
-                        data-en="Large-scale distributed log processing platform. Ingestion of terabytes of unstructured data, normalization, and optimized storage for security monitoring and queries.">
-                        Plataforma de processamento de logs distribuídos em larga escala. Ingestão de terabytes de dados
-                        não estruturados, normalização e armazenamento otimizado para consultas e monitoramento de
-                        segurança.
-                    </p>
-
-                    <div class="tech-badges">
-                        <span class="badge">Python</span>
-                        <span class="badge">Elasticsearch</span>
-                        <span class="badge">Logstash</span>
-                        <span class="badge">Docker</span>
-                    </div>
-
-                    <div class="project-links">
-                        <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
-                            <img src="/src/assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
-                                data-en="Code">Código</span>
-                        </a>
-                        <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"
-                                    fill="currentColor" />
-                            </svg> Demo
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJETO 4 -->
-            <div class="project-card">
-                <div class="project-image-wrapper">
-                    <img src="/src/assets/img/message_api.jpg" alt="Capa do Projeto 4" class="project-img">
-                </div>
-                <div class="project-content">
-                    <!-- ID ADICIONADO AQUI 👇 -->
-                    <h3 id="proj-title-4" class="project-title" data-pt="Legacy ETL Integrator"
-                        data-en="Legacy ETL Integrator">Legacy ETL Integrator</h3>
-                    <!-- ID ADICIONADO AQUI 👇 -->
-                    <p id="proj-desc-4" class="project-description"
-                        data-pt="Sistema robusto de integração em lote (Batch) conectando múltiplos CRMs e ERPs legados. Automação completa de extração, limpeza de dados com Pandas e carga no Data Warehouse corporativo."
-                        data-en="Robust batch integration system connecting multiple legacy CRMs and ERPs. Complete automation of extraction, data cleansing with Pandas, and loading into the corporate Data Warehouse.">
-                        Sistema robusto de integração em lote (Batch) conectando múltiplos CRMs e ERPs legados.
-                        Automação completa de extração, limpeza de dados com Pandas e carga no Data Warehouse
-                        corporativo.
-                    </p>
-
-                    <div class="tech-badges">
-                        <span class="badge">Python</span>
-                        <span class="badge">Pandas</span>
-                        <span class="badge">PostgreSQL</span>
-                        <span class="badge">Bash</span>
-                    </div>
-
-                    <div class="project-links">
-                        <a href="#" target="_blank" class="project-link-btn" aria-label="GitHub">
-                            <img src="/src/assets/svg/github.svg" alt="GitHub"> <span data-pt="Código"
-                                data-en="Code">Código</span>
-                        </a>
-                        <a href="#" target="_blank" class="project-link-btn live" aria-label="Live Demo">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"
-                                    fill="currentColor" />
-                            </svg> Demo
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container contact-section" id="contato">
-        <div class="contact-wrapper">
-
-            <div class="contact-info">
-                <h2 class="contact-title" data-pt="Entrar em Contato" data-en="Get in Touch">Entrar em Contato</h2>
-                <p class="contact-description"
-                    data-pt="Estou disponível para novos projetos, contratos freelancers ou oportunidades em tempo integral. Vamos construir algo incrível juntos!"
-                    data-en="I am available for new projects, freelance contracts, or full-time opportunities. Let's build something amazing together!">
-                    Estou disponível para novos projetos, contratos freelancers ou oportunidades em tempo integral.
-                    Vamos construir algo incrível juntos!
-                </p>
-
-                <div class="contact-socials">
-                    <a href="#" class="social-btn" aria-label="GitHub">
-                        <img src="/src/assets/svg/github.svg" alt="GitHub">
-                    </a>
-                    <a href="#" class="social-btn" aria-label="LinkedIn">
-                        <img src="/src/assets/svg/linkedin.svg" alt="LinkedIn">
-                    </a>
-                    <a href="#" class="social-btn" aria-label="YouTube">
-                        <img src="/src/assets/svg/youtube.svg" alt="YouTube">
-                    </a>
-                    <a href="#" class="social-btn" aria-label="Instagram">
-                        <img src="/src/assets/svg/insta.svg" alt="Instagram">
-                    </a>
-                </div>
-
-                <a href="mailto:seu-email@hotmail.com" class="btn-start-project" data-pt="Começar um Projeto"
-                    data-en="Start a Project">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor" />
-                    </svg>
-                    Começar um Projeto
-                </a>
-            </div>
-
-            <div class="contact-ui-mockup">
-                <div class="video-card card-active">
-                    <div class="avatar-circle-wrapper">
-                        <img src="/src/assets/img/user.jpg" alt="Sua Foto" class="avatar-img">
-                    </div>
-                </div>
-
-                <div class="video-card card-muted">
-                    <div class="avatar-muted-circle">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.33 4 18V20H20V18C20 15.33 14.67 14 12 14Z"
-                                fill="#A384FF" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="video-controls-bar">
-                    <button class="control-btn" aria-label="Mutar Microfone">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-                            <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
-                            <line x1="12" x2="12" y1="19" y2="22" />
-                        </svg>
-                    </button>
-                    <button class="control-btn" aria-label="Desligar Vídeo">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m22 8-6 4 6 4V8Z" />
-                            <rect width="14" height="12" x="2" y="6" rx="2" ry="2" />
-                        </svg>
-                    </button>
-                    <button class="control-btn btn-hangup" aria-label="Desligar Chamada">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="main-footer">
-        <div class="footer-container">
-            <p class="footer-credits" data-pt="&copy; 2026 Caelium. Todos os direitos reservados."
-                data-en="&copy; 2026 Caelium. All rights reserved.">
-                &copy; 2026 Caelium. Todos os direitos reservados.
-            </p>
-        </div>
-    </footer>
-
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script defer src="/app.js"></script>
+        <!-- Script Extraído -->
+        <script type="module" src="/src/assets/js/generator.js"></script>
 </body>
 
 </html>

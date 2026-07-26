@@ -13,9 +13,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        // Avisa ao Vite que existem duas páginas principais no projeto
+        // index.html = gerador (raiz do site); demo.html = portfolio de exemplo
         main: resolve(__dirname, 'index.html'),
-        generator: resolve(__dirname, 'generator.html')
+        demo: resolve(__dirname, 'demo.html')
       }
     }
   }
