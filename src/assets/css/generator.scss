@@ -132,7 +132,11 @@ body.generator-body {
     scrollbar-color: var(--border-color) transparent;
 }
 
-h3 {
+/* Escopado pro painel (em vez de "h3" solto): _reset.scss tambem zera a
+   margem do h3 com a mesma especificidade, e no build de producao o Vite
+   pode carregar esse arquivo depois do generator.scss, fazendo o reset
+   vencer e a margem sumir (só acontecia no build, nao no dev). */
+.panel-inputs h3 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 13px;
     text-transform: uppercase;
@@ -144,7 +148,7 @@ h3 {
     gap: 10px;
 }
 
-h3::after {
+.panel-inputs h3::after {
     content: "";
     flex: 1;
     height: 1px;
